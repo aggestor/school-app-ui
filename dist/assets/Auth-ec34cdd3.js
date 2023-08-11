@@ -1,0 +1,1 @@
+import{h as t}from"./index-4f0251ba.js";const r={async verify(s){return await t.post("/auth/verify",{type:s})},async resetPassword(s){return await t.post("/auth/reset-password",{email:s})},async setNewPassword(s){return await t.post("/auth/set-new-password",s)}};export{r as A};

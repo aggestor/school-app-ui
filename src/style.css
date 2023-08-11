@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*::selection{
+    color: #fff;
+    background: rgb(59 130 246);
+}
+*{
+    font-family:'Poppins',sans-serif;
+    scroll-behavior: smooth;
+}
+.__shad{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.__shadow{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.__invisible_scroll::-webkit-scrollbar{
+    scrollbar-width: none;
+    height: 0;
+    width: 0;
+    -ms-overflow-style: none;   
+}
+
+.__scrollbar::-webkit-scrollbar {
+  width: 10px
+}
+.__scrollbar::-webkit-scrollbar-track {
+  background: transparent; 
+}
+.__scrollbar::-webkit-scrollbar-thumb {
+    background: #cfcfcf; 
+    border-radius:10px ;
+}
+.__scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #b4b2b2;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0
+  }

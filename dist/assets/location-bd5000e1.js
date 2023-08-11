@@ -1,0 +1,1 @@
+import{h as e}from"./index-4f0251ba.js";const r={create(t,o){return e.post("/location/create",{name:t,country:o})},update(t){return e.post("/location/update",t)},getAll(){return e.get("/location/all")},get(t){return e.get("/location/get/"+t)}};export{r as L};

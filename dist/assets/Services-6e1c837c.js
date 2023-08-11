@@ -1,0 +1,1 @@
+import{_ as e,c as t,g as s,b as c}from"./index-4f0251ba.js";const o={},n={class:"grid place-items-center h-full w-full"},r=c("div",{class:"w-[95%] flex justify-center text-2xl font-bold items-center h-[95%] bg-white rounded"}," Coming later... ",-1),a=[r];function i(l,_){return s(),t("div",n,a)}const f=e(o,[["render",i]]);export{f as default};
