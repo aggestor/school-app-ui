@@ -1,1 +1,0 @@
-import{_ as e,e as o}from"./index-4f0251ba.js";import{u as r}from"./logout-e8b700e1.js";const n={mounted(){this.getUser()},methods:{async getUser(){const s=await o.profile();r(s).then(t=>{t==="success"&&this.$router.push("/login")})}}};function a(s,t,u,c,i,p){return null}const d=e(n,[["render",a]]);export{d as default};

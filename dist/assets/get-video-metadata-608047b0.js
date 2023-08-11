@@ -1,1 +1,0 @@
-const d=a=>new Promise((o,t)=>{try{let e=document.createElement("video");e.preload="metadata",e.onloadedmetadata=function(){o(this)},e.onerror=function(){t("Invalid video. Please select a video file.")},e.src=window.URL.createObjectURL(a)}catch(e){t(e)}});export{d as g};

@@ -1,1 +1,0 @@
-import{h as t}from"./index-4f0251ba.js";const r={async create(a){return await t.post("/category/create",{name:a})},async update(a){return await t.post("/category/update",a)},async getAll(){return await t.get("/category/all")},async showRoomData(){return await t.get("/category/showroom")},async getAllLittleDetailed(){return await t.get("/category/all/detailed")}};export{r as C};

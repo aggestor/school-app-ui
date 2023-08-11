@@ -1,1 +1,0 @@
-import{F as t}from"./FirstHomeSection-c9da0da6.js";import{_ as e}from"./TownSection-ac4957cd.js";import{c as s,a as o,g as a}from"./index-4f0251ba.js";import"./location-bd5000e1.js";const r={class:"w-[95%] mx-auto"},l={__name:"Towns",setup(c){return(_,m)=>(a(),s("div",r,[o(t),o(e)]))}};export{l as default};

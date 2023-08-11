@@ -1,1 +1,0 @@
-import{h as e}from"./index-4f0251ba.js";const n={async create(t){return await e.post("/extension/create",t)},async update(t){return await e.post("/extension/update",t)},async getAll(){return await e.get("/extension/all")},async getAllByCategory(t){return await e.get("/extension/by/category/"+t)}};export{n as E};
