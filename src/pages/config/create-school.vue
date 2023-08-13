@@ -1,6 +1,10 @@
 <template>
 <div class="w-11/12 mx-auto flex justify-center items-center md:h-[650px]">
-    <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex md:flex-row flex-col justify-between items-center h-auto ">
+    <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
+        <div class="w-full mb-3">
+            <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
+            <h2 class="font-semibold text-lg">Configuration école.</h2>
+        </div>
         <SuccessComponent title="Configuration effectuée" message="La configuration de l'ecole a été effectuée avec success. Passer a la configuration suivante en cliquant sur le bouton ci-bas." next="/config/roles" nextText="Suivant"/>
     </div>
     <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
@@ -60,7 +64,7 @@ import { PlusIcon } from '@heroicons/vue/24/solid';
 import Config from "../../api/v2/Config"
 import SuccessComponent from '../../components/v2/SuccessComponent.vue';
 const input = ref("input")
-const success = ref(true)
+const success = ref(false)
 const file = ref()
 const image = ref('/placeholder-image.png')
 const errors = ref([])
