@@ -2,13 +2,7 @@
     <ReusableHeader title="Créer un compte client"/>
 <div class="w-11/12 mx-auto flex justify-center items-center md:h-[650px]">
     <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full overflow-hidden __shad flex md:flex-row flex-col justify-between items-center h-96 md:h-[60%] rounded-lg border">
-        <div class="md:w-6/12 w-full h-[50%]  flex md:h-full bg-green-500 md:p-8 p-6  justify-center items-center flex-col" >
-            <CheckCircleIcon class="w-20 h-20 text-white"/>
-            <h1 class="font-semibold text-2xl text-white mt-3">Création éffectuée.</h1>
-        </div>
-        <div class="md:w-6/12 w-full h-[50%] flex items-center flex-col justify-center md:h-full">
-            <span class="text-gray-800 text-center md:w-11/12 w-10/12">La création de votre compte a été éffectuée avec succès. Vous pouvez maintenant profitez de services de muyisphère en tant qu'utilisateur simple.</span>
-        </div>
+        <SuccessComponent title="Configuration effectuée" message="La configuration de l'ecole a été effectuée avec success. Passer a la configuration suivante en cliquant sur le bouton ci-bas." next="/config/roles" nextText="Suivant"/>
     </div>
     <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
         <div class="md:w-7/12 flex h-[85%] md:p-6 p-4  justify-center flex-col" >
@@ -19,7 +13,7 @@
                 <input  type="file" accept="image/png,image/jpeg,image/jpeg" hidden :ref="input" @change="handlePickImage" />
                 <TextBox  :onChange="handleInput" type="text" name="name" label="Nom" :value="values.name"  placeholder="Nom de l'école" :err="errors.name"/>
                 <div class="w-full flex space-x-3 justify-between">
-                    <TextBox  :onChange="handleInput" type="text" name="matrictule" label="Matricule" :value="values.matricule"  placeholder="Matricule de l'école" :err="errors.matricule"/>
+                    <TextBox  :onChange="handleInput" type="text" name="matricule" label="Matricule" :value="values.matricule"  placeholder="Matricule de l'école" :err="errors.matricule"/>
                     <TextBox  :onChange="handleInput" type="year" name="year" label="Annee de creation" :value="email" placeholder="Annee de creation" :err="errors.year"/>
                     <TextBox  :onChange="handleInput" type="text" name="sigle" label="Sigle" :value="values.sigle" placeholder="Sigle" :err="errors.sigle"/>
                 </div>
@@ -33,6 +27,9 @@
                 <BlueButtons @press="onPressRegister">
                     Enregistrer <CheckCircleIcon class="w-5 h-5 ml-1"/>
                 </BlueButtons>
+            </div>
+            <div>
+                <small>&copy; {{new Date().getFullYear() }} SchoolApp by <b>Modernic, Inc</b>.</small>
             </div>
         </div>
         <div class="w-5/12 md:flex hidden items-center justify-center h-full">
@@ -49,6 +46,7 @@
           </div>
         </div>
     </div>
+    
 </div>
   
 </template>
@@ -61,11 +59,12 @@ import TextBox from "../../components/TextBox.vue"
 import Textarea from '../../components/Textarea.vue';
 import { PlusIcon } from '@heroicons/vue/24/solid';
 import Config from "../../api/v2/Config"
+import SuccessComponent from '../../components/v2/SuccessComponent.vue';
 const input = ref("input")
 const success = ref(false)
 const file = ref()
 const image = ref('/placeholder-image.png')
-const errors = ref({})
+const errors = ref([])
 const values = ref({})
 const handleInput = (e) =>{
     values.value[e.target.name] = e.target.value
@@ -78,6 +77,11 @@ const onPressChooseImage = () => input.value.click()
 const onPressRegister = async () =>{
     const result = await Config.addSchool({...values.value,logo:file.value
     })
-    console.log(result);
+    if(result.error){
+    errors.value = result.errorList 
+    }
+    if(result.success){
+        success.value = true
+    }
 }
 </script>

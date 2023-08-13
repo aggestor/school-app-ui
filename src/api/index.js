@@ -16,28 +16,28 @@ export default {
     async get(path) {
         try {
             const response = await instance.get(path)
-            return response
+            return response.data
         } catch (e) {
-            return {type:'error', message : "There was an issue on our server"}
+            return e.response.data
         }
     },
     /**
      * Gets data from the api using POST HTTP Method
      * @param {string} path endpoint on the server
      * @param {Record<string, string|number|symbol>} body Request Body
-     * @@returns {Promise<AxiosResponse.data}
+     * @@returns {Promise<import("axios").AxiosResponse>}
      */
     async post(path, body = {}, binary = false) {
         try {
             if (binary) {
                 const response = await instance.post(path, body, {headers:{"Content-Type":"multipart/form-data"}})
-                return response
+                return response.data
             } else {
                  const response = await instance.post(path, body)
-                return response
+                return response.data
             }
         }catch (e) {
-            return {type:'error', message : "There was an issue on our server"}
+            return e.response.data
         }
     }
 }

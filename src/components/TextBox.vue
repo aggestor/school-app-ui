@@ -8,7 +8,7 @@
               <option v-for="item of items" :value="item.value">{{item.key}}</option>
           </datalist>
     </div>
-    <span class="text-red-500 mt-0.5 text-[11px]" v-if="err">{{err}}</span>
+    <span class="text-red-500 mt-0.5 text-[11px]" v-if="err">{{err[0]}}</span>
   </div>
 </template>
 

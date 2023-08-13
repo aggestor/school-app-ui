@@ -13,7 +13,7 @@ const Config = {
         return await api.post('/auth/reset-password',{email})
     },
     async addSchool(data: Record<string,any>){
-        return await api.post('/ecole/create',data)
+        return await api.post('/ecole/create',data, true)
     },
     async setNewPassword(data: Obj){
         return await api.post('/auth/set-new-password',data)
