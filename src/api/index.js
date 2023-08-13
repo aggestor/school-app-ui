@@ -16,7 +16,7 @@ export default {
     async get(path) {
         try {
             const response = await instance.get(path)
-            return response.data
+            return response
         } catch (e) {
             return {type:'error', message : "There was an issue on our server"}
         }
@@ -31,10 +31,10 @@ export default {
         try {
             if (binary) {
                 const response = await instance.post(path, body, {headers:{"Content-Type":"multipart/form-data"}})
-                return response.data
+                return response
             } else {
                  const response = await instance.post(path, body)
-                return response.data
+                return response
             }
         }catch (e) {
             return {type:'error', message : "There was an issue on our server"}
