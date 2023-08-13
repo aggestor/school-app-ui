@@ -1,8 +1,8 @@
 <template>
     <div class="w-full pl-2 flex relative flex-col h-screen __invisible_scroll overflow-auto  border-r bg-white">
-        <p class="text-blue-600 font-bold text-2xl  flex items-center">
-            SchoolApp
-        </p>
+        <div class="flex items-center">
+            <img src="/logo-with-ecrit.png" class="h-14 w-full"/>
+        </div>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
         </SideBarItem>
