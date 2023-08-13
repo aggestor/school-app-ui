@@ -1,7 +1,6 @@
 <template>
-    <ReusableHeader title="Créer un compte client"/>
 <div class="w-11/12 mx-auto flex justify-center items-center md:h-[650px]">
-    <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full overflow-hidden __shad flex md:flex-row flex-col justify-between items-center h-96 md:h-[60%] rounded-lg border">
+    <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex md:flex-row flex-col justify-between items-center h-auto ">
         <SuccessComponent title="Configuration effectuée" message="La configuration de l'ecole a été effectuée avec success. Passer a la configuration suivante en cliquant sur le bouton ci-bas." next="/config/roles" nextText="Suivant"/>
     </div>
     <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
@@ -24,7 +23,7 @@
                 <Textarea :onChange="handleInput" name="description" label="Description" placeholder="Parler un peu de votre ecole" :err="errors.description" :value="values.description"/>
             </form>
             <div class="w-full items-center my-3 flex  justify-between">
-                <BlueButtons @press="onPressRegister">
+                <BlueButtons type="button" @press="onPressRegister">
                     Enregistrer <CheckCircleIcon class="w-5 h-5 ml-1"/>
                 </BlueButtons>
             </div>
@@ -61,7 +60,7 @@ import { PlusIcon } from '@heroicons/vue/24/solid';
 import Config from "../../api/v2/Config"
 import SuccessComponent from '../../components/v2/SuccessComponent.vue';
 const input = ref("input")
-const success = ref(false)
+const success = ref(true)
 const file = ref()
 const image = ref('/placeholder-image.png')
 const errors = ref([])
