@@ -12,6 +12,12 @@ export default [
         component:async ()=> await import("../pages/config/roles.vue")
     },
     {
+        path: '/config/super-user',
+        name: 'config-super-user',
+        meta : {layout : 'blank'},
+        component:async ()=> await import("../pages/config/super-user.vue")
+    },
+    {
         path: '/contacts',
         name: 'contacts',
         meta : {layout : 'default'},
