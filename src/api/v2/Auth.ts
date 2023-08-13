@@ -14,6 +14,9 @@ const Auth = {
     },
     async setNewPassword(data: Obj){
         return await api.post('/auth/set-new-password',data)
+    },
+    async login(data: Record<string,any>){
+        return await api.post('/user/login',data)
     }
 
 

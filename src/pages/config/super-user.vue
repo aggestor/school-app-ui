@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
                 <h2 class="font-semibold text-lg">Configuration admininistrateur.</h2>
             </div>
-            <SuccessComponent title="Configuration effectuée" message="La configuration de l'admininistrateur a été effectuée avec success. Passer a la configuration suivante en cliquant sur le bouton ci-bas." next="/config/roles" nextText="Suivant"/>
+            <SuccessComponent title="Configuration effectuée" message="La configuration de l'admininistrateur a été effectuée avec success. Passer a la configuration suivante en cliquant sur le bouton ci-bas." next="/login" nextText="Suivant"/>
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="md:w-7/12 flex h-[85%] md:p-6 p-4  justify-center flex-col" >

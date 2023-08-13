@@ -31,12 +31,6 @@ export default [
         meta : {layout : 'default'},
         component:async ()=> await import("../pages/v2/set-new-password.vue")
     },
-     {
-        path: '/login',
-        name: 'login-register',
-        meta : {layout : 'default'},
-        component:async ()=> await import("../pages/Login.vue")
-    },
     {
         path: '/user/update',
         name: 'user-update',
