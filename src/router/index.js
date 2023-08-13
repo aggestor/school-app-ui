@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router"
-import ownerRoutes from "./owner-routes"
 import userRoutes from "./user-routes"
 import adminRoutes from "./admin-routes"
 import publicRoutes from "./public-routes"
+import configRoutes from "./config-routes"
 
 const routes = [
-    ...ownerRoutes,
+    ...configRoutes,
     ...userRoutes,
     ...adminRoutes,
     ...publicRoutes,]
