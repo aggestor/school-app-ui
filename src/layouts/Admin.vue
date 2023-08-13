@@ -1,11 +1,11 @@
 <template>
     <section class="w-full h-full overflow-hidden block bg-white ">
-        <AdminNavbar/>
-        <main class="w-full overflow-hidden flex h-full  bg-gray-200">
+        <Navbar/>
+        <main class="w-full overflow-hidden flex h-full">
             <div class="md:w-[7%] lg:w-2/12 md:flex hidden h-full">
-                <AdminSideBar/>
+                <SideBar/>
             </div>
-            <div  class="md:w-[93%] lg:w-10/12 w-full bg-gray-200 overflow-y-auto h-[calc(100vh-56px)]">
+            <div  class="md:w-[93%] lg:w-10/12 w-full overflow-y-auto h-[calc(100vh-56px)]">
                 <slot/>
             </div>
         </main>
@@ -13,13 +13,13 @@
     </section>
 </template>
 <script>
-import AdminNavbar from '../components/AdminNavbar.vue';
-import AdminSideBar from '../components/AdminSideBar.vue';
+import SideBar from '../components/v2/admin/SideBar.vue';
+import Navbar from '../components/v2/admin/Navbar.vue';
 
 export default {
     components: {
-    AdminNavbar,
-    AdminSideBar
-    },
+    Navbar,
+    SideBar,
+},
 }
 </script>
