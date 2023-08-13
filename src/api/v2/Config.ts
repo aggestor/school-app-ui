@@ -15,6 +15,9 @@ const Config = {
     async addRole(name:string){
         return await api.post('/role/create',{name})
     },
+    async addSU(data:Record<string,any>){
+        return await api.post('/user/create',data)
+    },
     async addSchool(data: Record<string,any>){
         return await api.post('/ecole/create',data, true)
     },
