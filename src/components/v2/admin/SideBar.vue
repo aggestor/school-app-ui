@@ -1,52 +1,55 @@
 <template>
-    <div class="w-full pl-2 flex flex-col h-[calc(100vh-56px)] __invisible_scroll overflow-auto border-gray-300 border-l-2 bg-white">
+    <div class="w-full pl-2 flex flex-col h-screen __invisible_scroll overflow-auto  border-r bg-white">
+        <p class="text-blue-600 font-bold text-2xl  flex items-center">
+            SchoolApp
+        </p>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/shops" text="Shops">
-            <BuildingStorefrontIcon class="w-6  h-6"/>
+            <BuildingStorefrontIcon class="w-5  h56"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/products" text="Produits">
-            <ArchiveBoxIcon class="w-6 h-6"/>
+            <ArchiveBoxIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/services" text="Services">
-            <DocumentArrowDownIcon class="w-6 h-6"/>
+            <DocumentArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/categories" text="Catégories">
-            <Bars3CenterLeftIcon class="w-6 h-6"/>
+            <Bars3CenterLeftIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/extensions" text="Extensions">
-            <BarsArrowUpIcon class="w-6 h-6"/>
+            <BarsArrowUpIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/models" text="Modèles">
-            <AdjustmentsHorizontalIcon class="w-6 h-6"/>
+            <AdjustmentsHorizontalIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/types" text="Types">
-            <BarsArrowDownIcon class="w-6 h-6"/>
+            <BarsArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/marks" text="Marques">
-            <AdjustmentsVerticalIcon class="w-6 h-6"/>
+            <AdjustmentsVerticalIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/sets" text="Series">
-            <ListBulletIcon class="w-6 h-6"/>
+            <ListBulletIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/specifications" text="Spécifications">
-            <RectangleGroupIcon class="w-6 h-6"/>
+            <RectangleGroupIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/orders" text="Orders">
-            <ShoppingBagIcon class="w-6 h-6"/>
+            <ShoppingBagIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/users" text="Utilisateurs">
-            <UserGroupIcon class="w-6 h-6"/>
+            <UserGroupIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/sliders" text="Carousels">
-            <DocumentDuplicateIcon class="w-6 h-6"/>
+            <DocumentDuplicateIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/towns" text="Villes">
-            <GlobeEuropeAfricaIcon class="w-6 h-6"/>
+            <GlobeEuropeAfricaIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/newsletter" text="Newsletter">
-            <EnvelopeIcon class="w-6 h-6"/>
+            <EnvelopeIcon class="w-5 h-5"/>
         </SideBarItem>
     </div>
 </template>
