@@ -1,7 +1,7 @@
 <template>
     <ReusableHeader title="Créer un compte client"/>
 <div class="w-11/12 mx-auto flex justify-center items-center md:h-[650px]">
-    <div v-if="showSuccessPanel" data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full overflow-hidden __shad flex md:flex-row flex-col justify-between items-center h-96 md:h-[60%] rounded-lg border">
+    <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full overflow-hidden __shad flex md:flex-row flex-col justify-between items-center h-96 md:h-[60%] rounded-lg border">
         <div class="md:w-6/12 w-full h-[50%]  flex md:h-full bg-green-500 md:p-8 p-6  justify-center items-center flex-col" >
             <CheckCircleIcon class="w-20 h-20 text-white"/>
             <h1 class="font-semibold text-2xl text-white mt-3">Création éffectuée.</h1>
@@ -17,17 +17,17 @@
             <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour configure l'école. </p>
             <form class="h-full w-full flex flex-col">
                 <input  type="file" accept="image/png,image/jpeg,image/jpeg" hidden :ref="input" @change="handlePickImage" />
-                <TextBox  :onChange="handleInput" type="text" name="name" label="Nom" :value="name"  placeholder="Nom de l'école" :err="errors.name"/>
+                <TextBox  :onChange="handleInput" type="text" name="name" label="Nom" :value="values.name"  placeholder="Nom de l'école" :err="errors.name"/>
                 <div class="w-full flex space-x-3 justify-between">
-                    <TextBox  :onChange="handleInput" type="text" name="matrictule" label="Matricule" :value="matricule"  placeholder="Matricule de l'école" :err="errors.matricule"/>
+                    <TextBox  :onChange="handleInput" type="text" name="matrictule" label="Matricule" :value="values.matricule"  placeholder="Matricule de l'école" :err="errors.matricule"/>
                     <TextBox  :onChange="handleInput" type="year" name="year" label="Annee de creation" :value="email" placeholder="Annee de creation" :err="errors.year"/>
-                    <TextBox  :onChange="handleInput" type="text" name="sigle" label="Sigle" :value="sigle" placeholder="Sigle" :err="errors.sigle"/>
+                    <TextBox  :onChange="handleInput" type="text" name="sigle" label="Sigle" :value="values.sigle" placeholder="Sigle" :err="errors.sigle"/>
                 </div>
                 <div class="w-full flex space-x-3 justify-between">
-                    <TextBox  :onChange="handleInput" type="email" name="email" label="Email" :value="email" placeholder="Email de l'ecole" :err="errors.email"/>
-                    <TextBox  :onChange="handleInput" type="tel" name="tel" label="Telephone" :value="tel" placeholder="Numero de telephone" :err="errors.tel"/>
+                    <TextBox  :onChange="handleInput" type="email" name="email" label="Email" :value="values.email" placeholder="Email de l'ecole" :err="errors.email"/>
+                    <TextBox  :onChange="handleInput" type="tel" name="tel" label="Telephone" :value="values.tel" placeholder="Numero de telephone" :err="errors.tel"/>
                 </div>
-                <Textarea :onChange="handleInput" name="description" label="Description" placeholder="Parler un peu de votre ecole" :err="errors.description" :value="description"/>
+                <Textarea :onChange="handleInput" name="description" label="Description" placeholder="Parler un peu de votre ecole" :err="errors.description" :value="values.description"/>
             </form>
             <div class="w-full items-center my-3 flex  justify-between">
                 <BlueButtons @press="onPressRegister">
@@ -60,15 +60,24 @@ import BlueButtons from '../../components/v2/BlueButtons.vue';
 import TextBox from "../../components/TextBox.vue"
 import Textarea from '../../components/Textarea.vue';
 import { PlusIcon } from '@heroicons/vue/24/solid';
+import Config from "../../api/v2/Config"
 const input = ref("input")
-const showSuccessPanel = ref(false)
+const success = ref(false)
 const file = ref()
 const image = ref('/placeholder-image.png')
 const errors = ref({})
-const handleChange = (e) =>{}
+const values = ref({})
+const handleInput = (e) =>{
+    values.value[e.target.name] = e.target.value
+}
 const handlePickImage = (e) =>{
     image.value = URL.createObjectURL(e.target.files[0])
     file.value = e.target.files[0]
 }
 const onPressChooseImage = () => input.value.click()
+const onPressRegister = async () =>{
+    const result = await Config.addSchool({...values.value,logo:file.value
+    })
+    console.log(result);
+}
 </script>
