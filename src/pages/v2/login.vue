@@ -15,7 +15,7 @@
                     </BlueButtons>
                 </div>
                 <div>
-                    <small>&copy; {{new Date().getFullYear() }} SchoolApp by <b>Modernic, Inc</b>.</small>
+                    <small>&copy; {{new Date().getFullYear() }} SchoolApp,<b>Modernic, Inc</b>.</small>
                 </div>
             </div>
             <div class="w-6/12 md:flex hidden items-center justify-center h-full">
@@ -51,7 +51,6 @@
         errors.value = result.errorList 
         }
         if(result.success){
-            
             sessionStorage.setItem('user', JSON.stringify(result.user[0]))
             const roles = result.user[0].role.map(d => d.role)
             if(roles.includes("admin")){

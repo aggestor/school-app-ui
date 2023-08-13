@@ -29,7 +29,7 @@
                     </BlueButtons>
                 </div>
                 <div>
-                    <small>&copy; {{new Date().getFullYear() }} SchoolApp by <b>Modernic, Inc</b>.</small>
+                    <small>&copy; {{new Date().getFullYear() }} SchoolApp,<b>Modernic, Inc</b>.</small>
                 </div>
             </div>
         </div>

@@ -1,56 +1,51 @@
 <template>
-    <div class="w-full pl-2 flex flex-col h-screen __invisible_scroll overflow-auto  border-r bg-white">
+    <div class="w-full pl-2 flex relative flex-col h-screen __invisible_scroll overflow-auto  border-r bg-white">
         <p class="text-blue-600 font-bold text-2xl  flex items-center">
             SchoolApp
         </p>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin" text="Dashboard">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/shops" text="Shops">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/levels" text="Niveaux">
             <BuildingStorefrontIcon class="w-5  h56"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/products" text="Produits">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/courses" text="Cours">
             <ArchiveBoxIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/services" text="Services">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/options" text="Options">
             <DocumentArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/categories" text="Catégories">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/years" text="Annee scolaire">
             <Bars3CenterLeftIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/extensions" text="Extensions">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/classes" text="Classes">
             <BarsArrowUpIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/models" text="Modèles">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/inscriptions" text="Inscriptions">
             <AdjustmentsHorizontalIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/types" text="Types">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/students" text="Eleves">
             <BarsArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/marks" text="Marques">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/fees" text="Frais">
             <AdjustmentsVerticalIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/sets" text="Series">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/rating" text="Cotes">
             <ListBulletIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/specifications" text="Spécifications">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/results" text="Resultats">
             <RectangleGroupIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/orders" text="Orders">
-            <ShoppingBagIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/users" text="Utilisateurs">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/users" text="Utilisateurs">
             <UserGroupIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/sliders" text="Carousels">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/class-teachers" text="Titulaires">
             <DocumentDuplicateIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/towns" text="Villes">
-            <GlobeEuropeAfricaIcon class="w-5 h-5"/>
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/parents" text="Parents">
+            <DocumentDuplicateIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/admin/newsletter" text="Newsletter">
-            <EnvelopeIcon class="w-5 h-5"/>
-        </SideBarItem>
+        <small class="mt-3">&copy; {{new Date().getFullYear() }} SchoolApp,<b>Modernic, Inc</b>.</small>
     </div>
 </template>
 <script setup>
