@@ -12,6 +12,9 @@ const Config = {
     async resetPassword(email: string){
         return await api.post('/auth/reset-password',{email})
     },
+    async addRole(name:Record<string,any>){
+        return await api.post('/role/create',{name})
+    },
     async addSchool(data: Record<string,any>){
         return await api.post('/ecole/create',data, true)
     },
