@@ -63,6 +63,13 @@ export default [
         component:async ()=> await import("../pages/admin/options/list.vue")
     },
     {
+        path: '/admin/options/:id/update',
+        alias:"/ui/admin/options/:id/update",
+        name: 'update-option',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/options/update.vue")
+    },
+    {
         path: '/admin/years/create',
         alias:"/ui/admin/years/create",
         name: 'create-year',
