@@ -39,7 +39,14 @@ export default [
         alias:"/ui/admin/courses",
         name: 'list-course',
         meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/courses/list.vue")
+        component:async ()=> await import("../pages/admin/courses/update.vue")
+    },
+    {
+        path: '/admin/courses/:id/update',
+        alias:"/ui/admin/courses/:id/update",
+        name: 'update-course',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/courses/update.vue")
     },
     {
         path: '/admin/options/create',

@@ -6,7 +6,7 @@ const Course = {
         return await api.post('/cours/create',data)
     },
     async update(data: Record<string, any>,id:string){
-        return await api.post('/cours/edit/'+id,data)
+        return await api.put('/cours/edit/'+id,data)
     },
     async get(id?:string){
         return await api.get(id?'/cours/'+id : '/cours')
