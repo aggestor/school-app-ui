@@ -7,17 +7,10 @@ export default [
         component:async ()=> await import("../pages/admin/dashboard.vue")
     },
     {
-        path: '/reset-password',
-        alias:'/auth/reset-password',
-        name: 'reset-password',
-        meta : {layout : 'blank'},
-        component:async ()=> await import("../pages/v2/reset-password.vue")
-    },
-     {
-        path: '/new-password/:uuid/:id/:email/:token',
-        alias: '/auth/new-password/:uuid/:id/:email/:token',
-        name: 'set-new-password',
-        meta : {layout : 'blank'},
-        component:async ()=> await import("../pages/v2/set-new-password.vue")
+        path: '/admin/levels/create',
+        alias:"/ui/admin/levels/create",
+        name: 'create-level',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/levels/create.vue")
     },
 ]

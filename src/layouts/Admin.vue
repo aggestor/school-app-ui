@@ -4,7 +4,7 @@
             <div class="md:w-[7%] lg:w-2/12 md:flex hidden h-full">
                 <SideBar/>
             </div>
-            <div  class="md:w-[93%] lg:w-10/12 w-full overflow-y-auto h-[calc(100vh-56px)]">
+            <div  class="md:w-[93%] lg:w-10/12 w-full overflow-y-auto h-screen">
                 <Navbar/>
                 <slot/>
             </div>
