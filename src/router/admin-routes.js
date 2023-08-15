@@ -84,6 +84,13 @@ export default [
         component:async ()=> await import("../pages/admin/years/list.vue")
     },
     {
+        path: '/admin/years/:id/update',
+        alias:"/ui/admin/years/:id/update",
+        name: 'update-year',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/years/update.vue")
+    },
+    {
         path: '/admin/classes/create',
         alias:"/ui/admin/classes/create",
         name: 'create-class',
