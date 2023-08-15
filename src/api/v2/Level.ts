@@ -12,7 +12,7 @@ const Level = {
         return await api.post('/niveau/create',data)
     },
     async get(id?:string){
-        return await api.get(id?'/role/'+id : '/role')
+        return await api.get(id?'/niveau/'+id : '/niveau')
     },
     async addSchool(data: Record<string,any>){
         return await api.post('/ecole/create',data, true)
