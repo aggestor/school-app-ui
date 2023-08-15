@@ -48,4 +48,18 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/options/list.vue")
     },
+    {
+        path: '/admin/years/create',
+        alias:"/ui/admin/years/create",
+        name: 'create-year',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/years/create.vue")
+    },
+    {
+        path: '/admin/years',
+        alias:"/ui/admin/years",
+        name: 'list-year',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/years/list.vue")
+    },
 ]
