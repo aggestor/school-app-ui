@@ -17,10 +17,4 @@ export default [
         meta : {layout : 'blank'},
         component:async ()=> await import("../pages/config/super-user.vue")
     },
-    {
-        path: '/contacts',
-        name: 'contacts',
-        meta : {layout : 'default'},
-        component:async ()=> await import("../pages/Contacts.vue")
-    },
 ]

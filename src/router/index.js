@@ -1,16 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router"
-import userRoutes from "./user-routes"
 import adminRoutes from "./admin-routes"
-import publicRoutes from "./public-routes"
 import configRoutes from "./config-routes"
 import authRoutes from "./auth-routes"
 
 const routes = [
     ...configRoutes,
     ...authRoutes,
-    ...userRoutes,
-    ...adminRoutes,
-    ...publicRoutes,]
+    ...adminRoutes,]
 
 
 const router = createRouter({
