@@ -13,4 +13,11 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/levels/create.vue")
     },
+    {
+        path: '/admin/levels',
+        alias:"/ui/admin/levels",
+        name: 'list-level',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/levels/list.vue")
+    },
 ]
