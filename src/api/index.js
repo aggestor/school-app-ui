@@ -39,5 +39,24 @@ export default {
         }catch (e) {
             return e.response.data
         }
+    },
+    /**
+     * Gets data from the api using POST HTTP Method
+     * @param {string} path endpoint on the server
+     * @param {Record<string, string|number|symbol>} body Request Body
+     * @@returns {Promise<import("axios").AxiosResponse>}
+     */
+    async put(path, body = {}, binary = false) {
+        try {
+            if (binary) {
+                const response = await instance.put(path, body, {headers:{"Content-Type":"multipart/form-data"}})
+                return response.data
+            } else {
+                 const response = await instance.put(path, body)
+                return response.data
+            }
+        }catch (e) {
+            return e.response.data
+        }
     }
 }

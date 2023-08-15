@@ -21,6 +21,13 @@ export default [
         component:async ()=> await import("../pages/admin/levels/list.vue")
     },
     {
+        path: '/admin/levels/:id/update',
+        alias:"/ui/admin/levels/:id/update",
+        name: 'update-level',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/levels/update.vue")
+    },
+    {
         path: '/admin/courses/create',
         alias:"/ui/admin/courses/create",
         name: 'create-course',

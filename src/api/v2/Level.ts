@@ -5,8 +5,8 @@ const Level = {
     async verify(type) {
         return  await api.post('/auth/verify',{type})
     },
-    async resetPassword(email: string){
-        return await api.post('/auth/reset-password',{email})
+    async update(data: Record<string,any>, id:string){
+        return await api.put('/niveau/edit/'+id,data)
     },
     async create(data: Record<string, any>){
         return await api.post('/niveau/create',data)
