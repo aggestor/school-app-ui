@@ -2,8 +2,8 @@
     <div class="w-11/12 mx-auto flex justify-center items-center md:h-[350px]">
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
-                <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
-                <h2 class="font-semibold text-lg">Configuration école.</h2>
+                <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
+                <h2 class="font-semibold text-lg">Configuration Niveau.</h2>
             </div>
             <SuccessComponent title="Configuration effectuée" message="La configuration du niveau a été effectuée avec success. Vous pouvez maintenant assossier ce niveau a tout ce qui peût y être lié." next="/config/levels" nextText="Suivant"/>
         </div>
@@ -32,8 +32,8 @@
     import {CheckCircleIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import TextBox from "../../../components/TextBox.vue"
-    import Config from "../../../api/v2/Config"
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
+    import Level from '../../../api/v2/Level';
     const success = ref(false)
     const errors = ref([])
     const values = ref({})
@@ -41,8 +41,7 @@
         values.value[e.target.name] = e.target.value
     }
     const onPressRegister = async () =>{
-        const result = await Config.addSchool({...values.value,logo:file.value
-        })
+        const result = await Level.create(values.value)
         if(result.error){
         errors.value = result.errorList 
         }
