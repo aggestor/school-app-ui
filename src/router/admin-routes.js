@@ -34,4 +34,18 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/courses/list.vue")
     },
+    {
+        path: '/admin/options/create',
+        alias:"/ui/admin/options/create",
+        name: 'create-option',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/options/create.vue")
+    },
+    {
+        path: '/admin/options',
+        alias:"/ui/admin/options",
+        name: 'list-option',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/options/list.vue")
+    },
 ]
