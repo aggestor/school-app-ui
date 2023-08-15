@@ -18,16 +18,19 @@
                     </div>
                     <div class="w-8/12">
                         <Datalist label="Niveau" :onChange="handleInput" name="niveau" placeholder="Choisir Niveau">
-
+                            <option :value="o.niveau" :key="o.niveau" v-for="o of levels">{{o.id }}</option>
                         </Datalist>
                     </div>
                     <div class="w-8/12">
                         <Datalist label="Option" :onChange="handleInput" name="option"  placeholder="Choisir Option">
-    
+                            <option  :key="o.option" v-for="o of options">{{o.option }}</option>
                         </Datalist>
                     </div>
-                    <div class="w-full h-48 rounded mt-3 border">
-
+                    <div class="w-full h-48 p-1 rounded mt-3 border">
+                        <p class="text-gray-600">Choisir cours</p>
+                        <div class="flex flex-wrap space-x-2">
+                            <span @click="onChooseCourse(c.id)" v-for="c of courses" :class="` p-1 bg-gray-100 flex space-x-2 items-center cursor-pointer ${chosenCourses.includes(c.id) ? 'bg-blue-600 text-white' :' hover:bg-gray-200'} rounded`">{{c.cours }} <CheckIcon class='w-5 h-5 ml-2' v-if="chosenCourses.includes(c.id)"/></span>
+                        </div>
                     </div>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
@@ -43,21 +46,42 @@
     </template>
     
     <script setup>
-    import { ref } from 'vue';
-    import {CheckCircleIcon} from "@heroicons/vue/24/outline"
+    import { onMounted, ref } from 'vue';
+    import {CheckCircleIcon, CheckIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import TextBox from "../../../components/TextBox.vue"
     import Datalist from '../../../components/Datalist.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
+    import Class from '../../../api/v2/Class';
     import Course from '../../../api/v2/Course';
+    import Option from '../../../api/v2/Option';
+    import Level from '../../../api/v2/Level';
     const success = ref(false)
     const errors = ref([])
+    const levels = ref([])
+    const options = ref([])
+    const chosenCourses = ref([])
+    const courses = ref([])
+    const optionId = ref("")
+    const levelId = ref("")
     const values = ref({})
     const handleInput = (e) =>{
+        if(e.target.name == "option"){
+            const t = options.value.filter(o => o.option == e.target.value )
+            if(t[0]){
+                optionId.value = t[0].id
+            }
+        }
+        if(e.target.name == "niveau"){
+            const t = levels.value.filter(o => o.niveau == e.target.value )
+            if(t[0]){
+                levelId.value = t[0].id
+            }
+        }
         values.value[e.target.name] = e.target.value
     }
     const onPressRegister = async () =>{
-        const result = await Course.create(values.value)
+        const result = await Class.create({...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value})
         if(result.error){
         errors.value = result.errorList 
         }
@@ -65,5 +89,35 @@
             success.value = true
         }
     }
+    const getOptions = async () =>{
+        const result =await Option.get()
+        if(result.data){
+            options.value = result.data
+        }
+    }
+    const getLevels = async () =>{
+        const result =await Level.get()
+        if(result.data){
+            levels.value = result.data
+        }
+    }
+    const getCourses = async () =>{
+        const result =await Course.get()
+        if(result.data){
+            courses.value = result.data
+        }
+    }
+    const onChooseCourse = id =>{
+        if(!chosenCourses.value.includes(id)){
+            chosenCourses.value.push(id)
+        }else{
+            chosenCourses.value = chosenCourses.value.filter(m => m != id)
+        }
+    }
+    onMounted(()=>{
+        getOptions()
+        getLevels()
+        getCourses()
+    })
     </script>
     
