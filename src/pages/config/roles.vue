@@ -9,7 +9,9 @@
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-full md:p-6 p-4  justify-center flex-col" >
-                <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
+                <div class="w-fit -ml-2 h-14">
+                <img src="/logo-with-ecrit.png" class="w-full h-full"/>
+            </div>
                 <h2 class="font-semibold text-lg">Configuration roles.</h2>
                 <p class="text-gray-700 text-sm">Considerez les roles comme les postes que les gens occupent sur votre école. </p>
                 <form class="h-full w-full flex flex-col">

@@ -9,7 +9,9 @@
     </div>
     <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
         <div class="md:w-7/12 flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-            <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
+            <div class="w-fit -ml-2 h-14">
+                <img src="/logo-with-ecrit.png" class="w-full h-full"/>
+            </div>
             <h2 class="font-semibold text-lg">Configuration école.</h2>
             <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour configure l'école. </p>
             <form class="h-full w-full flex flex-col">
