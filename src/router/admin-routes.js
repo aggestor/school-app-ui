@@ -104,4 +104,25 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/classes/list.vue")
     },
+    {
+        path: '/admin/users',
+        alias:"/ui/admin/users",
+        name: 'list-user',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/users/list.vue")
+    },
+    {
+        path: '/admin/users/create',
+        alias:"/ui/admin/users/create",
+        name: 'create-user',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/users/create.vue")
+    },
+    {
+        path: '/admin/users/:id/update',
+        alias:"/ui/admin/users/:id/update",
+        name: 'update-user',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/users/update.vue")
+    },
 ]
