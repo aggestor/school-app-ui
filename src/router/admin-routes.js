@@ -105,6 +105,20 @@ export default [
         component:async ()=> await import("../pages/admin/classes/list.vue")
     },
     {
+        path: '/admin/classes/:id',
+        alias:"/ui/admin/classes/:id",
+        name: 'uniq-class',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/classes/unique.vue")
+    },
+    {
+        path: '/admin/classes/:id/update',
+        alias:"/ui/admin/classes/:id/update",
+        name: 'update-class',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/classes/update.vue")
+    },
+    {
         path: '/admin/users',
         alias:"/ui/admin/users",
         name: 'list-user',
