@@ -65,6 +65,10 @@
     import Option from '../../../api/v2/Option';
     import User from '../../../api/v2/User';
     import Level from '../../../api/v2/Level';
+import { useRoute } from 'vue-router';
+
+
+
     const success = ref(false)
     const errors = ref([])
     const levels = ref([])
@@ -76,6 +80,7 @@
     const userId = ref("")
     const levelId = ref("")
     const values = ref({})
+    const route = useRoute()
     const handleInput = (e) =>{
         if(e.target.name == "option"){
             const t = options.value.filter(o => o.option == e.target.value )
@@ -137,7 +142,15 @@
             chosenCourses.value = chosenCourses.value.filter(m => m != id)
         }
     }
+    const fetchClass = async () =>{
+        const result = await Class.get(route.params.id)
+        console.log(result);
+        if(result.success){
+
+        }
+    }
     onMounted(()=>{
+        fetchClass()
         getOptions()
         getLevels()
         getCourses()
