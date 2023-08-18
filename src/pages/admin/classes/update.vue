@@ -18,19 +18,19 @@
                     </div>
                     <div class="flex justify-between space-x-3">
                         <div class="w-8/12">
-                            <Datalist label="Niveau" :onChange="handleInput" name="niveau" placeholder="Choisir Niveau">
+                            <Datalist label="Niveau" :onChange="handleInput" :value="values.niveau" name="niveau" placeholder="Choisir Niveau">
                                 <option :value="o.niveau" :key="o.niveau" v-for="o of levels">{{o.id }}</option>
                             </Datalist>
                         </div>
 
                         <div class="w-8/12">
-                            <Datalist label="Option" :onChange="handleInput" name="option"  placeholder="Choisir Option">
+                            <Datalist label="Option" :onChange="handleInput" name="option" :value="values.option"  placeholder="Choisir Option">
                                 <option  :key="o.option" v-for="o of options">{{o.option }}</option>
                             </Datalist>
                         </div>
                     </div>
                     <div class="w-8/12">
-                        <Datalist label="Titulaire" :onChange="handleInput" name="user_id"  placeholder="Choisir titulaire du cours">
+                        <Datalist label="Titulaire" :onChange="handleInput" name="user_id" :value="values.user_id"  placeholder="Choisir titulaire du cours">
                             <option  :key="o.name" v-for="o of users">{{o.name }}</option>
                         </Datalist>
                     </div>
@@ -143,18 +143,31 @@ import { useRoute } from 'vue-router';
         }
     }
     const fetchClass = async () =>{
-        const result = await Class.get(route.params.id)
-        console.log(result);
+        const result =await Class.get(route.params.id)
         if(result.success){
-
+            values.value.name = result.data[0].name
+            values.value.scolarite = result.data[0].scolarite
+            const cours = result.data[0].cours.map(c =>c.id)
+            userId.value = result.data[0].user_id
+            optionId.value = result.data[0].option_id
+            levelId.value = result.data[0].niveau_id
+            values.value.option = result.data[0].option.option
+            if(levels.value){
+                const lv = levels.value.filter(l => l.id == result.data[0].niveau_id)
+                if(lv[0]){
+                    levelId.value = lv[0].id
+                    values.value.level = lv[0].niveau
+                }
+            }
+            chosenCourses.value = cours
         }
     }
     onMounted(()=>{
+        getLevels()
+        fetchUsers()
         fetchClass()
         getOptions()
-        getLevels()
         getCourses()
-        fetchUsers()
     })
     </script>
     
