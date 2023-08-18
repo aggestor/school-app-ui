@@ -45,6 +45,9 @@
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/parents" text="Parents">
             <DocumentDuplicateIcon class="w-5 h-5"/>
         </SideBarItem>
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/roles" text="Roles">
+            <DocumentDuplicateIcon class="w-5 h-5"/>
+        </SideBarItem>
         <small class="mt-3">&copy; {{new Date().getFullYear() }} SchoolApp,<b>Modernic, Inc</b>.</small>
     </div>
 </template>
