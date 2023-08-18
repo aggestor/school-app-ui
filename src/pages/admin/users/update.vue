@@ -47,7 +47,7 @@
     import Role from "../../../api/v2/Role"
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import { useRoute } from 'vue-router';
-import User from '../../../api/v2/User';
+    import User from '../../../api/v2/User';
     const success = ref(false)
     const errors = ref([])
     const roles = ref([])
@@ -75,6 +75,8 @@ import User from '../../../api/v2/User';
         const result = await User.get(route.params.id)
         if(result.data){
             values.value = result.data[0]
+            const roles = result.data[0].role.map(a => a.id)
+            chosenRoles.value = roles
         }
             
     }
