@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Création d'une classe.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création du cours a été effectuée avec success. Vous pouvez maintenant assossier ce cours a tout ce qui peût y être lié." next="/ui/admin/courses" nextText="Suivant"/>
+            <SuccessComponent title="Création effectuée" message="La création du cours a été effectuée avec success. Vous pouvez maintenant assossier ce cours a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
@@ -14,16 +14,24 @@
                 <form class="h-full w-full flex flex-col">
                     <div class="flex justify-between space-x-3">
                         <TextBox  :onChange="handleInput" type="text" name="name" label="Nom" :value="values.name"  placeholder="Nom de la classe" :err="errors.name"/>
-                        <TextBox  :onChange="handleInput" type="number" name="montant" label="Montant" :value="values.montant"  placeholder="Montant à payer" :err="errors.montant"/>
+                        <TextBox  :onChange="handleInput" type="number" name="scolarite" label="Montant" :value="values.scolarite"  placeholder="Montant à payer" :err="errors.scolarite"/>
+                    </div>
+                    <div class="flex justify-between space-x-3">
+                        <div class="w-8/12">
+                            <Datalist label="Niveau" :onChange="handleInput" name="niveau" placeholder="Choisir Niveau">
+                                <option :value="o.niveau" :key="o.niveau" v-for="o of levels">{{o.id }}</option>
+                            </Datalist>
+                        </div>
+
+                        <div class="w-8/12">
+                            <Datalist label="Option" :onChange="handleInput" name="option"  placeholder="Choisir Option">
+                                <option  :key="o.option" v-for="o of options">{{o.option }}</option>
+                            </Datalist>
+                        </div>
                     </div>
                     <div class="w-8/12">
-                        <Datalist label="Niveau" :onChange="handleInput" name="niveau" placeholder="Choisir Niveau">
-                            <option :value="o.niveau" :key="o.niveau" v-for="o of levels">{{o.id }}</option>
-                        </Datalist>
-                    </div>
-                    <div class="w-8/12">
-                        <Datalist label="Option" :onChange="handleInput" name="option"  placeholder="Choisir Option">
-                            <option  :key="o.option" v-for="o of options">{{o.option }}</option>
+                        <Datalist label="Titulaire" :onChange="handleInput" name="user_id"  placeholder="Choisir titulaire du cours">
+                            <option  :key="o.name" v-for="o of users">{{o.name }}</option>
                         </Datalist>
                     </div>
                     <div class="w-full h-48 p-1 rounded mt-3 border">
@@ -55,14 +63,17 @@
     import Class from '../../../api/v2/Class';
     import Course from '../../../api/v2/Course';
     import Option from '../../../api/v2/Option';
+    import User from '../../../api/v2/User';
     import Level from '../../../api/v2/Level';
     const success = ref(false)
     const errors = ref([])
     const levels = ref([])
+    const users = ref([])
     const options = ref([])
     const chosenCourses = ref([])
     const courses = ref([])
     const optionId = ref("")
+    const userId = ref("")
     const levelId = ref("")
     const values = ref({})
     const handleInput = (e) =>{
@@ -78,10 +89,16 @@
                 levelId.value = t[0].id
             }
         }
+        if(e.target.name == "user_id"){
+            const t = users.value.filter(o => o.name == e.target.value )
+            if(t[0]){
+                userId.value = t[0].id
+            }
+        }
         values.value[e.target.name] = e.target.value
     }
     const onPressRegister = async () =>{
-        const result = await Class.create({...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value})
+        const result = await Class.create({...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value, user_id:userId.value})
         if(result.error){
         errors.value = result.errorList 
         }
@@ -93,6 +110,12 @@
         const result =await Option.get()
         if(result.data){
             options.value = result.data
+        }
+    }
+    const fetchUsers = async () =>{
+        const result = await User.getClassTeachers()
+        if(result.success){
+            users.value = result.data
         }
     }
     const getLevels = async () =>{
@@ -118,6 +141,7 @@
         getOptions()
         getLevels()
         getCourses()
+        fetchUsers()
     })
     </script>
     

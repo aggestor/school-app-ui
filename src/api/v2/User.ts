@@ -11,6 +11,9 @@ const User = {
     async get(id?:string){
         return await api.get(id?'/user/'+id : '/user')
     },
+    async getClassTeachers(){
+        return await api.get('/user/titulaire')
+    },
 }
 
 export default User
