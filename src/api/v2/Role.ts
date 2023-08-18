@@ -11,6 +11,12 @@ const Config = {
     async addRole(name){
         return await api.post('/role/create',{name})
     },
+    async create(name){
+        return await api.post('/role/create',{name})
+    },
+    async update(data: Record<string,any>, id: string){
+        return await api.put('/role/edit/'+id,data)
+    },
     async get(id?:string){
         return await api.get(id?'/role/'+id : '/role')
     },
