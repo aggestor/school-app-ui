@@ -65,7 +65,7 @@
     import Option from '../../../api/v2/Option';
     import User from '../../../api/v2/User';
     import Level from '../../../api/v2/Level';
-import { useRoute } from 'vue-router';
+    import { useRoute } from 'vue-router';
 
 
 
@@ -156,7 +156,14 @@ import { useRoute } from 'vue-router';
                 const lv = levels.value.filter(l => l.id == result.data[0].niveau_id)
                 if(lv[0]){
                     levelId.value = lv[0].id
-                    values.value.level = lv[0].niveau
+                    values.value.niveau = lv[0].niveau
+                }
+            }
+            if(users.value){
+                const _users = users.value.filter(u => u.id == result.data[0].user_id)
+                if(_users[0]){
+                    values.value.user_id = _users[0].name;
+                    userId.value = _users[0].id;
                 }
             }
             chosenCourses.value = cours
