@@ -1,7 +1,8 @@
 <template>
     <div class="w-full pl-2 flex relative flex-col h-screen __invisible_scroll overflow-auto  border-r bg-white">
-        <div class="flex items-center">
-            <img src="/logo-with-ecrit.png" class="h-14 w-full"/>
+        <div class="flex lg:items-center">
+            <img src="/logo-with-ecrit.png" class="h-14 hidden lg:flex w-full"/>
+            <img src="/logo.png" class="h-10 w-10 lg:hidden"/>
         </div>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
