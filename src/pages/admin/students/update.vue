@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Modifier un élève.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création de l'élève a été effectuée avec success. Vous pouvez maintenant lui inscrire dans sa classe et tout ce qui va avec." next="/ui/admin/students" nextText="Suivant"/>
+            <SuccessComponent title="Création effectuée" message="La modification de l'élève a été effectuée avec success. Vous pouvez maintenant lui inscrire dans sa classe et tout ce qui va avec." next="/ui/admin/students" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
