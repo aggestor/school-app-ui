@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Créer un élève.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création du cours a été effectuée avec success. Vous pouvez maintenant assossier ce cours a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
+            <SuccessComponent title="Création effectuée" message="La création de l'élève a été effectuée avec success. Vous pouvez maintenant lui inscrire dans sa classe et tout ce qui va avec." next="/ui/admin/students" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-10/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
@@ -33,7 +33,7 @@
                     </div>
                     <div class="flex justify-between space-x-3">
                         <TextBox  :onChange="handleInput" type="tel" name="tel" label="Téléphone" :value="values.tel"  placeholder="Numéro de téléphone" :err="errors.tel"/>
-                        <TextBox  :onChange="handleInput" type="text" name="tel" label="Address" :value="values.adresse"  placeholder="Address" :err="errors.adresse"/>
+                        <TextBox  :onChange="handleInput" type="text" name="adresse" label="Address" :value="values.adresse"  placeholder="Address" :err="errors.adresse"/>
                     </div>
                     <div class="w-5/12">
                         <TextBox  :onChange="handleInput" type="text" name="password" label="Mot de passe" :value="values.password"  placeholder="Mot de passe" :err="errors.password"/>
@@ -52,98 +52,36 @@
     </template>
     
     <script setup>
-    import { onMounted, ref } from 'vue';
-    import {CheckCircleIcon, CheckIcon} from "@heroicons/vue/24/outline"
+    import {  ref } from 'vue';
+    import {CheckCircleIcon,} from "@heroicons/vue/24/outline"
     import {CheckCircleIcon as CI} from "@heroicons/vue/24/solid"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import TextBox from "../../../components/TextBox.vue"
-    import Datalist from '../../../components/Datalist.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
-    import Class from '../../../api/v2/Class';
-    import Course from '../../../api/v2/Course';
-    import Option from '../../../api/v2/Option';
-    import User from '../../../api/v2/User';
-    import Level from '../../../api/v2/Level';
+    import Student from '../../../api/v2/Student';
+    import { useRouter } from 'vue-router';
 
     const success = ref(false)
     const errors = ref([])
-    const levels = ref([])
-    const users = ref([])
-    const options = ref([])
-    const chosenCourses = ref([])
-    const courses = ref([])
-    const optionId = ref("")
-    const userId = ref("")
     const gender = ref("")
-    const levelId = ref("")
     const values = ref({})
+    const router = useRouter()
 
     const handleInput = (e) =>{
-        if(e.target.name == "option"){
-            const t = options.value.filter(o => o.option == e.target.value )
-            if(t[0]){
-                optionId.value = t[0].id
-            }
-        }
-        if(e.target.name == "niveau"){
-            const t = levels.value.filter(o => o.niveau == e.target.value )
-            if(t[0]){
-                levelId.value = t[0].id
-            }
-        }
-        if(e.target.name == "user_id"){
-            const t = users.value.filter(o => o.name == e.target.value )
-            if(t[0]){
-                userId.value = t[0].id
-            }
-        }
         values.value[e.target.name] = e.target.value
     }
     const onPressRegister = async () =>{
-        const result = await Class.create({...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value, user_id:userId.value})
+        const result = await Student.create({...values.value, genre:gender.value})
         if(result.error){
-        errors.value = result.errorList 
+            errors.value = result.errorList 
         }
         if(result.success){
             success.value = true
+            const timeout = setTimeout(()=>{
+                router.push('/ui/admin/students/'+result.data.id)
+            },4000)
         }
+        
     }
-    const getOptions = async () =>{
-        const result =await Option.get()
-        if(result.data){
-            options.value = result.data
-        }
-    }
-    const fetchUsers = async () =>{
-        const result = await User.getClassTeachers()
-        if(result.success){
-            users.value = result.data
-        }
-    }
-    const getLevels = async () =>{
-        const result =await Level.get()
-        if(result.data){
-            levels.value = result.data
-        }
-    }
-    const getCourses = async () =>{
-        const result =await Course.get()
-        if(result.data){
-            courses.value = result.data
-        }
-    }
-    const onChooseCourse = id =>{
-        if(!chosenCourses.value.includes(id)){
-            chosenCourses.value.push(id)
-        }else{
-            chosenCourses.value = chosenCourses.value.filter(m => m != id)
-        }
-    }
-    onMounted(()=>{
-        getOptions()
-        getLevels()
-        getCourses()
-        fetchUsers()
-    })
     </script>
     
