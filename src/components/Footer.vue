@@ -47,8 +47,6 @@
 </template>
 <script>
 import Button from './Button.vue';
-import { useCart } from '../store/cart';
-import Newsletter from '../api/newsletter';
 import {CheckCircleIcon,XMarkIcon} from "@heroicons/vue/24/solid"
 export default {
     data() {
@@ -64,7 +62,7 @@ export default {
         this.year = y;
     },
     setup() {
-        const store = useCart()
+        const store = {}
         return {
             store
         }

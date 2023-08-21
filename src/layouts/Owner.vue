@@ -13,13 +13,4 @@
     </section>
 </template>
 <script>
-import OwnerNavbarVue from '../components/OwnerNavbar.vue';
-import OwnerSideMenuVue from '../components/OwnerSideMenu.vue';
-
-export default {
-    components: {
-    OwnerNavbarVue,
-    OwnerSideMenuVue
-    },
-}
 </script>

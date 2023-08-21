@@ -89,9 +89,7 @@ import { useCart } from '../store/cart';
 import useIsLoggedIn from '../hooks/use-is-logged-in';
 import {  ArrowRightIcon, ArrowTrendingUpIcon, BuildingStorefrontIcon, CurrencyDollarIcon, CurrencyYenIcon, HomeIcon, MagnifyingGlassIcon,PowerIcon,QuestionMarkCircleIcon,ShoppingCartIcon, Squares2X2Icon, UserIcon, UserPlusIcon } from '@heroicons/vue/24/outline';
 import { onMounted, ref, watch } from 'vue';
-import user from '../api/user';
 import { useRoute, useRouter } from 'vue-router';
-import Search from "../api/search"
 import prettyString from '../helpers/pretty-string';
 
 const showPhoneNav = ref(false)
