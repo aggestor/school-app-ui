@@ -89,6 +89,8 @@
     const handleClickProduct  =  s =>{
         values.value.student = s.names+' '+s.firstname+' '+s.lastname
         studentId.value = s.id
+        showSuggestionBox.value = false
+        searchResults.value = []
     }
     const onPressRegister = async () =>{
         const result = await Inscription.subscribe(classId.value, studentId.value)
