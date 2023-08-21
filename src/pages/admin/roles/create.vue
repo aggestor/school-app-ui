@@ -12,7 +12,30 @@
                 <h2 class="font-semibold text-lg">Création d'une option.</h2>
                 <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour créer   un role. </p>
                 <form class="h-full w-full flex flex-col">
-                    <TextBox  :onChange="handleInput" type="text" name="name" label="Option" :value="values.name"  placeholder="Nom de l'option" :err="errors.name"/>
+                    <Datalist label="Classe" :onChange="handleInput" name="_class"  placeholder="Choisir Class">
+                        <option  :key="o.option" v-for="o of options">{{o.option }}</option>
+                    </Datalist>
+                    <div class="w-5/12 items-center hidden lg:flex justify-center">
+                    <div class="flex w-[70%] items-center  justify-around">
+                        <div class="bg-white absolute bg-opacity-40 backdrop-blur-lg z-50 w-[45%] rounded border top-2 ">
+                            <div :class="` w-full  items-center ${searchResults.length > 0 && 'border-b'} h-9  px-1 flex space-x-2`">
+                                <input autofocus @input="handleSearch" :value="term" placeholder="Rechercher vendeur, shop, produit, catégories,serie,..." type="search" class="w-full placeholder:text-gray-400 text-gray-800 outline-none border-none mx-2 h-[80%] bg-transparent"><span @click="handleClickSearch"  class="text-gray-400 hover:bg-gray-100 rounded cursor-pointer"><MagnifyingGlassIcon class="h-7 w-7"/></span>
+                            </div>
+                            <div v-if="!isSearchLoading && searchResults.length == 0 && term.length > 0 && showSuggestionBox " class="h-64 grid place-items-center w-full">
+                                {{boxTitle }}
+                            </div>
+                            <div v-if="!isSearchLoading && searchResults.length > 0" class="h-64 overflow-auto __scrollbar grid place-items-center w-full">
+                                <div @click="handleClickProduct(s)" :key="s.prod_id" v-for="s of searchResults" class="p-1 w-full cursor-pointer hover:bg-blue-100 flex flex-col">
+                                    <p class="w-full font-semibold">{{s.prod_name }}</p>
+                                    <small class="text-gray-600">{{s.cat_name }}</small>
+                                </div>
+                            </div>
+                            <div v-if="isSearchLoading" class="h-64 grid place-items-center w-full">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
@@ -30,7 +53,7 @@
     import { ref } from 'vue';
     import {CheckCircleIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
-    import TextBox from "../../../components/TextBox.vue"
+    import Datalist from '../../../components/Datalist.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import Role from '../../../api/v2/Role';
 
