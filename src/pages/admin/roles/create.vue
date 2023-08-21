@@ -27,17 +27,15 @@
     </template>
     
     <script setup>
-    import { ref,onMounted } from 'vue';
+    import { ref } from 'vue';
     import {CheckCircleIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import TextBox from "../../../components/TextBox.vue"
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import Role from '../../../api/v2/Role';
-    import User from '../../../api/v2/User';
 
     const success = ref(false)
     const errors = ref([])
-    const users = ref([])
     const values = ref({})
     const handleInput = (e) =>{
         values.value[e.target.name] = e.target.value
