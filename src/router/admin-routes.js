@@ -160,4 +160,25 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/roles/update.vue")
     },
+    {
+        path: '/admin/inscriptions',
+        alias:"/ui/admin/inscriptions",
+        name: 'list-inscriptions',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/inscriptions/list.vue")
+    },
+    {
+        path: '/admin/inscriptions/create',
+        alias:"/ui/admin/inscriptions/create",
+        name: 'create-inscriptions',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/inscriptions/create.vue")
+    },
+    {
+        path: '/admin/inscriptions/:id/update',
+        alias:"/ui/admin/inscriptions/:id/update",
+        name: 'update-inscriptions',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/inscriptions/update.vue")
+    },
 ]
