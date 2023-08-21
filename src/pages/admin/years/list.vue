@@ -23,7 +23,12 @@
         <div v-for="y of years" :class="` py-2 text-sm  flex items-center justify-between ${years.indexOf(y) % 2 != 0 ? 'bg-gray-100' :''}`">
             <span class="w-1/12">{{years.indexOf(y)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{y.year }}</span>
-            <span class="w-3/12 flex justify-center"><span class="text-red-600" v-if="y.status == 0 ">Non activée</span> <span class="text-green-600" v-if="y.status == 1 ">Activée</span></span>
+            <span class="w-3/12  justify-center space-x-2 flex">
+                <span class="text-red-600" v-if="y.status == 0 ">Non activée</span> 
+                <span class="text-green-600" v-if="y.status == 1 ">Activée</span>
+                <span @click="setStatus(y)" v-if="y.status == 0 " class="rounded p-0.5 cursor-pointer text-white bg-green-600 hover:bg-green-700">Activer</span>
+                <span @click="setStatus(y)" v-if="y.status == 1 " class="rounded p-0.5 cursor-pointer text-white bg-red-600 hover:bg-red-700">Desactiver</span>
+            </span>
             <span class="w-3/12 flex ">{{formatDateToAgo(y.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
                 <BlackLinkAsButton :to="'/ui/admin/years/'+y.id+'/update'">
@@ -32,9 +37,6 @@
                 <RedButtons @press="deleteYear">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
-                <!-- <BlueLinkAsButton :to="'/ui/admin/levels/'+l.id">
-                    <ArrowRightIcon class="w-5 h-5"/>
-                </BlueLinkAsButton> -->
             </span>
         </div>
     </div>
@@ -45,15 +47,20 @@ import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {   PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Year from "../../../api/v2/Year";
 const years = ref([])
 const getYears = async () =>{
     const result = await Year.get()
-    console.log(result);
     if(result.data){
         years.value = result.data
+    }
+}
+const setStatus = async y =>{
+    const result = await Year.toggleStatus(y.id)
+    if(result.success){
+        getYears()
     }
 }
 onMounted(()=>{

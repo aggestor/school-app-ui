@@ -8,6 +8,9 @@ const Year = {
     async update(data: Record<string, any>, id){
         return await api.put('/year/edit/'+id,data)
     },
+    async toggleStatus(id:string){
+        return await api.put('/year/toggle/'+id)
+    },
     async get(id?:string){
         return await api.get(id?'/year/'+id : '/year')
     },
