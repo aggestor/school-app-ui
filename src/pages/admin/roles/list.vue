@@ -1,4 +1,5 @@
 <template>
+    <DeleteDialog @cancel="showDeleteDialog = false" v-if="showDeleteDialog" title="Etes-vous sur de vouloir faire ca ?" :text="`Le role que vous voulez supprimer   contient des infos liées à d'autres infos. Etes-vous sur de vouloir supprimer ce role ?`"/>
     <div class="w-[95%] mt-2 mx-auto">
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
@@ -29,7 +30,7 @@
                 <BlackLinkAsButton :to="'/ui/admin/roles/'+o.id+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
-                <RedButtons @press="deleteRole">
+                <RedButtons @press="deleteList(o)">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
             </span>
@@ -42,15 +43,26 @@ import Role from "../../../api/v2/Role";
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
+import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
+
+const showDeleteDialog = ref(false)
+const currentList = ref({})
 const roles = ref([])
 const fetchRoles = async () =>{
     const result = await Role.get()
     if(result.data){
         roles.value = result.data
     }
+}
+const setCurrentRole = async  l =>{
+    currentList.value = l
+}
+const deleteList =  l =>{
+    setCurrentRole(l).then(()=>showDeleteDialog.value = true)
+    
 }
 onMounted(()=>{
     fetchRoles()

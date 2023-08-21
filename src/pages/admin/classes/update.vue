@@ -103,7 +103,7 @@
         values.value[e.target.name] = e.target.value
     }
     const onPressRegister = async () =>{
-        const result = await Class.create({...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value, user_id:userId.value})
+        const result = await Class.update(route.params.id,{...values.value,niveau_id:levelId.value, option_id: optionId.value, cours_id:chosenCourses.value, user_id:userId.value})
         if(result.error){
         errors.value = result.errorList 
         }
