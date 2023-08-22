@@ -17,7 +17,8 @@
             <span class="w-3/12 flex justify-center">inscriptions</span>
             <span class="w-2/12 flex justify-center">Matricule</span>
             <span class="w-2/12 flex justify-center">Classe</span>
-            <span class="w-3/12 ">Maj</span>
+            <span class="w-2/12 flex justify-center">Scolarité</span>
+            <span class="w-2/12 ">Maj</span>
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
@@ -26,7 +27,8 @@
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
-            <span class="w-3/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
+            <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
+            <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
                 <BlackLinkAsButton :to="'/ui/admin/inscriptions/'+o.id+'/update'">
                     <PencilIcon class="w-5 h-5"/>
@@ -34,6 +36,9 @@
                 <RedButtons @press="deleteInscription">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
+                <BlueLinkAsButton :to="'/ui/admin/inscriptions/'+o.id">
+                    <ArrowRightIcon class="w-5 h-5"/>
+                </BlueLinkAsButton>
             </span>
         </div>
     </div>
@@ -45,7 +50,7 @@ import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {   PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 
 const inscriptions = ref([])
