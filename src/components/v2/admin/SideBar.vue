@@ -28,8 +28,8 @@
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/students" text="Eleves">
             <BarsArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/fees" text="Frais">
-            <AdjustmentsVerticalIcon class="w-5 h-5"/>
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/payments" text="Payments">
+            <CurrencyDollarIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/rating" text="Cotes">
             <ListBulletIcon class="w-5 h-5"/>
@@ -56,7 +56,7 @@
 import {  AdjustmentsHorizontalIcon,Bars3CenterLeftIcon,AdjustmentsVerticalIcon,ListBulletIcon,BarsArrowDownIcon,BarsArrowUpIcon } from "@heroicons/vue/24/solid"
 import SideBarItem from "./SideBarItem.vue"
 import {ref,onMounted} from "vue"
-import { DocumentArrowDownIcon,RectangleGroupIcon,TvIcon,BuildingStorefrontIcon,ArchiveBoxIcon,UsersIcon,DocumentDuplicateIcon,EnvelopeIcon,ShoppingBagIcon,UserGroupIcon, GlobeEuropeAfricaIcon } from "@heroicons/vue/24/outline"
+import { DocumentArrowDownIcon,RectangleGroupIcon,TvIcon,BuildingStorefrontIcon,ArchiveBoxIcon,UsersIcon,DocumentDuplicateIcon,EnvelopeIcon,ShoppingBagIcon,UserGroupIcon, GlobeEuropeAfricaIcon, CurrencyDollarIcon } from "@heroicons/vue/24/outline"
 
 const currentPath = ref("")
 const handleClick = (path) =>{

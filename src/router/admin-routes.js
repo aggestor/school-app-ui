@@ -202,4 +202,25 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/students/update.vue")
     },
+    {
+        path: '/admin/payments',
+        alias:"/ui/admin/payments",
+        name: 'list-payments',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/list.vue")
+    },
+    {
+        path: '/admin/payments/create',
+        alias:"/ui/admin/payments/create",
+        name: 'create-payments',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/create.vue")
+    },
+    {
+        path: '/admin/payments/:id/update',
+        alias:"/ui/admin/payments/:id/update",
+        name: 'update-payments',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/update.vue")
+    },
 ]
