@@ -210,11 +210,11 @@ export default [
         component:async ()=> await import("../pages/admin/payments/list.vue")
     },
     {
-        path: '/admin/payments/create',
-        alias:"/ui/admin/payments/create",
+        path: '/admin/payments/pay',
+        alias:"/ui/admin/payments/pay",
         name: 'create-payments',
         meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/create.vue")
+        component:async ()=> await import("../pages/admin/payments/pay.vue")
     },
     {
         path: '/admin/payments/:id/update',

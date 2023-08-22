@@ -3,12 +3,12 @@
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
                 <GoBackAdminButton/>
-                <h1 class="text-lg font-semibold ml-2">Liste des inscriptions</h1>
+                <h1 class="text-lg font-semibold ml-2">Paiments</h1>
             </div>
            <div class="flex items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ inscriptions?.length}}</span>
-            <BlueLinkAsButton to="/ui/admin/inscriptions/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Inscrire
+            <BlueLinkAsButton to="/ui/admin/payments/pay">
+                <PlusIcon class="w-5 h-5 mr-1"/> Payer
             </BlueLinkAsButton>
            </div>
         </div>
@@ -30,13 +30,13 @@
             <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/inscriptions/'+o.id+'/update'">
+                <BlackLinkAsButton :to="'/ui/admin/payments/'+o.id+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
                 <RedButtons @press="deleteInscription">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
-                <BlueLinkAsButton :to="'/ui/admin/inscriptions/'+o.id">
+                <BlueLinkAsButton :to="'/ui/admin/payments/'+o.id">
                     <ArrowRightIcon class="w-5 h-5"/>
                 </BlueLinkAsButton>
             </span>
