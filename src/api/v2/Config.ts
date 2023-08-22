@@ -21,6 +21,9 @@ const Config = {
     async addSchool(data: Record<string,any>){
         return await api.post('/ecole/create',data, true)
     },
+    async getSchool(){
+        return await api.get('/ecole')
+    },
     async setNewPassword(data: Obj){
         return await api.post('/auth/set-new-password',data)
     }
