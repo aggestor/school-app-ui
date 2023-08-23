@@ -18,7 +18,7 @@
             <span class="w-3/12 flex justify-center">Nom</span>
             <span class="w-2/12 flex justify-center">Tél</span>
             <span class="w-1/12 flex justify-center">Sexe</span>
-            <span class="w-2/12 flex justify-center">Classe</span>
+            <span class="w-2/12 flex justify-center">Matricule</span>
             <span class="w-1/12 ">Maj</span>
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
@@ -28,7 +28,7 @@
             <span class="w-3/12 flex justify-center">{{c.names+" "+c.firstname+" "+c.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{c.tel }}</span>
             <span class="w-1/12 flex justify-center">{{c.genre }}</span>
-            <span class="w-2/12 flex justify-center"></span>
+            <span class="w-2/12 flex justify-center">{{c.matricule }}</span>
             <span class="w-1/12 flex ">{{formatDateToAgo(c.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
                 <BlackLinkAsButton :to="'/ui/admin/students/'+c.id+'/update'">
