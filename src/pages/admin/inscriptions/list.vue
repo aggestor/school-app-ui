@@ -25,7 +25,7 @@
         <div v-for="o of inscriptions" :class="` py-2 text-sm  flex items-center justify-between ${inscriptions.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
             <span class="w-1/12">{{inscriptions.indexOf(o)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
-            <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
+            <span class="w-2/12 flex justify-center">{{o.eleve.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
