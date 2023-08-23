@@ -14,13 +14,13 @@
                 <FunnelIcon class="w-6 h-6"/> 
             </BlueButtons>
             <div v-if="showMenu" data-aos="slide-down" data-aos-duration="500" class="w-28 rounded-b flex flex-col h-fit absolute top-10 right-0 bg-white border z-50 bg-opacity-50 shadow-lg backdrop-blur">
-                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/">
+                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/ui/admin/payments/debts">
                     Dettes
                 </RouterLink>
-                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/">
+                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/ui/admin/payments">
                     Solvables
                 </RouterLink>
-                <RouterLink class="text-center w-full p-1  hover:text-blue-600" to="/">
+                <RouterLink class="text-center w-full p-1  hover:text-blue-600" to="/ui/admin/payments/insolvable">
                     Insolvables
                 </RouterLink>
             </div>
