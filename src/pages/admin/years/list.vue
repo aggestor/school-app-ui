@@ -27,7 +27,6 @@
                 <span class="text-red-600" v-if="y.status == 0 ">Non activée</span> 
                 <span class="text-green-600" v-if="y.status == 1 ">Activée</span>
                 <span @click="setStatus(y)" v-if="y.status == 0 " class="rounded p-0.5 cursor-pointer text-white bg-green-600 hover:bg-green-700">Activer</span>
-                <span @click="setStatus(y)" v-if="y.status == 1 " class="rounded p-0.5 cursor-pointer text-white bg-red-600 hover:bg-red-700">Desactiver</span>
             </span>
             <span class="w-3/12 flex ">{{formatDateToAgo(y.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
