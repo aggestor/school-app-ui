@@ -5,11 +5,25 @@
                 <GoBackAdminButton/>
                 <h1 class="text-lg font-semibold ml-2">Paiments</h1>
             </div>
-           <div class="flex items-center">
+           <div class="flex space-x-2 relative items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ payments?.length}}</span>
             <BlueLinkAsButton to="/ui/admin/payments/pay">
                 <PlusIcon class="w-5 h-5 mr-1"/> Payer
             </BlueLinkAsButton>
+            <BlueButtons @press="showMenu  = !showMenu">
+                <FunnelIcon class="w-6 h-6"/> 
+            </BlueButtons>
+            <div v-if="showMenu" data-aos="slide-down" data-aos-duration="500" class="w-28 rounded-b flex flex-col h-fit absolute top-10 right-0 bg-white border z-50 bg-opacity-50 shadow-lg backdrop-blur">
+                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/">
+                    Dettes
+                </RouterLink>
+                <RouterLink class="text-center w-full p-1 border-b hover:text-blue-600" to="/">
+                    Solvables
+                </RouterLink>
+                <RouterLink class="text-center w-full p-1  hover:text-blue-600" to="/">
+                    Insolvables
+                </RouterLink>
+            </div>
            </div>
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
@@ -50,10 +64,12 @@ import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import BlueButtons from "../../../components/v2/BlueButtons.vue";
+import {   ArrowRightIcon, FunnelIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 
 const payments = ref([])
+const showMenu = ref(false)
 const fetchPayments = async () =>{
     const result = await Payment.get()
     if(result.data){
