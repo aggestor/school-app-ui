@@ -8,8 +8,8 @@ const Payment = {
     async update(id:string,data: Record<string, any>){
         return await api.put('/frais/edit/'+id,data)
     },
-    async get(id?:string){
-        return await api.get(id?'/frais/'+id : '/frais')
+    async get(type?:string,id?:string){
+        return await api.patch(id?'/frais/'+id : '/frais/eleve/'+type)
     },
     async search(term:string){
         return await api.get('/frais/identite/'+term )

@@ -22,6 +22,19 @@ export default {
         }
     },
     /**
+     * Gets data from the api using GET HTTP Method
+     * @param {string} path endpoint on the server
+     * @returns {Promise<AxiosResponse.data}
+     */
+    async patch(path) {
+        try {
+            const response = await instance.patch(path)
+            return response.data
+        } catch (e) {
+            return e.response.data
+        }
+    },
+    /**
      * Gets data from the api using POST HTTP Method
      * @param {string} path endpoint on the server
      * @param {Record<string, string|number|symbol>} body Request Body

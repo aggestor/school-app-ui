@@ -38,10 +38,10 @@
 
         <div v-for="o of payments" :class="` py-2 text-sm  flex items-center justify-between ${payments.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
             <span class="w-1/12">{{payments.indexOf(o)+1 }}</span>
-            <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
+            <span class="w-3/12 flex justify-center">{{o.names+' '+o.firstname+' '+o.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
-            <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
-            <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
+            <span class="w-2/12 flex justify-center">{{o.name }}</span>
+            <span class="w-2/12 flex justify-center">{{o.scolarite }}$</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
                 <BlackLinkAsButton :to="'/ui/admin/payments/'+o.id+'/update'">
@@ -71,9 +71,9 @@ import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 const payments = ref([])
 const showMenu = ref(false)
 const fetchPayments = async () =>{
-    const result = await Payment.get()
-    if(result.data){
-        payments.value = result.data
+    const result = await Payment.get('solvable')
+    if(result.success){
+        payments.value = result.data.data
     }
 }
 onMounted(()=>{
