@@ -2,8 +2,8 @@ import api from ".."
 
 const Payment = {
 
-    async subscribe(classe_id,eleve_id){
-        return await api.post('/frais/create',{classe_id,eleve_id})
+    async pay(data : Record<string, any>){
+        return await api.post('/frais/create',data)
     },
     async update(id:string,data: Record<string, any>){
         return await api.put('/frais/edit/'+id,data)

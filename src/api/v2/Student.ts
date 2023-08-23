@@ -14,6 +14,9 @@ const Student = {
     async search(term:string){
         return await api.get('/eleve/identite/'+term )
     },
+    async searchSubscribed(term:string){
+        return await api.get('/eleve/matricule/'+term )
+    },
 }
 
 export default Student
