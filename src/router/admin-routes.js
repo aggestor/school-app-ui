@@ -217,6 +217,20 @@ export default [
         component:async ()=> await import("../pages/admin/payments/pay.vue")
     },
     {
+        path: '/admin/payments/debts',
+        alias:"/ui/admin/payments/debts",
+        name: 'fetch-debts',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/debts.vue")
+    },
+    {
+        path: '/admin/payments/insolvable',
+        alias:"/ui/admin/payments/insolvable",
+        name: 'fetch-insolvable',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/insolvable.vue")
+    },
+    {
         path: '/admin/payments/:id/update',
         alias:"/ui/admin/payments/:id/update",
         name: 'update-payments',
