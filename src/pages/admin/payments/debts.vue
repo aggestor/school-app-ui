@@ -73,7 +73,7 @@ import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 const payments = ref([])
 const showMenu = ref(false)
 const fetchPayments = async () =>{
-    const result = await Payment.get('solvable')
+    const result = await Payment.get('dettes')
     if(result.success){
         payments.value = result.data.data
     }

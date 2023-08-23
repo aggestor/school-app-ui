@@ -5,14 +5,13 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Inscrire un eleve.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création de cette optino a été effectuée avec success. Vous pouvez maintenant assossier cette option a tout ce qui peût y être lié." next="/ui/admin/options" nextText="Suivant"/>
+            <SuccessComponent title="Création effectuée" message="La création de cette optino a été effectuée avec success. Vous pouvez maintenant assossier cette option a tout ce qui peût y être lié." next="/ui/admin/inscriptions" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
                 <h2 class="font-semibold text-lg">Inscrire un eleve.</h2>
                 <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour inscrire  un eleve. </p>
                 <form class="h-full w-full flex flex-col">
-                    <!-- <TextBox  :onChange="handleInput" type="text" name="option" label="Option" :value="values.option"  placeholder="Nom de l'option" :err="errors.option"/> -->
                     <Datalist :err="errors.classe_id" label="Option" :onChange="handleInput" name="classe_id" :value="values.classe_id"  placeholder="Choisir Option">
                         <option  :key="o.id" v-for="o of classes">{{o.name }}</option>
                     </Datalist>
