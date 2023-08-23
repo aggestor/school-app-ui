@@ -3,7 +3,7 @@
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
                 <GoBackAdminButton/>
-                <h1 class="text-lg font-semibold ml-2">Paiments/Solvables</h1>
+                <h1 class="text-lg font-semibold ml-2">Paiemtnts/Dettes</h1>
             </div>
            <div class="flex space-x-2 relative items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ payments?.length}}</span>
