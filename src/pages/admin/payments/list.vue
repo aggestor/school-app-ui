@@ -6,7 +6,7 @@
                 <h1 class="text-lg font-semibold ml-2">Paiments</h1>
             </div>
            <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ inscriptions?.length}}</span>
+            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ payments?.length}}</span>
             <BlueLinkAsButton to="/ui/admin/payments/pay">
                 <PlusIcon class="w-5 h-5 mr-1"/> Payer
             </BlueLinkAsButton>
@@ -22,8 +22,8 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="o of inscriptions" :class="` py-2 text-sm  flex items-center justify-between ${inscriptions.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{inscriptions.indexOf(o)+1 }}</span>
+        <div v-for="o of payments" :class="` py-2 text-sm  flex items-center justify-between ${payments.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{payments.indexOf(o)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
@@ -45,7 +45,7 @@
 </template>
 <script setup>
 import {onMounted, ref} from "vue"
-import Inscription from "../../../api/v2/Inscription";
+import Payment from "../../../api/v2/Payment";
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
@@ -53,14 +53,14 @@ import RedButtons from "../../../components/v2/RedButtons.vue";
 import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 
-const inscriptions = ref([])
-const getInscriptions = async () =>{
-    const result = await Inscription.get()
+const payments = ref([])
+const fetchPayments = async () =>{
+    const result = await Payment.get()
     if(result.data){
-        inscriptions.value = result.data
+        payments.value = result.data
     }
 }
 onMounted(()=>{
-    getInscriptions()
+    fetchPayments()
 })
 </script>

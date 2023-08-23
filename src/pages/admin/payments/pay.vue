@@ -3,13 +3,13 @@
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
-                <h2 class="font-semibold text-lg">Paiement frais scolaire.</h2>
+                <h2 class="font-semibold text-lg">Paiement.</h2>
             </div>
-            <SuccessComponent title="Paiement effectué" message="La création de cette optino a été effectuée avec success. Vous pouvez maintenant assossier cette option a tout ce qui peût y être lié." next="/ui/admin/options" nextText="Suivant"/>
+            <SuccessComponent title="Paiement effectué" :message="`Le paiment  de ${values.montant}$  pour le compte de ${values.student} a été effectué avec success. Le montant a été crédité sur son compte.`" next="/ui/admin/payments" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center  rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-                <h2 class="font-semibold text-lg">Paiement frais scolaire.</h2>
+                <h2 class="font-semibold text-lg">Paiement.</h2>
                 <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour inscrire  un eleve. </p>
                 <form class="h-full w-full flex flex-col">
                    <label for="eleve" class="text-sm mt-3">Nom de l'élève</label>
