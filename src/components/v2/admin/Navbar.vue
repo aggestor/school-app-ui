@@ -19,7 +19,7 @@
 <script setup>
 import { ref ,onMounted} from 'vue';
 import Config from '../../../api/v2/Config';
-import { Bars3CenterLeftIcon, MagnifyingGlassCircleIcon, MagnifyingGlassIcon, UserIcon } from '@heroicons/vue/24/outline';
+import { Bars3CenterLeftIcon, MagnifyingGlassIcon, UserIcon } from '@heroicons/vue/24/outline';
 
     const school = ref({})
     const getSchool = async () =>{
