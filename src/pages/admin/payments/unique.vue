@@ -1,3 +1,6 @@
-<temp>
-    
-</temp>
+<template>
+
+</template>
+<script setup>
+
+</script>
