@@ -12,17 +12,21 @@
         <Footer/>
     </section>
 </template>
-<script>
-import SideBar from '../components/v2/admin/SideBar.vue';
-import Navbar from '../components/v2/admin/Navbar.vue';
-
-export default {
-    setup(){
+<script setup>
+    import SideBar from '../components/v2/admin/SideBar.vue';
+    import Navbar from '../components/v2/admin/Navbar.vue';
+    import {ref} from "vue"
+    import { useRouter } from 'vue-router';
+    
+    const router = useRouter()
+    const isChecked = ref(false)
+    const user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null
+    const token = sessionStorage.getItem("token") ?  JSON.parse(sessionStorage.getItem("token")) : null
+    const type = sessionStorage.getItem("session_type") ? sessionStorage.getItem("session_type") : null
+    if(user && token && type){
+        isChecked.value = true
+    }else{
+        router.push(`/ui/admin/login?continue=${window.location.pathname}`)
+    }
         // const login = Auth.check
-    },
-    components: {
-    Navbar,
-    SideBar,
-},
-}
 </script>
