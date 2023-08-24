@@ -3,8 +3,9 @@ import axios from "axios"
 axios.defaults.withCredentials = true
 const baseURL = import.meta.env.DEV ?  "http://localhost:8000/api" : 'https://server.com/api'
 const clientServer = window.location.origin
+const token = JSON.parse(window.sessionStorage.getItem("token"))
 export const store = ""
-const headers = { "X-Access-Server-Token": "Bysle98tpe0jlwk023lwkeg89j23094n4n0fjslk0", "Access-Control-Allow-Origin": "*", 'Client-Server':clientServer}
+const headers = { "X-Access-Server-Token": "34tews45twedfshfd.4lteKJijINylretwerlBsddsfgeysle98tpe0jlwk023lwkeg89j23094n4n0fjslk0", "Access-Control-Allow-Origin": "*", 'Client-Server':clientServer, "Authorization": `Bearer ${token}`}
 
 const instance = axios.create({baseURL,headers})
 export default {
