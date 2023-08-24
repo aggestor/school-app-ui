@@ -1,6 +1,6 @@
 export default [
     {
-        path: '/login',
+        path: '/ui/admin/login',
         name: 'new-login',
         meta : {layout : 'blank'},
         component:async ()=> await import("../pages/v2/login.vue")

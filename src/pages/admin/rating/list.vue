@@ -3,12 +3,12 @@
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
                 <GoBackAdminButton/>
-                <h1 class="text-lg font-semibold ml-2">Liste des inscriptions</h1>
+                <h1 class="text-lg font-semibold ml-2">Liste de cotes</h1>
             </div>
            <div class="flex items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ inscriptions?.length}}</span>
-            <BlueLinkAsButton to="/ui/admin/inscriptions/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Inscrire
+            <BlueLinkAsButton to="/ui/admin/rating/create">
+                <PlusIcon class="w-5 h-5 mr-1"/> Ajouter des points
             </BlueLinkAsButton>
            </div>
         </div>

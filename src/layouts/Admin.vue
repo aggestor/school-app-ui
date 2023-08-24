@@ -17,6 +17,9 @@ import SideBar from '../components/v2/admin/SideBar.vue';
 import Navbar from '../components/v2/admin/Navbar.vue';
 
 export default {
+    setup(){
+        // const login = Auth.check
+    },
     components: {
     Navbar,
     SideBar,

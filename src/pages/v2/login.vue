@@ -51,9 +51,10 @@
         errors.value = result.errorList 
         }
         if(result.success){
-            sessionStorage.setItem('user', JSON.stringify(result.user[0]))
-            const roles = result.user[0].role.map(d => d.role)
-            if(roles.includes("admin")){
+            sessionStorage.setItem('user', JSON.stringify(result.user))
+            sessionStorage.setItem('token', JSON.stringify(result.token))
+            const roles = result.user.role.map(d => d.name)
+            if(roles.includes("Admin")){
                 sessionStorage.setItem('session_type', 'admin')
                 router.push('/ui/admin')
             }
