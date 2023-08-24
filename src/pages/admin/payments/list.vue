@@ -32,7 +32,6 @@
             <span class="w-1/12 flex justify-center">Matricule</span>
             <span class="w-2/12 flex justify-center">Classe</span>
             <span class="w-1/12 flex justify-center">Montant</span>
-            <span class="w-1/12 flex justify-center">Reste</span>
             <span class="w-2/12 ">Maj</span>
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
@@ -43,7 +42,6 @@
             <span class="w-1/12 flex justify-center">{{o.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.name }}</span>
             <span class="w-1/12 flex justify-center"><span class="p-0.5 bg-green-200 text-green-600 rounded">+{{o.montant }}$</span></span>
-            <span class="w-1/12 flex justify-center"><span class="p-0.5 bg-red-200 rounded text-red-600"> -{{parseInt(o.scolarite)+parseInt(o.dettes) - parseInt(o.montant) }}$</span></span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
                 <BlackLinkAsButton :to="'/ui/admin/payments/'+o.id+'/update'">

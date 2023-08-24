@@ -3,14 +3,14 @@
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
-                <h2 class="font-semibold text-lg">Création d'une classe.</h2>
+                <h2 class="font-semibold text-lg">Modification d'une classe.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création du cours a été effectuée avec success. Vous pouvez maintenant assossier ce cours a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
+            <SuccessComponent title="Création effectuée" message="La modificaiton de la classe  a été effectuée avec success. Vous pouvez maintenant assossier cette classe a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-                <h2 class="font-semibold text-lg">Créer d'une classe.</h2>
-                <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour créer une classe. </p>
+                <h2 class="font-semibold text-lg">Modifier une classe.</h2>
+                <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour modifier une classe. </p>
                 <form class="h-full w-full flex flex-col">
                     <div class="flex justify-between space-x-3">
                         <TextBox  :onChange="handleInput" type="text" name="name" label="Nom" :value="values.name"  placeholder="Nom de la classe" :err="errors.name"/>
@@ -34,10 +34,10 @@
                             <option  :key="o.name" v-for="o of users">{{o.name }}</option>
                         </Datalist>
                     </div>
-                    <div class="w-full h-48 p-1 rounded mt-3 border">
+                    <div class="w-full h-48 overflow-x-auto __scrollbar p-1 rounded mt-3 border">
                         <p class="text-gray-600">Choisir cours</p>
-                        <div class="flex flex-wrap space-x-2">
-                            <span @click="onChooseCourse(c.id)" v-for="c of courses" :class="` p-1 bg-gray-100 flex space-x-2 items-center cursor-pointer ${chosenCourses.includes(c.id) ? 'bg-blue-600 text-white' :' hover:bg-gray-200'} rounded`">{{c.cours }} <CheckIcon class='w-5 h-5 ml-2' v-if="chosenCourses.includes(c.id)"/></span>
+                        <div class="flex flex-wrap ">
+                            <span @click="onChooseCourse(c.id)" v-for="c of courses" :class="` p-1 bg-gray-100 flex space-x-2 m-1 items-center cursor-pointer ${chosenCourses.includes(c.id) ? 'bg-blue-600 text-white' :' hover:bg-gray-200'} rounded`">{{c.cours }} <CheckIcon class='w-5 h-5 ml-2' v-if="chosenCourses.includes(c.id)"/></span>
                         </div>
                     </div>
                 </form>
