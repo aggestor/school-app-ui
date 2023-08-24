@@ -55,8 +55,9 @@
             sessionStorage.setItem('token', JSON.stringify(result.token))
             const roles = result.user.role.map(d => d.name)
             if(roles.includes("Admin")){
+                const search = window.location.search.split('?continue=');
                 sessionStorage.setItem('session_type', 'admin')
-                router.push('/ui/admin')
+                search[1] ?router.push(search[1]) : router.push('/ui/admin')
             }
         }
     }

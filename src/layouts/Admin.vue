@@ -23,7 +23,7 @@
     const user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null
     const token = sessionStorage.getItem("token") ?  JSON.parse(sessionStorage.getItem("token")) : null
     const type = sessionStorage.getItem("session_type") ? sessionStorage.getItem("session_type") : null
-    if(user && token && type){
+    if(user && token && type && type.toLocaleLowerCase() == 'admin'){
         isChecked.value = true
     }else{
         router.push(`/ui/admin/login?continue=${window.location.pathname}`)
