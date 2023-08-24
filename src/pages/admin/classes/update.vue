@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Modification d'une classe.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La modificaiton de la classe  a été effectuée avec success. Vous pouvez maintenant assossier cette classe a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
+            <SuccessComponent @press="reset" title="Modificaiton effectuée" message="La modificaiton de la classe  a été effectuée avec success. Vous pouvez maintenant assossier cette classe a tout ce qui peût y être lié." next="/ui/admin/classes" nextText="Suivant"/>
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
@@ -169,6 +169,7 @@
             chosenCourses.value = cours
         }
     }
+    const reset = () => success.value = false
     onMounted(()=>{
         getLevels()
         fetchUsers()
