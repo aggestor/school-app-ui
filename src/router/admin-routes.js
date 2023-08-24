@@ -244,4 +244,25 @@ export default [
         meta : {layout : 'admin'},
         component:async ()=> await import("../pages/admin/payments/update.vue")
     },
+    {
+        path: '/admin/rating',
+        alias:"/ui/admin/rating",
+        name: 'fetch-rating',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/rating/list.vue")
+    },
+    {
+        path: '/admin/rating/create',
+        alias:"/ui/admin/rating/create",
+        name: 'create-rating',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/rating/create.vue")
+    },
+    {
+        path: '/admin/rating/:id/update',
+        alias:"/ui/admin/rating/:id/update",
+        name: 'update-rating',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/rating/update.vue")
+    },
 ]
