@@ -196,6 +196,13 @@ export default [
         component:async ()=> await import("../pages/admin/students/create.vue")
     },
     {
+        path: '/admin/students/:id',
+        alias:"/ui/admin/students/:id",
+        name: 'uniq-students',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/students/unique.vue")
+    },
+    {
         path: '/admin/students/:id/update',
         alias:"/ui/admin/students/:id/update",
         name: 'update-students',
