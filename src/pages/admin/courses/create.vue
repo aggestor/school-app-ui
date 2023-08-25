@@ -1,5 +1,5 @@
 <template>
-    <div class="w-11/12 mx-auto flex justify-center items-center md:h-[350px]">
+    <div class="w-11/12 mx-auto flex justify-center items-center md:h-[400px]">
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
@@ -13,7 +13,8 @@
                 <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour créer un nouveau cours. </p>
                 <form class="h-full w-full flex flex-col">
                     <TextBox  :onChange="handleInput" type="text" name="cours" label="Cours" :value="values.cours"  placeholder="Nom du cours" :err="errors.cours"/>
-                    <TextBox  :onChange="handleInput" type="text" name="total" label="Total" :value="values.total"  placeholder="Total du cours" :err="errors.total"/>
+                    <TextBox  :onChange="handleInput" type="text" name="total_periode" label="Total période" :value="values.total_periode"  placeholder="Total du cours à la période" :err="errors.total_periode"/>
+                    <TextBox  :onChange="handleInput" type="text" name="total_examen" label="Total examen" :value="values.total_examen"  placeholder="Total du cours à l'examen" :err="errors.total_examen"/>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
