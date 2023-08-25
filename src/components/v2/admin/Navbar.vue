@@ -8,6 +8,9 @@
                 <MagnifyingGlassIcon class="w-6 h-6"/>
             </span>
             <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
+                <PowerIcon class="w-6 h-6"/>
+            </span>
+            <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <UserIcon class="w-6 h-6"/>
             </span>
             <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
@@ -19,7 +22,7 @@
 <script setup>
 import { ref ,onMounted} from 'vue';
 import Config from '../../../api/v2/Config';
-import { Bars3CenterLeftIcon, MagnifyingGlassIcon, UserIcon } from '@heroicons/vue/24/outline';
+import { Bars3CenterLeftIcon, MagnifyingGlassIcon, PowerIcon, UserIcon } from '@heroicons/vue/24/outline';
 
     const school = ref({})
     const getSchool = async () =>{
