@@ -2,7 +2,9 @@
     <div class="w-11/12 mx-auto flex justify-center items-center md:h-screen">
         <div  data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center h-[70%] rounded-lg border">
             <div class="md:w-6/12 flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-                <h1 class="font-semibold text-2xl text-blue-600 mb-1">School App.</h1>
+                <div class="w-fit -ml-2 h-14">
+                    <img src="/logo-with-ecrit.png" class="w-full h-full"/>
+                </div>
                 <h2 class="font-semibold text-lg">Connexion.</h2>
                 <p class="text-gray-700 text-sm">Utilisez vos identifiants pour vous connecter. </p>
                 <form class="h-full w-full flex flex-col">

@@ -3,30 +3,28 @@
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
-                <h2 class="font-semibold text-lg">Inscrire un eleve.</h2>
+                <h2 class="font-semibold text-lg">Paiement.</h2>
             </div>
-            <SuccessComponent title="Création effectuée" message="La création de cette optino a été effectuée avec success. Vous pouvez maintenant assossier cette option a tout ce qui peût y être lié." next="/ui/admin/inscriptions" nextText="Suivant"/>
+            <SuccessComponent title="Paiement effectué" :message="`Le paiment  de ${values.montant}$  pour le compte de ${values.student} a été effectué avec success. Le montant a été crédité sur son compte.`" next="/ui/admin/payments" nextText="Suivant"/>
         </div>
-        <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
+        <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center  rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-                <h2 class="font-semibold text-lg">Inscrire un eleve.</h2>
+                <h2 class="font-semibold text-lg">Paiement.</h2>
                 <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour inscrire  un eleve. </p>
                 <form class="h-full w-full flex flex-col">
-                    <Datalist :err="errors.classe_id" label="Option" :onChange="handleInput" name="classe_id" :value="values.classe_id"  placeholder="Choisir Option">
-                        <option  :key="o.id" v-for="o of classes">{{o.name }}</option>
-                    </Datalist>
+                   <label for="eleve" class="text-sm mt-3">Nom de l'élève</label>
                     <div class="flex w-full mt-2 items-center  justify-around">
-                        <div class="bg-white w-full bg-opacity-40 backd rounded border ">
+                        <div class="bg-white w-full  rounded border ">
                             <div :class="` w-full  items-center ${searchResults.length > 0 && 'border-b'} h-9  px-1 flex space-x-2`">
-                                <input name="student" autofocus @input="handleInput" :value="values.student" placeholder="Entrez le mom de l'eleve a inscrire." type="search" class="w-full placeholder:text-gray-400 text-gray-800 outline-none border-none mx-2 h-[80%] bg-transparent"><span @click="handleClickSearch"  class="text-gray-400 hover:bg-gray-100 rounded cursor-pointer"><MagnifyingGlassIcon class="h-7 w-7"/></span>
+                                <input id="eleve" name="student" autofocus @input="handleInput" :value="values.student" placeholder="Entrez le mom de l'eleve a inscrire." type="search" class="w-full placeholder:text-gray-400 text-gray-800 outline-none border-none mx-2 h-[80%] bg-transparent"><span @click="handleClickSearch"  class="text-gray-400 hover:bg-gray-100 rounded cursor-pointer"><MagnifyingGlassIcon class="h-7 w-7"/></span>
                             </div>
                             <div v-if="!isSearchLoading && searchResults.length == 0 && values?.student?.length > 0 && showSuggestionBox " class="h-64 grid place-items-center w-full">
                                 {{boxTitle }}
                             </div>
-                            <div v-if="!isSearchLoading && searchResults.length > 0" class="h-64 overflow-auto __scrollbar grid place-items-center w-full">
+                            <div v-if="!isSearchLoading && searchResults.length > 0" class="max-h-64 overflow-auto __scrollbar grid place-items-center w-full">
                                 <div @click="handleClickProduct(s)" :key="s.id" v-for="s of searchResults" class="p-1 w-full cursor-pointer hover:bg-blue-100 flex flex-col">
-                                    <p class="w-full font-semibold">{{s.names+' '+s.firstname+' '+s.lastname }}</p>
-                                    <small class="text-gray-600">{{s.genre }} | {{s.tel }}</small>
+                                    <p class="w-full">{{s.names+' '+s.firstname+' '+s.lastname }}</p>
+                                    <small class="text-gray-600">{{uppercaseFirst(s.genre) }} | {{s.tel }} | {{s.name }}</small>
                                 </div>
                             </div>
                             <div v-if="isSearchLoading" class="h-64 grid place-items-center w-full">
@@ -34,10 +32,12 @@
                             </div>
                         </div>
                     </div>
+                    <TextBox  :onChange="handleInput" type="number" name="montant" label="Montant" :value="values.montant"  placeholder="Montant à payer" :err="errors.montant"/>
+                    <TextBox  :onChange="handleInput" type="text" name="libelle" label="Libelle" :value="values.libelle"  placeholder="Libelle" :err="errors.montant"/>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
-                        Enregistrer <CheckCircleIcon class="w-5 h-5 ml-1"/>
+                        Confirmer paiement <CheckCircleIcon class="w-5 h-5 ml-1"/>
                     </BlueButtons>
                 </div>
             </div>
@@ -51,11 +51,12 @@
     import { ref, onMounted } from 'vue';
     import {CheckCircleIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
-    import Datalist from "../../../components/Datalist.vue"
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import Class from '../../../api/v2/Class';
     import Student from '../../../api/v2/Student';
-    import Inscription from '../../../api/v2/Inscription';
+    import Payment from '../../../api/v2/Payment';
+    import TextBox from '../../../components/TextBox.vue';
+    import uppercaseFirst from '../../../helpers/uppercase-first';
 
     const success = ref(false)
     const isSearchLoading = ref(false)
@@ -80,9 +81,9 @@
         }
     }
     const searchStudent  = async e =>{
-        const result = await Student.search(e.target.value)
+        const result = await Student.searchSubscribed(e.target.value)
         if(result.data){
-            searchResults.value = result.data
+            searchResults.value = Array.isArray(result.data) ? result.data : [result.data]
         }
     }
     const handleClickProduct  =  s =>{
@@ -92,7 +93,7 @@
         searchResults.value = []
     }
     const onPressRegister = async () =>{
-        const result = await Inscription.subscribe(classId.value, studentId.value)
+        const result = await Payment.pay({eleve_id:studentId.value, montant:values.value['montant'], libelle:values.value['libelle']})
         if(result.error){
         errors.value = result.errorList 
         }
