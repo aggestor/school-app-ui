@@ -1,7 +1,7 @@
 <template>
-    <div class="w-11/12 mx-auto flex justify-center items-center md:h-screen">
-        <div  data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center h-[70%] rounded-lg border">
-            <div class="md:w-6/12 flex h-[85%] md:p-6 p-4  justify-center flex-col" >
+    <div class="w-11/12 mx-auto flex justify-center items-center h-screen">
+        <div  data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center  md:h-[70%] rounded-lg border">
+            <div class="md:w-6/12 w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
                 <div class="w-fit -ml-2 h-14">
                     <img src="/logo-with-ecrit.png" class="w-full h-full"/>
                 </div>
