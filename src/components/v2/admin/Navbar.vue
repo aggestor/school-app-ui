@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex justify-between border-b sticky top-0  items-center p-2 h-12 bg-opacity-80 backdrop-blur-lg z-50 bg-white">
+    <div class="w-full flex justify-between border-b sticky top-0  items-center p-2 h-12 bg-opacity-50 backdrop-blur-lg z-50 bg-white">
         <div class="w-7/12 flex items-center space-x-4 lg:w-6/12">
             <h1 class="text-black text-lg font-semibold">{{school.name }}</h1>
         </div>
