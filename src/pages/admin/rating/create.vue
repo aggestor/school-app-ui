@@ -1,16 +1,16 @@
 <template>
-    <div class="w-11/12 mx-auto flex justify-center items-center md:min-h-[300px]">
+    <div class="w-11/12 mx-auto flex justify-center items-center my-4 md:min-h-[300px]">
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Paiement.</h2>
             </div>
-            <SuccessComponent title="Paiement effectué" :message="`Le paiment  de ${values.montant}$  pour le compte de ${values.student} a été effectué avec success. Le montant a été crédité sur son compte.`" next="/ui/admin/payments" nextText="Suivant"/>
+            <SuccessComponent title="Attribution de cotes" :message="`Le paiment  de ${values.montant}$  pour le compte de ${values.student} a été effectué avec success. Le montant a été crédité sur son compte.`" next="/ui/admin/payments" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center  rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
-                <h2 class="font-semibold text-lg">Paiement.</h2>
-                <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour inscrire  un eleve. </p>
+                <h2 class="font-semibold text-lg">Attribution de cotes.</h2>
+                <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour attribuer une cote à  un élève. </p>
                 <form class="h-full w-full flex flex-col">
                    <label for="eleve" class="text-sm mt-3">Nom de l'élève</label>
                     <div class="flex w-full mt-2 items-center  justify-around">
@@ -32,8 +32,11 @@
                             </div>
                         </div>
                     </div>
-                    <TextBox  :onChange="handleInput" type="number" name="montant" label="Montant" :value="values.montant"  placeholder="Montant à payer" :err="errors.montant"/>
-                    <TextBox  :onChange="handleInput" type="text" name="libelle" label="Libelle" :value="values.libelle"  placeholder="Libelle" :err="errors.montant"/>
+                    <TextBox  :onChange="handleInput" type="number" name="cotes" label="Cote" :value="values.cotes"  placeholder="Cote du cours" :err="errors.cotes"/>
+                    <p class="text-sm mt-2">Type de cote</p>
+                    <div class="border w-full p-2 flex flex-col space-y-2 mt-2 h-36 overflow-x-auto __scrollbar justify-between rounded">
+                        <span v-for="t of types" @click="currentType = t.id" :class="`${currentType == t.id  ? 'text-white bg-blue-600' : 'bg-gray-200'} cursor-pointer p-0.5 px-1 space-x-3 text-sm w-fit h-fit rounded flex items-center`"  :key="t.id">{{t.name }} <CheckIcon v-if="currentType == t.id"  class='w-5 cursor-pointer h-5 ml-1'/></span>
+                    </div>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
@@ -49,12 +52,12 @@
     
     <script setup>
     import { ref, onMounted } from 'vue';
-    import {CheckCircleIcon} from "@heroicons/vue/24/outline"
+    import {CheckCircleIcon, CheckIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import Class from '../../../api/v2/Class';
     import Student from '../../../api/v2/Student';
-    import Payment from '../../../api/v2/Payment';
+    import Rating from '../../../api/v2/Rating';
     import TextBox from '../../../components/TextBox.vue';
     import uppercaseFirst from '../../../helpers/uppercase-first';
 
@@ -64,7 +67,34 @@
     const searchResults = ref([])
     const errors = ref([])
     const classes = ref([])
+    const types = ref([
+        {
+            id:"P1",
+            name:"Première Période"
+        },
+        {
+            id:"P2",
+            name:"Deuxième Période"
+        },
+        {
+            id:"P3",
+            name:"Troisième Période"
+        },
+        {
+            id:"P4",
+            name:"Quatrième Période"
+        },
+        {
+            id:"E1",
+            name:"Examen Premier Semestre"
+        },
+        {
+            id:"E2",
+            name:"Examen Second Semestre"
+        },
+    ])
     const classId = ref('')
+    const currentType = ref('')
     const studentId = ref('')
     const values = ref({})
     const boxTitle = ref("")
@@ -93,7 +123,7 @@
         searchResults.value = []
     }
     const onPressRegister = async () =>{
-        const result = await Payment.pay({eleve_id:studentId.value, montant:values.value['montant'], libelle:values.value['libelle']})
+        const result = await Rating.rate({eleve_id:studentId.value, cotes:values.value['cotes'], type:values.value['libelle']})
         if(result.error){
         errors.value = result.errorList 
         }
