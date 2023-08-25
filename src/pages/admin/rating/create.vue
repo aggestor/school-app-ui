@@ -32,6 +32,9 @@
                             </div>
                         </div>
                     </div>
+                    <Datalist label="Option" :onChange="handleInput" name="cours"  placeholder="Choisir cours">
+                        <option  :key="o.name" v-for="o of courses">{{o.cours }}</option>
+                    </Datalist>
                     <TextBox  :onChange="handleInput" type="number" name="cotes" label="Cote" :value="values.cotes"  placeholder="Cote du cours" :err="errors.cotes"/>
                     <p class="text-sm mt-2">Type de cote</p>
                     <div class="border w-full p-2 flex flex-col space-y-2 mt-2 h-36 overflow-x-auto __scrollbar justify-between rounded">
@@ -51,22 +54,24 @@
     </template>
     
     <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref } from 'vue';
     import {CheckCircleIcon, CheckIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
-    import Class from '../../../api/v2/Class';
     import Student from '../../../api/v2/Student';
     import Rating from '../../../api/v2/Rating';
     import TextBox from '../../../components/TextBox.vue';
+    import Datalist from '../../../components/Datalist.vue';
     import uppercaseFirst from '../../../helpers/uppercase-first';
+    import Course from '../../../api/v2/Course';
 
     const success = ref(false)
     const isSearchLoading = ref(false)
     const showSuggestionBox = ref(false)
+    const courseId = ref("")
     const searchResults = ref([])
     const errors = ref([])
-    const classes = ref([])
+    const courses = ref([])
     const types = ref([
         {
             id:"P1",
@@ -100,10 +105,11 @@
     const boxTitle = ref("")
     const handleInput = async(e) =>{
         values.value[e.target.name] = e.target.value
-        if(e.target.name == "classe_id"){
-            const _classes = classes.value.filter(c =>c.name == e.target.value)
-            if(_classes[0]){
-                classId.value = _classes[0].id
+        if(e.target.name == "cours"){
+            const _courses = courses.value.filter(c =>c.cours == e.target.value)
+            if(_courses[0]){
+                courseId.value = _courses[0].id
+                
             }
         }
         if(e.target.name == 'student'){
@@ -119,11 +125,12 @@
     const handleClickProduct  =  s =>{
         values.value.student = s.names+' '+s.firstname+' '+s.lastname
         studentId.value = s.id
+        getCourses(s.id)
         showSuggestionBox.value = false
         searchResults.value = []
     }
     const onPressRegister = async () =>{
-        const result = await Rating.rate({eleve_id:studentId.value, cotes:values.value['cotes'], type:values.value['libelle']})
+        const result = await Rating.rate({eleve_id:studentId.value, cotes:values.value['cotes'], cotes_types:currentType.value, cours_id: courseId.value})
         if(result.error){
         errors.value = result.errorList 
         }
@@ -131,14 +138,11 @@
             success.value = true
         }
     }
-    const getClasses =  async () =>{
-        const result = await Class.get()
-        if(result.data){
-            classes.value = result.data
+    const getCourses =  async (id) =>{
+        const result = await Course.getByStudent(id)
+        if(result.success){
+            courses.value = result.data
         }
     }
-    onMounted(()=>{
-        getClasses()
-    })
     </script>
     

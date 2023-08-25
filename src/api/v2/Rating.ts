@@ -11,9 +11,6 @@ const Rating = {
     async get(type?:string,id?:string){
         return await api.patch(id?'/cotes/'+id : '/cotes/eleve/'+type)
     },
-    async search(term:string){
-        return await api.get('/cotes/identite/'+term )
-    },
 }
 
 export default Rating

@@ -11,6 +11,9 @@ const Course = {
     async get(id?:string){
         return await api.get(id?'/cours/'+id : '/cours')
     },
+    async getByStudent(id:string){
+        return await api.get('/cours/classe/'+id)
+    },
 }
 
 export default Course
