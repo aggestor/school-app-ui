@@ -1,4 +1,5 @@
 <template>
+    <DeleteDialog @cancel="showDelete = false" @confirm="deleteCourse" v-if="showDelete" title="Voulez-vous vraiment supprimer ce cours ?" text="La suppression d'un cours entrainera la suppression de toutes informations qui y sont liées"/>
     <div class="w-[95%] mt-2 mx-auto">
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
@@ -31,7 +32,7 @@
                 <BlackLinkAsButton :to="'/ui/admin/courses/'+c.id+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
-                <RedButtons @press="deleteCourse">
+                <RedButtons @press="onPressDeleteCourse(c)">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
             </span>
@@ -47,8 +48,11 @@ import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
 import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
+import DeleteDialog from "../../../components/v2/DeleteDialog.vue"
 const courses = ref([])
 const loading = ref(true)
+const currentList = ref({})
+const showDelete = ref(false)
 const getCourses = async () =>{
     loading.value = true
     const result = await Course.get()
@@ -56,6 +60,13 @@ const getCourses = async () =>{
         courses.value = result.data
     }
     loading.value = false
+}
+const deleteCourse = async () =>{
+    
+}
+const onPressDeleteCourse = c =>{
+    currentList.value = c
+    showDelete.value = true
 }
 onMounted(()=>{
     getCourses()
