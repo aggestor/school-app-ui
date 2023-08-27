@@ -31,6 +31,7 @@ import { useRouter } from 'vue-router';
     const router = useRouter()
     const getSchool = async () =>{
         const result = await Config.getSchool()
+        if(result?.data[0])
         school.value = result.data[0]
     }
     onMounted(()=>{

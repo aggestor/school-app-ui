@@ -61,6 +61,11 @@
                 sessionStorage.setItem('session_type', 'admin')
                 search[1] ?router.push(search[1]) : router.push('/ui/admin')
             }
+            if(roles.includes("Titulaire")){
+                const search = window.location.search.split('?continue=');
+                sessionStorage.setItem('session_type', 'Titulaire')
+                search[1] ?router.push(search[1]) : router.push('/ui/class-teacher')
+            }
         }
     }
      onMounted(()=>{
