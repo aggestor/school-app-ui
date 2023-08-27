@@ -43,7 +43,7 @@ const currentList = ref({})
 const showDelete = ref(false)
 const getCourses = async () =>{
     loading.value = true
-    const result = await Course.get()
+    const result = await Course.getByTeacher()
     if(result.data){
         courses.value = result.data
     }
