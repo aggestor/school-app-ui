@@ -7,34 +7,6 @@ export default [
         component:async ()=> await import("../pages/class-teacher/dashboard.vue")
     },
     {
-        path: '/class-teacher/levels/create',
-        alias:"/ui/class-teacher/levels/create",
-        name: 'create-level',
-        meta : {layout : 'teacher'},
-        component:async ()=> await import("../pages/class-teacher/levels/create.vue")
-    },
-    {
-        path: '/class-teacher/levels',
-        alias:"/ui/class-teacher/levels",
-        name: 'list-level',
-        meta : {layout : 'teacher'},
-        component:async ()=> await import("../pages/class-teacher/levels/list.vue")
-    },
-    {
-        path: '/class-teacher/levels/:id/update',
-        alias:"/ui/class-teacher/levels/:id/update",
-        name: 'update-level',
-        meta : {layout : 'teacher'},
-        component:async ()=> await import("../pages/class-teacher/levels/update.vue")
-    },
-    {
-        path: '/class-teacher/courses/create',
-        alias:"/ui/class-teacher/courses/create",
-        name: 'create-course-teacher',
-        meta : {layout : 'teacher'},
-        component:async ()=> await import("../pages/class-teacher/courses/create.vue")
-    },
-    {
         path: '/class-teacher/courses',
         alias:"/ui/class-teacher/courses",
         name: 'list-course-teacher',
