@@ -8,9 +8,6 @@
             </div>
            <div class="flex items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ courses?.length}}</span>
-            <BlueLinkAsButton to="/ui/admin/courses/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Créer un cours
-            </BlueLinkAsButton>
            </div>
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
@@ -19,7 +16,6 @@
             <span class="w-2/12 flex justify-center">Examen</span>
             <span class="w-2/12 flex justify-center">Période</span>
             <span class="w-2/12 ">Maj</span>
-            <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
         <div v-for="c of courses" :class="` py-2 text-sm  flex items-center justify-between ${courses.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
@@ -28,14 +24,6 @@
             <span class="w-2/12 flex justify-center">{{c.total_examen }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_periode }}</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(c.updated_at) }}</span>
-            <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/courses/'+c.id+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="onPressDeleteCourse(c)">
-                    <TrashIcon class="w-5 h-5"/>
-                </RedButtons>
-            </span>
         </div>
     </div>
 </template>
