@@ -8,9 +8,6 @@
             </div>
            <div class="flex items-center">
             <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ students?.length}}</span>
-            <BlueLinkAsButton to="/ui/admin/students/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Nouvel élève
-            </BlueLinkAsButton>
            </div>
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
@@ -31,13 +28,7 @@
             <span class="w-2/12 flex justify-center">{{c.matricule }}</span>
             <span class="w-1/12 flex ">{{formatDateToAgo(c.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/students/'+c.id+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="setCurrentStudent(c)">
-                    <TrashIcon class="w-5 h-5"/>
-                </RedButtons>
-                <BlueLinkAsButton :to="'/ui/admin/students/'+c.id">
+                <BlueLinkAsButton :to="'/ui/class-teacher/students/'+c.id">
                     <ArrowRightIcon class="w-5 h-5"/>
                 </BlueLinkAsButton>
             </span>
