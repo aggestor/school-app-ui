@@ -109,7 +109,6 @@
             const _courses = courses.value.filter(c =>c.cours == e.target.value)
             if(_courses[0]){
                 courseId.value = _courses[0].id
-                
             }
         }
         if(e.target.name == 'student'){
