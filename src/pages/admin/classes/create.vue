@@ -37,7 +37,7 @@
                     <div class="w-full h-48 p-1 rounded mt-3 border">
                         <p class="text-gray-600">Choisir cours</p>
                         <div class="flex flex-wrap space-x-2">
-                            <span @click="onChooseCourse(c.id)" v-for="c of courses" :class="` p-1 bg-gray-100 flex space-x-2 items-center cursor-pointer ${chosenCourses.includes(c.id) ? 'bg-blue-600 text-white' :' hover:bg-gray-200'} rounded`">{{c.cours }} <CheckIcon class='w-5 h-5 ml-2' v-if="chosenCourses.includes(c.id)"/></span>
+                            <span @click="onChooseCourse(c.id)" v-for="c of courses" :class="` p-1  flex space-x-2 items-center cursor-pointer ${chosenCourses.includes(c.id) ? 'bg-blue-600 text-white' :' hover:bg-gray-200 bg-gray-100'} rounded`">{{c.cours }} <CheckIcon class='w-5 h-5 ml-2' v-if="chosenCourses.includes(c.id)"/></span>
                         </div>
                     </div>
                 </form>

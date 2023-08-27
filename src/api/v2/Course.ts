@@ -12,7 +12,7 @@ const Course = {
         return await api.get(id?'/cours/'+id : '/cours')
     },
     async getByTeacher(){
-        return await api.post('/cours/classe/cours')
+        return await api.patch('/cours/classe/cours')
     },
     async getByStudent(id:string){
         return await api.get('/cours/classe/'+id)
