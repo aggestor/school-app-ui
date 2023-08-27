@@ -10,9 +10,9 @@
             <span @click="logout" class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <PowerIcon class="w-6 h-6"/>
             </span>
-            <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
+            <RouterLink to="/ui/class-teacher/me" class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <UserIcon class="w-6 h-6"/>
-            </span>
+            </RouterLink>
             <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <Bars3CenterLeftIcon class="w-6 h-6"/>
             </span>
