@@ -26,7 +26,7 @@
     if(user && token && type && type.toLocaleLowerCase() == 'admin'){
         isChecked.value = true
     }else{
-        router.push(`/ui/admin/login?continue=${window.location.pathname}`)
+        router.push(`/ui/all/login?continue=${window.location.pathname}`)
     }
         // const login = Auth.check
 </script>
