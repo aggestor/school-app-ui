@@ -41,7 +41,7 @@ import { useRouter } from 'vue-router';
         const result = await Auth.logout()
         if(result.success){
             window.sessionStorage.clear()
-            router.push("/ui/admin/login")
+            router.push("/ui/login")
         }
     }
 </script>

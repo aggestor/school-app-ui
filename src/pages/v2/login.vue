@@ -39,9 +39,7 @@
     import BlueButtons from '../../components/v2/BlueButtons.vue';
     import TextBox from "../../components/TextBox.vue"
     import Auth from '../../api/v2/Auth';
-    import { useRouter } from 'vue-router';
 
-    const router = useRouter()
     const errors = ref([])
     const values = ref({})
     const handleInput = (e) =>{
@@ -59,12 +57,13 @@
             if(roles.includes("Admin")){
                 const search = window.location.search.split('?continue=');
                 sessionStorage.setItem('session_type', 'admin')
-                search[1] ?router.push(search[1]) : router.push('/ui/admin')
+                search[1] ?window.location.href = search[1] : window.location.href = '/ui/admin'
             }
             if(roles.includes("Titulaire")){
                 const search = window.location.search.split('?continue=');
                 sessionStorage.setItem('session_type', 'Titulaire')
-                search[1] ?router.push(search[1]) : router.push('/ui/class-teacher')
+                
+                search[1] ?window.location.href = search[1] : window.location.href = '/ui/class-teacher'
             }
         }
     }
