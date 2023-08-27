@@ -7,6 +7,13 @@ export default [
         component:async ()=> await import("../pages/class-teacher/dashboard.vue")
     },
     {
+        path: '/class-teacher/me',
+        alias:"/ui/class-teacher/me",
+        name: 'class-teacher-details',
+        meta : {layout : 'teacher'},
+        component:async ()=> await import("../pages/class-teacher/me.vue")
+    },
+    {
         path: '/class-teacher/courses',
         alias:"/ui/class-teacher/courses",
         name: 'list-course-teacher',
