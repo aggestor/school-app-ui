@@ -7,7 +7,7 @@
             <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <MagnifyingGlassIcon class="w-6 h-6"/>
             </span>
-            <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
+            <span @click="logout" class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
                 <PowerIcon class="w-6 h-6"/>
             </span>
             <span class="w-7 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors duration-500 grid place-items-center rounded h-7 border">
@@ -23,8 +23,12 @@
 import { ref ,onMounted} from 'vue';
 import Config from '../../../api/v2/Config';
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon, PowerIcon, UserIcon } from '@heroicons/vue/24/outline';
+import Auth from '../../../api/v2/Auth';
+import { useRouter } from 'vue-router';
+
 
     const school = ref({})
+    const router = useRouter()
     const getSchool = async () =>{
         const result = await Config.getSchool()
         school.value = result.data[0]
@@ -32,4 +36,11 @@ import { Bars3CenterLeftIcon, MagnifyingGlassIcon, PowerIcon, UserIcon } from '@
     onMounted(()=>{
         getSchool()
     })
+    const logout  = async () =>{
+        const result = await Auth.logout()
+        if(result.success){
+            window.sessionStorage.clear()
+            router.push("/ui/admin/login")
+        }
+    }
 </script>

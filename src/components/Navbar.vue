@@ -85,7 +85,6 @@ import SimpleNavItem from './SimpleNavItem.vue';
 import BlueLinkAsButton from './v2/BlueLinkAsButton.vue';
 import BlueButtons from './v2/BlueButtons.vue';
 import { Bars3BottomLeftIcon } from '@heroicons/vue/24/solid';
-import { useCart } from '../store/cart';
 import useIsLoggedIn from '../hooks/use-is-logged-in';
 import {  ArrowRightIcon, ArrowTrendingUpIcon, BuildingStorefrontIcon, CurrencyDollarIcon, CurrencyYenIcon, HomeIcon, MagnifyingGlassIcon,PowerIcon,QuestionMarkCircleIcon,ShoppingCartIcon, Squares2X2Icon, UserIcon, UserPlusIcon } from '@heroicons/vue/24/outline';
 import { onMounted, ref, watch } from 'vue';

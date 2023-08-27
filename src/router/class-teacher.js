@@ -1,268 +1,268 @@
 export default [
     {
-        path: '/admin',
-        alias:"/ui/admin",
-        name: 'admin-dashboard',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/dashboard.vue")
+        path: '/class-teacher',
+        alias:"/ui/class-teacher",
+        name: 'class-teacher-dashboard',
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/dashboard.vue")
     },
     {
-        path: '/admin/levels/create',
-        alias:"/ui/admin/levels/create",
+        path: '/class-teacher/levels/create',
+        alias:"/ui/class-teacher/levels/create",
         name: 'create-level',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/levels/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/levels/create.vue")
     },
     {
-        path: '/admin/levels',
-        alias:"/ui/admin/levels",
+        path: '/class-teacher/levels',
+        alias:"/ui/class-teacher/levels",
         name: 'list-level',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/levels/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/levels/list.vue")
     },
     {
-        path: '/admin/levels/:id/update',
-        alias:"/ui/admin/levels/:id/update",
+        path: '/class-teacher/levels/:id/update',
+        alias:"/ui/class-teacher/levels/:id/update",
         name: 'update-level',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/levels/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/levels/update.vue")
     },
     {
-        path: '/admin/courses/create',
-        alias:"/ui/admin/courses/create",
+        path: '/class-teacher/courses/create',
+        alias:"/ui/class-teacher/courses/create",
         name: 'create-course',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/courses/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/courses/create.vue")
     },
     {
-        path: '/admin/courses',
-        alias:"/ui/admin/courses",
+        path: '/class-teacher/courses',
+        alias:"/ui/class-teacher/courses",
         name: 'list-course',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/courses/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/courses/list.vue")
     },
     {
-        path: '/admin/courses/:id/update',
-        alias:"/ui/admin/courses/:id/update",
+        path: '/class-teacher/courses/:id/update',
+        alias:"/ui/class-teacher/courses/:id/update",
         name: 'update-course',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/courses/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/courses/update.vue")
     },
     {
-        path: '/admin/options/create',
-        alias:"/ui/admin/options/create",
+        path: '/class-teacher/options/create',
+        alias:"/ui/class-teacher/options/create",
         name: 'create-option',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/options/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/options/create.vue")
     },
     {
-        path: '/admin/options',
-        alias:"/ui/admin/options",
+        path: '/class-teacher/options',
+        alias:"/ui/class-teacher/options",
         name: 'list-option',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/options/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/options/list.vue")
     },
     {
-        path: '/admin/options/:id/update',
-        alias:"/ui/admin/options/:id/update",
+        path: '/class-teacher/options/:id/update',
+        alias:"/ui/class-teacher/options/:id/update",
         name: 'update-option',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/options/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/options/update.vue")
     },
     {
-        path: '/admin/years/create',
-        alias:"/ui/admin/years/create",
+        path: '/class-teacher/years/create',
+        alias:"/ui/class-teacher/years/create",
         name: 'create-year',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/years/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/years/create.vue")
     },
     {
-        path: '/admin/years',
-        alias:"/ui/admin/years",
+        path: '/class-teacher/years',
+        alias:"/ui/class-teacher/years",
         name: 'list-year',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/years/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/years/list.vue")
     },
     {
-        path: '/admin/years/:id/update',
-        alias:"/ui/admin/years/:id/update",
+        path: '/class-teacher/years/:id/update',
+        alias:"/ui/class-teacher/years/:id/update",
         name: 'update-year',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/years/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/years/update.vue")
     },
     {
-        path: '/admin/classes/create',
-        alias:"/ui/admin/classes/create",
+        path: '/class-teacher/classes/create',
+        alias:"/ui/class-teacher/classes/create",
         name: 'create-class',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/classes/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/classes/create.vue")
     },
     {
-        path: '/admin/classes',
-        alias:"/ui/admin/classes",
+        path: '/class-teacher/classes',
+        alias:"/ui/class-teacher/classes",
         name: 'list-class',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/classes/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/classes/list.vue")
     },
     {
-        path: '/admin/classes/:id',
-        alias:"/ui/admin/classes/:id",
+        path: '/class-teacher/classes/:id',
+        alias:"/ui/class-teacher/classes/:id",
         name: 'uniq-class',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/classes/unique.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/classes/unique.vue")
     },
     {
-        path: '/admin/classes/:id/update',
-        alias:"/ui/admin/classes/:id/update",
+        path: '/class-teacher/classes/:id/update',
+        alias:"/ui/class-teacher/classes/:id/update",
         name: 'update-class',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/classes/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/classes/update.vue")
     },
     {
-        path: '/admin/users',
-        alias:"/ui/admin/users",
+        path: '/class-teacher/users',
+        alias:"/ui/class-teacher/users",
         name: 'list-user',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/users/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/users/list.vue")
     },
     {
-        path: '/admin/users/create',
-        alias:"/ui/admin/users/create",
+        path: '/class-teacher/users/create',
+        alias:"/ui/class-teacher/users/create",
         name: 'create-user',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/users/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/users/create.vue")
     },
     {
-        path: '/admin/users/:id/update',
-        alias:"/ui/admin/users/:id/update",
+        path: '/class-teacher/users/:id/update',
+        alias:"/ui/class-teacher/users/:id/update",
         name: 'update-user',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/users/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/users/update.vue")
     },
     {
-        path: '/admin/roles',
-        alias:"/ui/admin/roles",
+        path: '/class-teacher/roles',
+        alias:"/ui/class-teacher/roles",
         name: 'list-roles',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/roles/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/roles/list.vue")
     },
     {
-        path: '/admin/roles/create',
-        alias:"/ui/admin/roles/create",
+        path: '/class-teacher/roles/create',
+        alias:"/ui/class-teacher/roles/create",
         name: 'create-role',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/roles/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/roles/create.vue")
     },
     {
-        path: '/admin/roles/:id/update',
-        alias:"/ui/admin/roles/:id/update",
+        path: '/class-teacher/roles/:id/update',
+        alias:"/ui/class-teacher/roles/:id/update",
         name: 'update-role',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/roles/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/roles/update.vue")
     },
     {
-        path: '/admin/inscriptions',
-        alias:"/ui/admin/inscriptions",
+        path: '/class-teacher/inscriptions',
+        alias:"/ui/class-teacher/inscriptions",
         name: 'list-inscriptions',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/inscriptions/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/inscriptions/list.vue")
     },
     {
-        path: '/admin/inscriptions/create',
-        alias:"/ui/admin/inscriptions/create",
+        path: '/class-teacher/inscriptions/create',
+        alias:"/ui/class-teacher/inscriptions/create",
         name: 'create-inscriptions',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/inscriptions/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/inscriptions/create.vue")
     },
     {
-        path: '/admin/inscriptions/:id/update',
-        alias:"/ui/admin/inscriptions/:id/update",
+        path: '/class-teacher/inscriptions/:id/update',
+        alias:"/ui/class-teacher/inscriptions/:id/update",
         name: 'update-inscriptions',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/inscriptions/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/inscriptions/update.vue")
     },
     {
-        path: '/admin/students',
-        alias:"/ui/admin/students",
+        path: '/class-teacher/students',
+        alias:"/ui/class-teacher/students",
         name: 'list-students',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/students/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/students/list.vue")
     },
     {
-        path: '/admin/students/create',
-        alias:"/ui/admin/students/create",
+        path: '/class-teacher/students/create',
+        alias:"/ui/class-teacher/students/create",
         name: 'create-students',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/students/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/students/create.vue")
     },
     {
-        path: '/admin/students/:id',
-        alias:"/ui/admin/students/:id",
+        path: '/class-teacher/students/:id',
+        alias:"/ui/class-teacher/students/:id",
         name: 'uniq-students',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/students/unique.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/students/unique.vue")
     },
     {
-        path: '/admin/students/:id/update',
-        alias:"/ui/admin/students/:id/update",
+        path: '/class-teacher/students/:id/update',
+        alias:"/ui/class-teacher/students/:id/update",
         name: 'update-students',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/students/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/students/update.vue")
     },
     {
-        path: '/admin/payments',
-        alias:"/ui/admin/payments",
+        path: '/class-teacher/payments',
+        alias:"/ui/class-teacher/payments",
         name: 'list-payments',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/payments/list.vue")
     },
     {
-        path: '/admin/payments/pay',
-        alias:"/ui/admin/payments/pay",
+        path: '/class-teacher/payments/pay',
+        alias:"/ui/class-teacher/payments/pay",
         name: 'create-payments',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/pay.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/payments/pay.vue")
     },
     {
-        path: '/admin/payments/debts',
-        alias:"/ui/admin/payments/debts",
+        path: '/class-teacher/payments/debts',
+        alias:"/ui/class-teacher/payments/debts",
         name: 'fetch-debts',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/debts.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/payments/debts.vue")
     },
     {
-        path: '/admin/payments/insolvable',
-        alias:"/ui/admin/payments/insolvable",
+        path: '/class-teacher/payments/insolvable',
+        alias:"/ui/class-teacher/payments/insolvable",
         name: 'fetch-insolvable',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/insolvable.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/payments/insolvable.vue")
     },
     {
-        path: '/admin/payments/:id/update',
-        alias:"/ui/admin/payments/:id/update",
+        path: '/class-teacher/payments/:id/update',
+        alias:"/ui/class-teacher/payments/:id/update",
         name: 'update-payments',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/payments/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/payments/update.vue")
     },
     {
-        path: '/admin/rating',
-        alias:"/ui/admin/rating",
+        path: '/class-teacher/rating',
+        alias:"/ui/class-teacher/rating",
         name: 'fetch-rating',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/rating/list.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/rating/list.vue")
     },
     {
-        path: '/admin/rating/create',
-        alias:"/ui/admin/rating/create",
+        path: '/class-teacher/rating/create',
+        alias:"/ui/class-teacher/rating/create",
         name: 'create-rating',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/rating/create.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/rating/create.vue")
     },
     {
-        path: '/admin/rating/:id/update',
-        alias:"/ui/admin/rating/:id/update",
+        path: '/class-teacher/rating/:id/update',
+        alias:"/ui/class-teacher/rating/:id/update",
         name: 'update-rating',
-        meta : {layout : 'admin'},
-        component:async ()=> await import("../pages/admin/rating/update.vue")
+        meta : {layout : 'class-teacher'},
+        component:async ()=> await import("../pages/class-teacher/rating/update.vue")
     },
 ]

@@ -17,6 +17,9 @@ const Auth = {
     },
     async login(data: Record<string,any>){
         return await api.post('/user/login',data)
+    },
+    async logout(){
+        return await api.post('/user/logout')
     }
 }
 
