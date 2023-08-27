@@ -11,6 +11,9 @@ const Rating = {
     async get(type?:string,id?:string){
         return await api.patch(id?'/cotes/'+id : '/cotes/eleve/'+type)
     },
+    async getAll(){
+        return await api.get('/cotes')
+    },
 }
 
 export default Rating

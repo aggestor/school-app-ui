@@ -6,7 +6,7 @@
                 <h1 class="text-lg font-semibold ml-2">Liste de cotes</h1>
             </div>
            <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ inscriptions?.length}}</span>
+            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ ratings?.length}}</span>
             <BlueLinkAsButton to="/ui/admin/rating/create">
                 <PlusIcon class="w-5 h-5 mr-1"/> Ajouter des points
             </BlueLinkAsButton>
@@ -14,7 +14,7 @@
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
             <span class="w-1/12">#</span>
-            <span class="w-3/12 flex justify-center">inscriptions</span>
+            <span class="w-3/12 flex justify-center">ratings</span>
             <span class="w-2/12 flex justify-center">Matricule</span>
             <span class="w-2/12 flex justify-center">Classe</span>
             <span class="w-2/12 flex justify-center">Scolarité</span>
@@ -22,21 +22,21 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="o of inscriptions" :class="` py-2 text-sm  flex items-center justify-between ${inscriptions.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{inscriptions.indexOf(o)+1 }}</span>
+        <div v-for="o of ratings" :class="` py-2 text-sm  flex items-center justify-between ${ratings.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{ratings.indexOf(o)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.eleve.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/inscriptions/'+o.id+'/update'">
+                <BlackLinkAsButton :to="'/ui/admin/ratings/'+o.id+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
                 <RedButtons @press="deleteInscription">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
-                <BlueLinkAsButton :to="'/ui/admin/inscriptions/'+o.id">
+                <BlueLinkAsButton :to="'/ui/admin/ratings/'+o.id">
                     <ArrowRightIcon class="w-5 h-5"/>
                 </BlueLinkAsButton>
             </span>
@@ -52,15 +52,16 @@ import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
 import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
+import Rating from "../../../api/v2/Rating";
 
-const inscriptions = ref([])
-const getInscriptions = async () =>{
-    const result = await Inscription.get()
+const ratings = ref([])
+const fetchRatings = async () =>{
+    const result = await Rating.getAll()
     if(result.data){
-        inscriptions.value = result.data
+        ratings.value = result.data
     }
 }
 onMounted(()=>{
-    getInscriptions()
+    fetchRatings()
 })
 </script>
