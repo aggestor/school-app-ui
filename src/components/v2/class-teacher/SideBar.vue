@@ -4,50 +4,20 @@
             <img src="/logo-with-ecrit.png" class="h-14 hidden lg:flex w-full"/>
             <img src="/logo.png" class="h-10 w-10 lg:hidden"/>
         </div>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin" text="Dashboard">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/levels" text="Niveaux">
-            <BuildingStorefrontIcon class="w-5  h56"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/courses" text="Cours">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/courses" text="Cours">
             <ArchiveBoxIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/options" text="Options">
-            <DocumentArrowDownIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/years" text="Annee scolaire">
-            <Bars3CenterLeftIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/classes" text="Classes">
-            <BarsArrowUpIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/inscriptions" text="Inscriptions">
-            <AdjustmentsHorizontalIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/students" text="Eleves">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/students" text="Eleves">
             <BarsArrowDownIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/payments" text="Payments">
-            <CurrencyDollarIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/rating" text="Cotes">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/rating" text="Cotes">
             <ListBulletIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/results" text="Resultats">
-            <RectangleGroupIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/users" text="Utilisateurs">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/users" text="Utilisateurs">
             <UserGroupIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/class-teachers" text="Titulaires">
-            <DocumentDuplicateIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/parents" text="Parents">
-            <DocumentDuplicateIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/admin/roles" text="Roles">
-            <DocumentDuplicateIcon class="w-5 h-5"/>
         </SideBarItem>
         <small class="mt-3">&copy; {{new Date().getFullYear() }} SchoolApp,<b>Modernic, Inc</b>.</small>
     </div>

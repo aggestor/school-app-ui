@@ -30,14 +30,14 @@ export default [
     {
         path: '/class-teacher/courses/create',
         alias:"/ui/class-teacher/courses/create",
-        name: 'create-course',
+        name: 'create-course-teacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/courses/create.vue")
     },
     {
         path: '/class-teacher/courses',
         alias:"/ui/class-teacher/courses",
-        name: 'list-course',
+        name: 'list-course-teacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/courses/list.vue")
     },
