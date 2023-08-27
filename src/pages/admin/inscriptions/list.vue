@@ -30,10 +30,7 @@
             <span class="w-2/12 flex justify-center">{{o.classe.scolarite }}$</span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/inscriptions/'+o.id+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="deleteInscription">
+                <RedButtons @press="onClickDelete(o)">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
                 <BlueLinkAsButton :to="'/ui/admin/inscriptions/'+o.id">
@@ -48,19 +45,17 @@ import {onMounted, ref} from "vue"
 import Inscription from "../../../api/v2/Inscription";
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {   ArrowRightIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
+import useFetch from "../../../hooks/useFetch"
 
 const inscriptions = ref([])
-const getInscriptions = async () =>{
-    const result = await Inscription.get()
-    if(result.data){
-        inscriptions.value = result.data
-    }
+const showDeletePanel = ref(false)
+const currentInscription = ref({})
+const {} = useFetch(Inscription.get)
+const onClickDelete = o =>{
+    currentInscription.value = o
+    showDeletePanel.value = true
 }
-onMounted(()=>{
-    getInscriptions()
-})
 </script>

@@ -7,7 +7,7 @@
                 <h1 class="text-lg font-semibold ml-2">Liste de tous les cours</h1>
             </div>
            <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ courses?.length}}</span>
+            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.length}}</span>
             <BlueLinkAsButton to="/ui/admin/courses/create">
                 <PlusIcon class="w-5 h-5 mr-1"/> Créer un cours
             </BlueLinkAsButton>
@@ -22,8 +22,8 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="c of courses" :class="` py-2 text-sm  flex items-center justify-between ${courses.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{courses.indexOf(c)+1 }}</span>
+        <div v-for="c of data" :class="` py-2 text-sm  flex items-center justify-between ${data.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{data.indexOf(c)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{c.cours }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_examen }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_periode }}</span>
@@ -40,7 +40,7 @@
     </div>
 </template>
 <script setup>
-import {onMounted, ref} from "vue"
+import { ref} from "vue"
 import Course from "../../../api/v2/Course";
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
@@ -49,18 +49,11 @@ import RedButtons from "../../../components/v2/RedButtons.vue";
 import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue"
-const courses = ref([])
-const loading = ref(true)
+import useFetch from "../../../hooks/useFetch";
 const currentList = ref({})
 const showDelete = ref(false)
-const getCourses = async () =>{
-    loading.value = true
-    const result = await Course.get()
-    if(result.data){
-        courses.value = result.data
-    }
-    loading.value = false
-}
+
+const {data , loading} = useFetch(Course.get)
 const deleteCourse = async () =>{
     
 }
@@ -68,7 +61,4 @@ const onPressDeleteCourse = c =>{
     currentList.value = c
     showDelete.value = true
 }
-onMounted(()=>{
-    getCourses()
-})
 </script>

@@ -19,7 +19,7 @@ export default {
             const response = await instance.get(path)
             return response.data
         } catch (e) {
-            return e.response.data
+            return e.response
         }
     },
     /**
@@ -32,7 +32,7 @@ export default {
             const response = await instance.patch(path)
             return response.data
         } catch (e) {
-            return e.response.data
+            return e.response
         }
     },
     /**
@@ -51,7 +51,7 @@ export default {
                 return response.data
             }
         }catch (e) {
-            return e.response.data
+            return e.response
         }
     },
     /**
@@ -70,7 +70,7 @@ export default {
                 return response.data
             }
         }catch (e) {
-            return e.response.data
+            return e.response
         }
     }
 }
