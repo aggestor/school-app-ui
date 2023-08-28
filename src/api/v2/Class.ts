@@ -11,6 +11,9 @@ const Class = {
     async get(id?:string){
         return await api.get(id?'/classe/'+id : '/classe')
     },
+    async getStudents(){
+        return await api.post('/classe/eleve')
+    },
 }
 
 export default Class

@@ -43,27 +43,10 @@ import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
 import {  ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
-import Student from "../../../api/v2/Student";
+import Class from "../../../api/v2/Class";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
+import useFetch from "../../../hooks/useFetch";
 
 
-const students = ref([])
-const showDeletePanel = ref(false)
-const currentStudent = ref({})
-const fetchStudents = async () =>{
-    const result = await Student.get()
-    if(result.data){
-        students.value = result.data
-    }
-}
-const setCurrentStudent = c =>{
-    currentStudent.value = c
-    showDeletePanel.value = true
-}
-const deleteStudent = async () =>{
-    
-}
-onMounted(()=>{
-    fetchStudents()
-})
+const {data} = useFetch(Class.getStudents)
 </script>
