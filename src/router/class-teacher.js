@@ -44,7 +44,7 @@ export default [
     {
         path: '/class-teacher/rating/create',
         alias:"/ui/class-teacher/rating/create",
-        name: 'create-rating',
+        name: 'create-rating-class-reacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/rating/create.vue")
     },
