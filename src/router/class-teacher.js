@@ -51,7 +51,7 @@ export default [
     {
         path: '/class-teacher/rating/:id/update',
         alias:"/ui/class-teacher/rating/:id/update",
-        name: 'update-rating',
+        name: 'update-rating-class-teacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/rating/update.vue")
     },
