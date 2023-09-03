@@ -36,12 +36,9 @@
     </div>
 </template>
 <script setup>
-import {onMounted, ref} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
-import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {  ArrowRightIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Class from "../../../api/v2/Class";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
@@ -49,5 +46,4 @@ import useFetch from "../../../hooks/useFetch";
 
 
 const {data,loading} = useFetch(Class.getStudents)
-console.log(data);
 </script>
