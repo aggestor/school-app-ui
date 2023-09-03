@@ -6,7 +6,7 @@
                 <h1 class="text-lg font-semibold ml-2">Liste des inscriptions</h1>
             </div>
            <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ inscriptions?.length}}</span>
+            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.length}}</span>
             <BlueLinkAsButton to="/ui/admin/inscriptions/create">
                 <PlusIcon class="w-5 h-5 mr-1"/> Inscrire
             </BlueLinkAsButton>
@@ -22,8 +22,8 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="o of inscriptions" :class="` py-2 text-sm  flex items-center justify-between ${inscriptions.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{inscriptions.indexOf(o)+1 }}</span>
+        <div v-for="o of data" :class="` py-2 text-sm  flex items-center justify-between ${data.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{data.indexOf(o)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.eleve.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
@@ -53,7 +53,7 @@ import useFetch from "../../../hooks/useFetch"
 const inscriptions = ref([])
 const showDeletePanel = ref(false)
 const currentInscription = ref({})
-const {} = useFetch(Inscription.get)
+const {data, loading} = useFetch(Inscription.get)
 const onClickDelete = o =>{
     currentInscription.value = o
     showDeletePanel.value = true
