@@ -6,11 +6,42 @@
                 <GoBackAdminButton/>
                 <h1 class="text-lg font-semibold ml-2">Liste de cotes</h1>
             </div>
-           <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.data?.length}}</span>
-            <BlueLinkAsButton to="/ui/class-teacher/rating/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Ajouter des points
-            </BlueLinkAsButton>
+           <div class="flex relative items-center">
+               <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.data?.length}}</span>
+               <BlueLinkAsButton to="/ui/class-teacher/rating/create">
+                   <PlusIcon class="w-4 h-4 mr-0.5"/>Coter
+                </BlueLinkAsButton>
+                <span @click="dropDown = !dropDown" class="w-8 h-8 hover:bg-gray-100 cursor-pointer ml-1 rounded border grid place-items-center">
+                    <ChevronDownIcon :class="`w-5 h-5 ${dropDown ? 'transform rotate-180' :''} transition-all duration-500`"/>
+                </span>
+                <div v-if="dropDown" data-aos="zoom-in" data-aos-duration="500" class="absolute w-48 overflow-hidden bg-white bg-opacity-80 border top-9 right-0 shadow backdrop-blur-sm rounded fit">
+                    <div class="cursor-pointer group hover:bg-blue-600 flex  items-center hover:text-white text-black p-1">
+                        <span class="h-4 w-4 border-2 group-hover:border-white border-black rounded-full mr-1">
+
+                        </span>
+                        <p>1ère Période</p>
+                    </div>
+                    <div class="p-1 cursor-pointer hover:bg-blue-600 hover:text-white text-black">
+                        
+                        <p>2ème Période</p>
+                    </div>
+                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
+                        
+                        <p>Examen 1er Semestre</p>
+                    </div>
+                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
+                        
+                        <p>3ème Période</p>
+                    </div>
+                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
+                        
+                        <p>4ème Période</p>
+                    </div>
+                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
+                        
+                        <p>Examen 2ème Semestre</p>
+                    </div>
+                </div>
            </div>
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
@@ -51,14 +82,16 @@ import parseRatingType from "../../../helpers/parse-rating-type";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {  ChevronDownIcon, EllipsisHorizontalIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
+import { EllipsisVerticalIcon } from "@heroicons/vue/24/solid";
 
 const {data, loading} = useFetch(Rating.getByType)
 const showDeleteDialog = ref(false)
+const dropDown = ref(false)
 const currentListItem = ref({})
 const onClickDelete = i =>{
     currentListItem.value = i
