@@ -66,5 +66,8 @@ const onClickDelete = i =>{
 }
 const onDelete = async () =>{
     const result = await Rating.remove(currentListItem.value.id)
+    if(result.success){
+        const c = await Rating.getByType()
+    }
 }
 </script>
