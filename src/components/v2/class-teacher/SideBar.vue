@@ -14,6 +14,9 @@
             <UserGroupIcon class="w-5 h-5"/>
         </SideBarItem>
         <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/rating" text="Cotes">
+            <VariableIcon class="w-5 h-5"/>
+        </SideBarItem>
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/results" text="Resultats">
             <CalculatorIcon class="w-5 h-5"/>
         </SideBarItem>
         
@@ -21,10 +24,9 @@
     </div>
 </template>
 <script setup>
-import {  AdjustmentsHorizontalIcon,Bars3CenterLeftIcon,AdjustmentsVerticalIcon,ListBulletIcon,BarsArrowDownIcon,BarsArrowUpIcon } from "@heroicons/vue/24/solid"
 import SideBarItem from "./SideBarItem.vue"
 import {ref,onMounted} from "vue"
-import { DocumentArrowDownIcon,RectangleGroupIcon,TvIcon,BuildingStorefrontIcon,ArchiveBoxIcon,UsersIcon,DocumentDuplicateIcon,EnvelopeIcon,ShoppingBagIcon,UserGroupIcon, GlobeEuropeAfricaIcon, CurrencyDollarIcon, CalculatorIcon, UserIcon, BookOpenIcon } from "@heroicons/vue/24/outline"
+import { UserGroupIcon, CalculatorIcon, VariableIcon,TvIcon, BookOpenIcon } from "@heroicons/vue/24/outline"
 
 const currentPath = ref("")
 const handleClick = (path) =>{
