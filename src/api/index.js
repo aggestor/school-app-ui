@@ -27,6 +27,19 @@ export default {
      * @param {string} path endpoint on the server
      * @returns {Promise<AxiosResponse.data}
      */
+    async delete(path) {
+        try {
+            const response = await instance.delete(path)
+            return response.data
+        } catch (e) {
+            return e.response
+        }
+    },
+    /**
+     * Gets data from the api using GET HTTP Method
+     * @param {string} path endpoint on the server
+     * @returns {Promise<AxiosResponse.data}
+     */
     async patch(path) {
         try {
             const response = await instance.patch(path)
