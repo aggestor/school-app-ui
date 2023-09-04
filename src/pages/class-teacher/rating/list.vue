@@ -1,4 +1,5 @@
 <template>
+    <DeleteDialog @confirm="onDelete" @cancel="showDeleteDialog = false" title="Etes-vous sur de poursuivre votre action ?" text="La suppression de la cote entrainera des modifications sur le resultat de l'eleve ainsi que de sa classe. Cette action est irreversible" v-if="showDeleteDialog"/>
     <div class="w-[95%] mt-2 mx-auto">
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
@@ -35,7 +36,7 @@
                 <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/'+prettyString(o.names+' '+o.firstname+' '+o.lastname )+'/'+o.matricule+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
-                <RedButtons @press="deleteInscription">
+                <RedButtons @press="onClickDelete(o)">
                     <TrashIcon class="w-5 h-5"/>
                 </RedButtons>
             </span>
@@ -43,6 +44,7 @@
     </div>
 </template>
 <script setup>
+import {ref} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
 import prettyString from "../../../helpers/pretty-string"
 import parseRatingType from "../../../helpers/parse-rating-type";
@@ -53,6 +55,16 @@ import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";
+import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 
 const {data, loading} = useFetch(Rating.getByType)
+const showDeleteDialog = ref(false)
+const currentListItem = ref({})
+const onClickDelete = i =>{
+    currentListItem.value = i
+    showDeleteDialog.value = true
+}
+const onDelete = async () =>{
+    const result = await Rating.remove(currentListItem.value.id)
+}
 </script>

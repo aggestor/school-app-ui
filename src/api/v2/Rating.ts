@@ -5,6 +5,9 @@ const Rating = {
     async rate(data : Record<string, any>){
         return await api.post('/cotes/create',data)
     },
+    async remove(id:string){
+        return await api.delete('/cotes/delete/'+id)
+    },
     async update(data: Record<string, any>,id:string){
         return await api.put('/cotes/edit/'+id,data)
     },
