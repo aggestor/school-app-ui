@@ -11,6 +11,9 @@ const Rating = {
     async get(type?:string,id?:string){
         return await api.patch(id?'/cotes/'+id : '/cotes/eleve/'+type)
     },
+    async getOne(id?:string){
+        return await api.get('/cotes/find/'+id)
+    },
     async getByType(type:string = "P1"){
         return await api.get('/cotes/'+type)
     },
