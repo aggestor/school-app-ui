@@ -36,7 +36,7 @@ export default [
     },
     {
         path: '/class-teacher/rating',
-        alias:"/ui/class-teacher/rating",
+        alias:["/ui/class-teacher/rating", '/class-teacher/ratings','/ui/class-teacher/ratings'],
         name: 'fetch-rating-teacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/rating/list.vue")

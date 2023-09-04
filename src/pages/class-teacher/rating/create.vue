@@ -3,9 +3,9 @@
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
-                <h2 class="font-semibold text-lg">Paiement.</h2>
+                <h2 class="font-semibold text-lg">Attribution de cotes.</h2>
             </div>
-            <SuccessComponent title="Attribution de cotes" :message="`Le paiment  de ${values.montant}$  pour le compte de ${values.student} a été effectué avec success. Le montant a été crédité sur son compte.`" next="/ui/admin/payments" nextText="Suivant"/>
+            <SuccessComponent title="Etudiant(e) coté(e) " :message="`${values.student} a récu une cote de ${values.cotes} au cours de ${values.cours}. Cette cote maintenant est utisables dans ses resultats.`" next="/ui/class-teacher/rating" nextText="Suivant"/>
         </div>
         <div v-else data-aos="zoom-in" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center  rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
