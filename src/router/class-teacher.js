@@ -49,8 +49,8 @@ export default [
         component:async ()=> await import("../pages/class-teacher/rating/create.vue")
     },
     {
-        path: '/class-teacher/rating/:id/update',
-        alias:"/ui/class-teacher/rating/:id/update",
+        path: '/class-teacher/rating/:id/:name/:mat/update',
+        alias:"/ui/class-teacher/rating/:id/:name/:mat/update",
         name: 'update-rating-class-teacher',
         meta : {layout : 'teacher'},
         component:async ()=> await import("../pages/class-teacher/rating/update.vue")

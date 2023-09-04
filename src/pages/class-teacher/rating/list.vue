@@ -29,10 +29,10 @@
             <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.cours }}</span>
             <span class="w-2/12 flex justify-center">{{parseRatingType(o.cotes_types) }}</span>
-            <span class="w-1/12 flex justify-center"><span :class="o.cotes >= o.total_periode ? 'bg-green-100  text-green-600 rounded p-0.5': 'bg-red-100 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
+            <span class="w-1/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100  text-green-600 rounded p-0.5': 'bg-red-100 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
             <span class="w-1/12 flex justify-center ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/update'">
+                <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/'+prettyString(o.names+' '+o.firstname+' '+o.lastname )+'/'+o.matricule+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
                 <RedButtons @press="deleteInscription">
@@ -44,11 +44,12 @@
 </template>
 <script setup>
 import { formatDateToAgo } from "../../../helpers/format-date";
+import prettyString from "../../../helpers/pretty-string"
 import parseRatingType from "../../../helpers/parse-rating-type";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {   ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";

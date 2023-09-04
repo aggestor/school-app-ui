@@ -5,14 +5,24 @@
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
                 <h2 class="font-semibold text-lg">Modifier une cote.</h2>
             </div>
-            <SuccessComponent title="Modification effectuée" message="La modification de cette option a été effectuée avec success. Vous pouvez maintenant assossier cette option a tout ce qui peût y être lié." next="/ui/admin/options" nextText="Suivant"/>
+            <SuccessComponent title="Modification effectuée" :message="`La cote de ${prettyString(route.params.name,true)}  a été effectuée avec success. Vous pouvez maintenant faire les calculs moyennant cette nouvelle cote.`" next="/ui/class-teacher/rating" nextText="Suivant"/>
         </div>
         <div v-else data-aos="slide-up" data-aos-duration="500" class="md:w-6/12 w-full flex justify-between items-center h-[90%] rounded-lg border">
             <div class="w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
                 <h2 class="font-semibold text-lg">Modifier une cote.</h2>
-                <p class="text-gray-700 text-sm">Remplissez le formulaire ci-bas pour modifier  une option. </p>
+                <p class="text-gray-700 text-sm">Tapez la nouvelle cote dans le champs ci-bas. </p>
+                <div class="w-fit border rounded p-2">
+                    <div class="flex flex-col">
+                        <b>Nom</b>
+                        <small class="text-gray-900">{{prettyString(route.params.name,true) }}</small>
+                    </div>
+                    <div class="flex flex-col">
+                        <b>Matricule</b>
+                        <small class="text-gray-900">{{prettyString(route.params.mat,true) }}</small>
+                    </div>
+                </div>
                 <form class="h-full w-full flex flex-col">
-                    <TextBox  :onChange="handleInput" type="text" name="option" label="Option" :value="values.option"  placeholder="Nom de l'option" :err="errors.option"/>
+                    <TextBox  :onChange="handleInput" type="number" name="cotes" label="Cotes" :value="values.cotes"  placeholder="Cote de l'élèves" :err="errors.cotes"/>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
@@ -34,6 +44,7 @@
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
     import Rating from '../../../api/v2/Rating';
     import { useRoute } from 'vue-router';
+import prettyString from '../../../helpers/pretty-string';
     const success = ref(false)
     const errors = ref([])
     const values = ref({})
@@ -52,9 +63,8 @@
     }
     const fetch = async () =>{
         const result = await Rating.getOne(route.params.id)
-        console.log(result);
         if(result.success){
-            values.value.option = result.data[0].option
+            values.value = result.data
         }
     }
     onMounted(()=>{
