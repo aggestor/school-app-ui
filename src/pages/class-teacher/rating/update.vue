@@ -1,5 +1,5 @@
 <template>
-    <div class="w-11/12 mx-auto flex justify-center items-center md:h-[300px]">
+    <div class="w-11/12 mx-auto flex justify-center items-center md:h-[390px]">
         <div v-if="success" data-aos="slide-up" data-aos-duration="500" class="w-fit overflow-hidden flex  flex-col justify-between items-center h-auto ">
             <div class="w-full mb-3">
                 <h1 class="font-semibold text-2xl text-blue-600 mb-1">SchoolApp.</h1>
@@ -19,6 +19,10 @@
                     <div class="flex flex-col">
                         <b>Matricule</b>
                         <small class="text-gray-900">{{prettyString(route.params.mat,true) }}</small>
+                    </div>
+                    <div class="flex flex-col">
+                        <b>Cours</b>
+                        <small class="text-gray-900">{{prettyString(route.params.course,true) }}</small>
                     </div>
                 </div>
                 <form class="h-full w-full flex flex-col">

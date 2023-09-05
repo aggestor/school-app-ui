@@ -62,7 +62,7 @@
             <span class="w-1/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100 border border-green-300  text-green-600 rounded p-0.5': 'bg-red-100 border border-red-300 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
             <span class="w-1/12 flex justify-center ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/'+prettyString(o.names+' '+o.firstname+' '+o.lastname )+'/'+o.matricule+'/update'">
+                <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/'+prettyString(o.names+' '+o.firstname+' '+o.lastname )+'/'+o.matricule+'/'+prettyString(o.cours)+'/update'">
                     <PencilIcon class="w-5 h-5"/>
                 </BlackLinkAsButton>
                 <RedButtons @press="onClickDelete(o)">
