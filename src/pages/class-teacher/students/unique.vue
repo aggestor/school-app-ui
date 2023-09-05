@@ -1,19 +1,49 @@
 <template>
-    <div class="grid grid-cols-12 p-2">
-        <div class="col-span-5 flex items-center justify-around h-40 border rounded">
-            <div>
-                <img src="/user-avatar.png" class="w-32 h-32 text-gray-500"/>
+    <div class="w-full p-2">
+        <div class="w-full flex items-center  h-auto p-2 border rounded">
+            <div class="w-3/12">
+                <img src="/man.jpg" class="w-32 rounded object-cover  h-32 text-gray-500"/>
             </div>
-            <div class="w-[calc(100%-170px)] p-2">
-                <h1 class="font-semibold text-xl">{{data.names+" "+data.firstname+" "+data.lastname }}</h1>
-                <div class="flex space-x-2 items-center">
-                    <span class="bg-green-200 text-green-700 p-0.5 rounded">{{uppercaseFirst(data?.genre) }}</span>
-                    <a :href="`tel:${data?.tel}`" class="hover:underline text-blue-600">
-                        {{data?.tel}}
-                    </a>
+            <div class="w-3/12">
+                <div class="mb-2">
+                    <b>Nom</b>
+                    <p class="text-gray-600">{{data.names }}</p>
                 </div>
-                <div class="my-1 text-gray-600">
-                    {{ data?.name }}({{data?.option }})
+                <div class="mb-2">
+                    <b>Post-nom</b>
+                    <p class="text-gray-600">{{data.firstname }}</p>
+                </div>
+                <div class="mb-2">
+                    <b>Prénom</b>
+                    <p class="text-gray-600">{{data.lastname }}</p>
+                </div>
+            </div>
+            <div class="w-3/12">
+                <div class="mb-2">
+                    <b>Matricule</b>
+                    <p class="text-gray-600">{{data.matricule }}</p>
+                </div>
+                <div class="mb-2">
+                    <b>Téléphone</b>
+                    <p class="text-gray-600">{{data.tel }}</p>
+                </div>
+                <div class="mb-2">
+                    <b>Genre</b>
+                    <p class="text-gray-600">{{uppercaseFirst(data.genre) }}</p>
+                </div>
+            </div>
+            <div class="w-3/12">
+                <div class="mb-2">
+                    <b>Adresse</b>
+                    <p class="text-gray-600">{{data.adresse }}</p>
+                </div>
+                <div class="mb-2">
+                    <b>Option</b>
+                    <p class="text-gray-600">{{data.option }}</p>
+                </div>
+                <div class="mb-2">
+                    <b>Classe</b>
+                    <p class="text-gray-600">{{data.name }}</p>
                 </div>
             </div>
         </div>
@@ -32,7 +62,7 @@ const route = useRoute()
 const getStudentMoney = async () =>{
     const result = await Student.getData(route.params.id)
     if(result.success){
-        data.value = result.eleve[0]
+        data.value = result.eleve.data[0]
         studentData.value = result.eleve
     }
 }
