@@ -15,31 +15,29 @@
                     <ChevronDownIcon :class="`w-5 h-5 ${dropDown ? 'transform rotate-180' :''} transition-all duration-500`"/>
                 </span>
                 <div v-if="dropDown" data-aos="zoom-in" data-aos-duration="500" class="absolute w-48 overflow-hidden bg-white bg-opacity-80 border top-9 right-0 shadow backdrop-blur-sm rounded fit">
-                    <div class="cursor-pointer group hover:bg-blue-600 flex  items-center hover:text-white text-black p-1">
-                        <span class="h-4 w-4 border-2 group-hover:border-white border-black rounded-full mr-1">
-
-                        </span>
+                    <div @click="setRatingType('P1')" class="cursor-pointer group hover:bg-blue-600 flex  items-center hover:text-white text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
                         <p>1ère Période</p>
                     </div>
-                    <div class="p-1 cursor-pointer hover:bg-blue-600 hover:text-white text-black">
-                        
+                    <div @click="setRatingType('P2')" class="p-1 cursor-pointer flex items-center hover:bg-blue-600 hover:text-white text-black">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
                         <p>2ème Période</p>
                     </div>
-                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
-                        
-                        <p>Examen 1er Semestre</p>
+                    <div @click="setRatingType('E1')" class="cursor-pointer flex items-center hover:bg-blue-600 hover:text-white text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
+                        <p>Examen 1er Sem</p>
                     </div>
-                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
-                        
+                    <div @click="setRatingType('P3')" class="cursor-pointer hover:bg-blue-600 hover:text-white flex items-center text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
                         <p>3ème Période</p>
                     </div>
-                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
-                        
+                    <div @click="setRatingType('P4')" class="cursor-pointer hover:bg-blue-600 hover:text-white flex items-center text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
                         <p>4ème Période</p>
                     </div>
-                    <div class="cursor-pointer hover:bg-blue-600 hover:text-white text-black p-1">
-                        
-                        <p>Examen 2ème Semestre</p>
+                    <div @click="setRatingType('E2')" class="cursor-pointer hover:bg-blue-600 hover:text-white flex items-center text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
+                        <p>Examen 2ème Sem</p>
                     </div>
                 </div>
            </div>
@@ -82,20 +80,25 @@ import parseRatingType from "../../../helpers/parse-rating-type";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  ChevronDownIcon, EllipsisHorizontalIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {   ArrowRightIcon, ChevronDownIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
-import { EllipsisVerticalIcon } from "@heroicons/vue/24/solid";
 
 const {data, loading} = useFetch(Rating.getByType)
 const showDeleteDialog = ref(false)
 const dropDown = ref(false)
 const currentListItem = ref({})
+const currentRatingType = ref("P1")
 const onClickDelete = i =>{
     currentListItem.value = i
     showDeleteDialog.value = true
+}
+const setRatingType = async type =>{
+    currentRatingType.value = type
+    const result = await Rating.getByType(type)
+    console.log(result);
 }
 const onDelete = async () =>{
     const result = await Rating.remove(currentListItem.value.id)
