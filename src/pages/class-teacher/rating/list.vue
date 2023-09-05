@@ -97,14 +97,16 @@ const onClickDelete = i =>{
 }
 const setRatingType = async type =>{
     currentRatingType.value = type
+    dropDown.value = false
     const result = await Rating.getByType(type)
-    console.log(result);
+    if(result.data){
+        data.value = result.data
+    }
 }
 const onDelete = async () =>{
     const result = await Rating.remove(currentListItem.value.id)
     if(result.success){
         const c = await Rating.getByType()
-        console.log(c);
         if(c.data){
             data.value = c
         }
