@@ -15,7 +15,7 @@
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
             <span class="w-1/12">#</span>
-            <span class="w-3/12 flex justify-center">inscriptions</span>
+            <span class="w-3/12 flex justify-center">Noms</span>
             <span class="w-2/12 flex justify-center">Matricule</span>
             <span class="w-2/12 flex justify-center">Classe</span>
             <span class="w-2/12 flex justify-center">Scolarité</span>
