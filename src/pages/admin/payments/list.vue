@@ -44,12 +44,6 @@
             <span class="w-1/12 flex justify-center"><span class="p-0.5 bg-green-200 text-green-600 rounded">+{{o.montant }}$</span></span>
             <span class="w-2/12 flex ">{{formatDateToAgo(o.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/payments/'+o.id+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="deleteInscription">
-                    <TrashIcon class="w-5 h-5"/>
-                </RedButtons>
                 <BlueLinkAsButton :to="'/ui/admin/payments/'+o.id">
                     <ArrowRightIcon class="w-5 h-5"/>
                 </BlueLinkAsButton>
@@ -62,8 +56,6 @@ import {onMounted, ref} from "vue"
 import Payment from "../../../api/v2/Payment";
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
-import RedButtons from "../../../components/v2/RedButtons.vue";
 import BlueButtons from "../../../components/v2/BlueButtons.vue";
 import {   ArrowRightIcon, FunnelIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";

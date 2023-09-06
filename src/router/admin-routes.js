@@ -238,6 +238,13 @@ export default [
         component:async ()=> await import("../pages/admin/payments/update.vue")
     },
     {
+        path: '/admin/payments/:id',
+        alias:"/ui/admin/payments/:id",
+        name: 'uniq-payments',
+        meta : {layout : 'admin'},
+        component:async ()=> await import("../pages/admin/payments/unique.vue")
+    },
+    {
         path: '/admin/rating',
         alias:"/ui/admin/rating",
         name: 'fetch-rating',
