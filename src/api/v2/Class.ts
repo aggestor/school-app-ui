@@ -14,6 +14,9 @@ const Class = {
     async getStudents(){
         return await api.post('/classe/eleve')
     },
+    async remove(id:string){
+        return await api.delete('/classe/delete/'+id)
+    },
 }
 
 export default Class
