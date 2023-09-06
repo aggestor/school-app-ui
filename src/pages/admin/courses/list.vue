@@ -22,8 +22,8 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="c of data" :class="` py-2 text-sm  flex items-center justify-between ${data.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{data.indexOf(c)+1 }}</span>
+        <div v-for="c,i of data" :class="` py-2 text-sm  flex items-center justify-between ${i % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{i+1 }}</span>
             <span class="w-3/12 flex justify-center">{{c.cours }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_examen }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_periode }}</span>
@@ -55,7 +55,16 @@ const showDelete = ref(false)
 
 const {data , loading} = useFetch(Course.get)
 const deleteCourse = async () =>{
-    
+    const result = await Course.remove(currentList.value.id)
+    if(result.success){
+        const c = await Course.get()
+        console.log(c);
+        if(c.data){
+            data.value = c.data
+            currentList.value = {}
+            showDelete.value = false
+        }
+    }
 }
 const onPressDeleteCourse = c =>{
     currentList.value = c

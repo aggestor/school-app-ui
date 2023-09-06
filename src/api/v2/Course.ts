@@ -8,6 +8,9 @@ const Course = {
     async update(data: Record<string, any>,id:string){
         return await api.put('/cours/edit/'+id,data)
     },
+    async remove(id:string){
+        return await api.delete('/cours/delete/'+id)
+    },
     async get(id?:string){
         return await api.get(id?'/cours/'+id : '/cours')
     },
