@@ -1,4 +1,5 @@
 <template>
+    <DeleteDialog @cancel="showDeleteLog = false" @confirm="onDeleteInscription" v-if="showDeleteLog" title="Voulez-vous vraiment supprimer cette inscription ?" text="La suppression d'une inscription entrainera la perte de toutes informations qui y sont liées, notamment la liaison entre eleve et classe"/>
     <div class="w-[95%] mt-2 mx-auto">
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
@@ -22,8 +23,8 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="o of data" :class="` py-2 text-sm  flex items-center justify-between ${data.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{data.indexOf(o)+1 }}</span>
+        <div v-for="o,i of data" :class="` py-2 text-sm  flex items-center justify-between ${i % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{i+1 }}</span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.eleve.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>
@@ -49,13 +50,25 @@ import RedButtons from "../../../components/v2/RedButtons.vue";
 import {   ArrowRightIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import useFetch from "../../../hooks/useFetch"
+import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 
-const inscriptions = ref([])
-const showDeletePanel = ref(false)
+const current = ref({})
+const showDeleteLog = ref(false)
 const currentInscription = ref({})
 const {data, loading} = useFetch(Inscription.get)
 const onClickDelete = o =>{
-    currentInscription.value = o
-    showDeletePanel.value = true
+    current.value = o
+    showDeleteLog.value = true
+}
+const onDeleteInscription = async () =>{
+    const result = await Inscription.remove(current.value.id)
+    if(result.success || result.status_code == 200){
+        const r = await Inscription.get()
+        if(r.data){
+            data.value = r.data
+            current.value = {}
+            showDeleteLog.value = false
+        }
+    }
 }
 </script>

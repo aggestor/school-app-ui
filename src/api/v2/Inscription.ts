@@ -14,6 +14,9 @@ const Inscription = {
     async search(term:string){
         return await api.get('/inscription/identite/'+term )
     },
+    async remove(id:string){
+        return await api.delete('/inscription/delete/'+id)
+    },
 }
 
 export default Inscription
