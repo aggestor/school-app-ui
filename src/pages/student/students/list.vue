@@ -7,10 +7,7 @@
                 <h1 class="text-lg font-semibold ml-2">Liste des élèves</h1>
             </div>
            <div class="flex items-center">
-            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ students?.length}}</span>
-            <BlueLinkAsButton to="/ui/admin/students/create">
-                <PlusIcon class="w-5 h-5 mr-1"/> Nouvel élève
-            </BlueLinkAsButton>
+            <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.data?.length}}</span>
            </div>
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
@@ -23,21 +20,15 @@
             <span class="w-[10%] flex justify-center text-center">Actions</span>
         </div>
 
-        <div v-for="c of students" :class="` py-2 text-sm  flex items-center justify-between ${students.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{students.indexOf(c)+1 }}</span>
+        <div v-for="c of data?.data" :class="` py-2 text-sm  flex items-center justify-between ${data?.data?.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{data?.data.indexOf(c)+1 }}</span>
             <span class="w-3/12 flex justify-center">{{c.names+" "+c.firstname+" "+c.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{c.tel }}</span>
             <span class="w-1/12 flex justify-center">{{c.genre }}</span>
             <span class="w-2/12 flex justify-center">{{c.matricule }}</span>
             <span class="w-1/12 flex ">{{formatDateToAgo(c.updated_at) }}</span>
             <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/admin/students/'+c.id+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="setCurrentStudent(c)">
-                    <TrashIcon class="w-5 h-5"/>
-                </RedButtons>
-                <BlueLinkAsButton :to="'/ui/admin/students/'+c.id">
+                <BlueLinkAsButton :to="'/ui/class-teacher/students/'+c.id">
                     <ArrowRightIcon class="w-5 h-5"/>
                 </BlueLinkAsButton>
             </span>
@@ -45,34 +36,14 @@
     </div>
 </template>
 <script setup>
-import {onMounted, ref} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
 import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
-import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  ArrowRightIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {  ArrowRightIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
-import Student from "../../../api/v2/Student";
+import Class from "../../../api/v2/Class";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
+import useFetch from "../../../hooks/useFetch";
 
 
-const students = ref([])
-const showDeletePanel = ref(false)
-const currentStudent = ref({})
-const fetchStudents = async () =>{
-    const result = await Student.get()
-    if(result.data){
-        students.value = result.data
-    }
-}
-const setCurrentStudent = c =>{
-    currentStudent.value = c
-    showDeletePanel.value = true
-}
-const deleteStudent = async () =>{
-    
-}
-onMounted(()=>{
-    fetchStudents()
-})
+const {data,loading} = useFetch(Class.getStudents)
 </script>
