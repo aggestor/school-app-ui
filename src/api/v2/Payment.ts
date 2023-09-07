@@ -11,6 +11,9 @@ const Payment = {
     async get(type?:string,id?:string){
         return await api.patch(id?'/frais/'+id : '/frais/eleve/'+type)
     },
+    async getOne(id?:string){
+        return await api.get('/frais/'+id)
+    },
     async search(term:string){
         return await api.get('/frais/identite/'+term )
     },
