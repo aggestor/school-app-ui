@@ -4,7 +4,7 @@
             <div class="flex items-center">
                 <GoBackAdminButton/> <span class="ml-2">Profil d'utilisateur</span>
             </div>
-            <BlueLinkAsButton :to="'/ui/class-teacher/me/update-password'">
+            <BlueLinkAsButton :to="'/ui/student/me/update-password'">
                 Modifier mot de passe <PencilIcon class="w-4 h-4 ml-1"/>
             </BlueLinkAsButton>
         </div>
@@ -17,11 +17,15 @@
         <div class="w-9/12 mt-4">
             <div class="mb-2">
                 <b>Noms</b>
-                <p class="text-gray-600">{{user?.name }}</p>
+                <p class="text-gray-600">{{user?.names }}</p>
             </div>
             <div class="mb-2">
-                <b>Email</b>
-                <p class="text-gray-600">{{user?.email }}</p>
+                <b>Post-nom</b>
+                <p class="text-gray-600">{{user?.firstname }}</p>
+            </div>
+            <div class="mb-2">
+                <b>Premom</b>
+                <p class="text-gray-600">{{user?.lastname }}</p>
             </div>
             <div class="mb-2">
                 <b>Téléphone</b>
@@ -29,14 +33,14 @@
             </div>
             <div class="mb-2">
                 <b>Role</b>
-                <p class="text-gray-600">{{user.role && user.role[0].name}}</p>
+                <p class="text-gray-600">Elève</p>
             </div>
             <div class="mb-2">
                 <b>Classe</b>
                 <p class="text-gray-600">{{user.classe && user.classe[0].name }}</p>
             </div>
             <div class="mb-2">
-                <b>Verification Email</b>
+                <b>Verification téléphone</b>
                 <p  class="text-red-600">Jamais</p>
             </div>
             <div class="mb-2">
