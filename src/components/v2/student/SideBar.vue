@@ -4,19 +4,19 @@
             <img src="/logo-with-ecrit.png" class="h-14 hidden lg:flex w-full"/>
             <img src="/logo.png" class="h-10 w-10 lg:hidden"/>
         </div>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher" text="Dashboard">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/student" text="Dashboard">
             <TvIcon class="w-6 h-6"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/courses" text="Cours">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/student/courses" text="Cours">
             <BookOpenIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/students" text="Eleves">
-            <UserGroupIcon class="w-5 h-5"/>
-        </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/rating" text="Cotes">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/student/rating" text="Cotes">
             <VariableIcon class="w-5 h-5"/>
         </SideBarItem>
-        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/class-teacher/results" text="Resultats">
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/student/payments" text="Paiements">
+            <CurrencyDollarIcon class="w-5 h-5"/>
+        </SideBarItem>
+        <SideBarItem :currentPath="currentPath" :onClick="handleClick"   path="/ui/student/results" text="Resultats">
             <CalculatorIcon class="w-5 h-5"/>
         </SideBarItem>
         
@@ -26,7 +26,7 @@
 <script setup>
 import SideBarItem from "./SideBarItem.vue"
 import {ref,onMounted} from "vue"
-import { UserGroupIcon, CalculatorIcon, VariableIcon,TvIcon, BookOpenIcon } from "@heroicons/vue/24/outline"
+import { UserGroupIcon,CurrencyDollarIcon, CalculatorIcon, VariableIcon,TvIcon, BookOpenIcon } from "@heroicons/vue/24/outline"
 
 const currentPath = ref("")
 const handleClick = (path) =>{
