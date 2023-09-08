@@ -1,14 +1,15 @@
 <template>
     <div class="w-11/12 mx-auto flex justify-center items-center h-screen">
-        <div  data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center  md:h-[70%] rounded-lg border">
+        <div  data-aos="slide-up" data-aos-duration="500" class="md:w-8/12 w-full flex justify-between items-center  md:h-[75%] rounded-lg border">
             <div class="md:w-6/12 w-full flex h-[85%] md:p-6 p-4  justify-center flex-col" >
                 <div class="w-fit -ml-2 h-14">
                     <img src="/logo-with-ecrit.png" class="w-full h-full"/>
                 </div>
-                <h2 class="font-semibold text-lg">Connexion.</h2>
+                <h2 class="font-semibold text-lg">Connexion élève.</h2>
                 <p class="text-gray-700 text-sm">Utilisez vos identifiants pour vous connecter. </p>
                 <form class="h-full w-full flex flex-col">
-                        <TextBox  :onChange="handleInput" type="email" name="email" label="Email" :value="values.email"  placeholder="Votre Email" :err="errors.email"/>
+                        <TextBox  :onChange="handleInput" type="text" name="names" label="Nom" :value="values.names"  placeholder="Votre nom" :err="errors.names"/>
+                        <TextBox  :onChange="handleInput" type="text" name="firstname" label="Post-nom" :value="values.firstname"  placeholder="Votre Post nom" :err="errors.firstname"/>
                         <TextBox  :onChange="handleInput" type="password" name="password" label="Mot de passe" :value="values.password" placeholder="Votre mot de passe" :err="errors.password"/>
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
@@ -46,7 +47,8 @@
         values.value[e.target.name] = e.target.value
     }
     const onPressLogin = async () =>{
-        const result = await Auth.login(values.value)
+        const result = await Auth.login(values.value, 'student')
+        console.log(result);
         if(result.error){
         errors.value = result.errorList 
         }
