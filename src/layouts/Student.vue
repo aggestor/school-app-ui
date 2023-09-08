@@ -19,7 +19,7 @@
     import { useRouter } from 'vue-router';
     
     const router = useRouter()
-    const isChecked = ref(true)
+    const isChecked = ref(false)
     const user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null
     const token = sessionStorage.getItem("token") ?  JSON.parse(sessionStorage.getItem("token")) : null
     const type = sessionStorage.getItem("session_type") ? sessionStorage.getItem("session_type") : null
@@ -27,7 +27,7 @@
         isChecked.value = true
     }else{
         window.sessionStorage.clear()
-        //router.push(`/ui/all/login?continue=${window.location.pathname}`)
+        router.push(`/ui/student/login?continue=${window.location.pathname}`)
     }
         
 </script>
