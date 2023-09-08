@@ -22,7 +22,9 @@ const Auth = {
         else if(type == "student")
             return await api.post('/eleve/login',data)
     },
-    async logout(){
+    async logout(type = "others"){
+        if(type == "eleve")
+        return await api.post("/eleve/logout")
         return await api.post('/user/logout')
     }
 }

@@ -8,6 +8,9 @@ const Student = {
     async update(id:string,data: Record<string, any>){
         return await api.put('/eleve/edit/'+id,data)
     },
+    async updatePassword(data: Record<string, any>){
+        return await api.post('/eleve/password/',data)
+    },
     async get(id?:string){
         return await api.get(id?'/eleve/'+id : '/eleve')
     },

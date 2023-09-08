@@ -12,6 +12,7 @@ import Owner from "./layouts/Owner.vue"
 import Admin from "./layouts/Admin.vue"
 import Splash from "./layouts/Splash.vue"
 import Teacher from "./layouts/Teacher.vue"
+import Student from "./layouts/Student.vue"
 import { createPinia } from 'pinia'
 
 const isSSR = typeof window === 'undefined';
@@ -24,6 +25,7 @@ app.component("admin-layout", Admin)
 app.component("owner-layout", Owner)
 app.component("splash-layout", Splash)
 app.component("teacher-layout", Teacher)
+app.component("student-layout", Student)
 app.use(pinia)
 app.use(AOS.init())
 app.use(Vue3TouchEvents)
