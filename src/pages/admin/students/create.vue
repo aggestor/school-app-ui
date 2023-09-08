@@ -35,9 +35,6 @@
                         <TextBox  :onChange="handleInput" type="tel" name="tel" label="Téléphone" :value="values.tel"  placeholder="Numéro de téléphone" :err="errors.tel"/>
                         <TextBox  :onChange="handleInput" type="text" name="adresse" label="Address" :value="values.adresse"  placeholder="Address" :err="errors.adresse"/>
                     </div>
-                    <div class="w-5/12">
-                        <TextBox  :onChange="handleInput" type="text" name="password" label="Mot de passe" :value="values.password"  placeholder="Mot de passe" :err="errors.password"/>
-                    </div>
                 </form>
                 <div class="w-full items-center mt-4 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
@@ -52,7 +49,7 @@
     </template>
     
     <script setup>
-    import {  ref } from 'vue';
+    import {  onUnmounted, ref } from 'vue';
     import {CheckCircleIcon,} from "@heroicons/vue/24/outline"
     import {CheckCircleIcon as CI} from "@heroicons/vue/24/solid"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
@@ -66,6 +63,7 @@
     const gender = ref("")
     const values = ref({})
     const router = useRouter()
+    const timeout = ref(0)
 
     const handleInput = (e) =>{
         values.value[e.target.name] = e.target.value
@@ -77,11 +75,14 @@
         }
         if(result.success){
             success.value = true
-            const timeout = setTimeout(()=>{
+             timeout.value = setTimeout(()=>{
                 router.push('/ui/admin/students/'+result.data.id)
             },4000)
         }
         
     }
+    onUnmounted(()=>{
+        timeout.value = 0
+    })
     </script>
     
