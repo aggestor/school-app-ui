@@ -14,6 +14,9 @@ const Payment = {
     async getOne(id?:string){
         return await api.get('/frais/'+id)
     },
+    async getByStudent(){
+        return await api.patch('/frais/eleve')
+    },
     async search(term:string){
         return await api.get('/frais/identite/'+term )
     },

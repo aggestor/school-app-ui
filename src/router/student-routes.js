@@ -51,22 +51,15 @@ export default [
     {
         path: '/student/rating',
         alias:["/ui/student/rating", '/student/ratings','/ui/student/ratings'],
-        name: 'fetch-rating-teacher',
+        name: 'fetch-rating-student',
         meta : {layout : 'student'},
         component:async ()=> await import("../pages/student/rating/list.vue")
     },
     {
-        path: '/student/rating/create',
-        alias:"/ui/student/rating/create",
-        name: 'create-rating-class-reacher',
+        path: '/student/payments',
+        alias:["/ui/student/payments", '/student/payments','/ui/student/payments'],
+        name: 'fetch-payment-student',
         meta : {layout : 'student'},
-        component:async ()=> await import("../pages/student/rating/create.vue")
-    },
-    {
-        path: '/student/rating/:id/:name/:mat/:course/update',
-        alias:"/ui/student/rating/:id/:name/:mat/:course/update",
-        name: 'update-rating-student',
-        meta : {layout : 'student'},
-        component:async ()=> await import("../pages/student/rating/update.vue")
+        component:async ()=> await import("../pages/student/payments/list.vue")
     },
 ]

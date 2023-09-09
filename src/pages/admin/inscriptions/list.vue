@@ -24,7 +24,7 @@
         </div>
 
         <div v-for="o,i of data" :class="` py-2 text-sm  flex items-center justify-between ${i % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{i+1 }}</span>
+            <span class="w-1/12">{{i+1 }} </span>
             <span class="w-3/12 flex justify-center">{{o.eleve.names+' '+o.eleve.firstname+' '+o.eleve.lastname }}</span>
             <span class="w-2/12 flex justify-center">{{o.eleve.matricule }}</span>
             <span class="w-2/12 flex justify-center">{{o.classe.name }}</span>

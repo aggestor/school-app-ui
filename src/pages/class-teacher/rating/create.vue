@@ -54,7 +54,7 @@
     </template>
     
     <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import {CheckCircleIcon, CheckIcon} from "@heroicons/vue/24/outline"
     import BlueButtons from '../../../components/v2/BlueButtons.vue';
     import SuccessComponent from '../../../components/v2/SuccessComponent.vue';
@@ -124,7 +124,6 @@
     const handleClickProduct  =  s =>{
         values.value.student = s.names+' '+s.firstname+' '+s.lastname
         studentId.value = s.id
-        getCourses(s.id)
         showSuggestionBox.value = false
         searchResults.value = []
     }
@@ -138,10 +137,13 @@
         }
     }
     const getCourses =  async (id) =>{
-        const result = await Course.getByStudent(id)
+        const result = await Course.getByTeacher(id)
         if(result.success){
             courses.value = result.data
         }
     }
+    onMounted(()=>{
+        getCourses()
+    })
     </script>
     

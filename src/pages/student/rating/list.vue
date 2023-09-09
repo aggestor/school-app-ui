@@ -8,9 +8,6 @@
             </div>
            <div class="flex relative items-center">
                <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.data?.length}}</span>
-               <BlueLinkAsButton to="/ui/class-teacher/rating/create">
-                   <PlusIcon class="w-4 h-4 mr-0.5"/>Coter
-                </BlueLinkAsButton>
                 <span @click="dropDown = !dropDown" class="w-8 h-8 hover:bg-gray-100 cursor-pointer ml-1 rounded border grid place-items-center">
                     <ChevronDownIcon :class="`w-5 h-5 ${dropDown ? 'transform rotate-180' :''} transition-all duration-500`"/>
                 </span>
@@ -44,31 +41,20 @@
         </div>
         <div class="border-b pb-1  font-semibold flex items-center justify-between">
             <span class="w-1/12">#</span>
-            <span class="w-3/12 flex justify-center">Noms</span>
-            <span class="w-1/12 flex justify-center">Matricule</span>
             <span class="w-2/12 flex justify-center">Cours</span>
             <span class="w-2/12 flex justify-center">Periode</span>
-            <span class="w-1/12 flex justify-center">Cote</span>
-            <span class="w-1/12 text-center ">Maj</span>
-            <span class="w-[10%] flex justify-center text-center">Actions</span>
+            <span class="w-2/12 flex justify-center">Cote</span>
+            <span class="w-2/12 flex justify-center">Cote</span>
+            <span class="w-2/12 text-center ">Maj</span>
         </div>
 
-        <div v-for="o of data?.data" :class="` py-2 text-sm  flex items-center justify-between ${data?.data?.indexOf(o) % 2 != 0 ? 'bg-gray-100' :''}`">
-            <span class="w-1/12">{{data?.data?.indexOf(o)+1 }}</span>
-            <span class="w-3/12 flex justify-center">{{o.names+' '+o.firstname+' '+o.lastname }}</span>
-            <span class="w-2/12 flex justify-center">{{o.matricule }}</span>
+        <div v-for="o,i of data?.data" :class="` py-2 text-sm  flex items-center justify-between ${i % 2 != 0 ? 'bg-gray-100' :''}`">
+            <span class="w-1/12">{{i+1 }}</span>
             <span class="w-2/12 flex justify-center">{{o.cours }}</span>
             <span class="w-2/12 flex justify-center">{{parseRatingType(o.cotes_types) }}</span>
-            <span class="w-1/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100 border border-green-300  text-green-600 rounded p-0.5': 'bg-red-100 border border-red-300 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
-            <span class="w-1/12 flex justify-center ">{{formatDateToAgo(o.updated_at) }}</span>
-            <span class="w-[10%] flex items-center justify-around">
-                <BlackLinkAsButton :to="'/ui/class-teacher/rating/'+o.id+'/'+prettyString(o.names+' '+o.firstname+' '+o.lastname )+'/'+o.matricule+'/'+prettyString(o.cours)+'/update'">
-                    <PencilIcon class="w-5 h-5"/>
-                </BlackLinkAsButton>
-                <RedButtons @press="onClickDelete(o)">
-                    <TrashIcon class="w-5 h-5"/>
-                </RedButtons>
-            </span>
+            <span class="w-2/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100 border border-green-300  text-green-600 rounded p-0.5': 'bg-red-100 border border-red-300 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
+            <span class="w-2/12 flex justify-center">{{o.total_periode }}</span>
+            <span class="w-2/12 flex justify-center ">{{formatDateToAgo(o.updated_at) }}</span>
         </div>
     </div>
 </template>
@@ -77,7 +63,6 @@ import {ref} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
 import prettyString from "../../../helpers/pretty-string"
 import parseRatingType from "../../../helpers/parse-rating-type";
-import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
 import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
 import RedButtons from "../../../components/v2/RedButtons.vue";
 import {   ArrowRightIcon, ChevronDownIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
@@ -86,7 +71,7 @@ import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 
-const {data, loading} = useFetch(Rating.getByType)
+const {data, loading} = useFetch(Rating.getStudentRating)
 const showDeleteDialog = ref(false)
 const dropDown = ref(false)
 const currentListItem = ref({})

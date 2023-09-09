@@ -1,6 +1,6 @@
 import {ref,onMounted} from "vue"
 
-export default function  useFetch(d :  () => Promise<any>) {
+export default function  useFetch(d :  () => Promise<any>, multiple = true) {
     const data = ref()
     const loading = ref(false)
     const logout = () =>{
@@ -16,7 +16,10 @@ export default function  useFetch(d :  () => Promise<any>) {
            }else{
             if(result.data){
                 if(Array.isArray(result.data) && result.data.length == 1){
-                    data.value = result.data[0]
+                    if(multiple){
+                         data.value = result.data
+                    }
+                    else data.value = result.data[0]
                 }else{
                     data.value = result.data
                 }
@@ -29,9 +32,12 @@ export default function  useFetch(d :  () => Promise<any>) {
             if(result.status && result.status === 401){
                 logout()
             }else{
+                
                 if(result.data){
                     if(Array.isArray(result.data) && result.data.length == 1){
-                        data.value = result.data[0]
+                        if(multiple)
+                        data.value = result.data
+                        else data.value = result.data[0]
                     }else{
                         data.value = result.data
                     }

@@ -20,6 +20,9 @@ const Rating = {
     async getByType(type:string = "P1"){
         return await api.get('/cotes/'+type)
     },
+    async getStudentRating(){
+        return await api.post('/cotes/eleve')
+    },
     async getAll(){
         return await api.get('/cotes')
     },
