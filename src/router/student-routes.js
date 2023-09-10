@@ -35,18 +35,11 @@ export default [
         component:async ()=> await import("../pages/student/courses/list.vue")
     },
     {
-        path: '/student/students',
-        alias:"/ui/student/students",
-        name: 'list-students-teacher',
+        path: '/student/results',
+        alias:"/ui/student/results",
+        name: 'list-results-student',
         meta : {layout : 'student'},
-        component:async ()=> await import("../pages/student/students/list.vue")
-    },
-    {
-        path: '/student/students/:id',
-        alias:"/ui/student/students/:id",
-        name: 'uniq-students-teacher',
-        meta : {layout : 'student'},
-        component:async ()=> await import("../pages/student/students/unique.vue")
+        component:async ()=> await import("../pages/student/result/list.vue")
     },
     {
         path: '/student/rating',

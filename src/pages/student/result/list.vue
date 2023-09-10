@@ -1,10 +1,9 @@
 <template>
-    <DeleteDialog @confirm="onDelete" @cancel="showDeleteDialog = false" title="Etes-vous sur de poursuivre votre action ?" text="La suppression de la cote entrainera des modifications sur le resultat de l'eleve ainsi que de sa classe. Cette action est irreversible" v-if="showDeleteDialog"/>
     <div class="w-[95%] mt-2 mx-auto">
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
                 <GoBackAdminButton/>
-                <h1 class="text-lg font-semibold ml-2">Liste de cotes</h1>
+                <h1 class="text-lg font-semibold ml-2">Resultat</h1>
             </div>
            <div class="flex relative items-center">
                <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.length}}</span>
@@ -73,9 +72,7 @@ import useFetch from "../../../hooks/useFetch";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 
 const {data, loading} = useFetch(Rating.getStudentRating)
-const showDeleteDialog = ref(false)
 const dropDown = ref(false)
-const currentListItem = ref({})
 const currentRatingType = ref("")
 const setRatingType = async type =>{
     currentRatingType.value = type
@@ -83,16 +80,6 @@ const setRatingType = async type =>{
     const result = await Rating.getStudentRating(type)
     if(result.data){
         data.value = result.data
-    }
-}
-const onDelete = async () =>{
-    const result = await Rating.remove(currentListItem.value.id)
-    if(result.success){
-        const c = await Rating.getByType()
-        if(c.data){
-            data.value = c
-        }
-        showDeleteDialog.value = false
     }
 }
 </script>
