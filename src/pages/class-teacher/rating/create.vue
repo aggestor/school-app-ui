@@ -43,7 +43,7 @@
                 </form>
                 <div class="w-full items-center my-3 flex  justify-between">
                     <BlueButtons type="button" @press="onPressRegister">
-                        Confirmer paiement <CheckCircleIcon class="w-5 h-5 ml-1"/>
+                        Attribuer la cote <CheckCircleIcon class="w-5 h-5 ml-1"/>
                     </BlueButtons>
                 </div>
             </div>
