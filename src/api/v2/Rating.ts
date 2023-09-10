@@ -23,6 +23,9 @@ const Rating = {
     async getStudentRating(type?:string){
         return await api.post(type ?'/cotes/eleve/'+type :"/cotes/eleve")
     },
+    async getStudentResult(type?:string){
+        return await api.post(type ?'/cotes/eleve/'+type :"/cotes/eleve/resultat")
+    },
     async getAll(){
         return await api.get('/cotes')
     },

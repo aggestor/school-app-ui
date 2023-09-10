@@ -26,5 +26,5 @@ export default function parseRatingType(type){
         }
     }
 
-    return types[type].name
+    return types[type]?.name
 }

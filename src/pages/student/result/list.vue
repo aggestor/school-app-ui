@@ -3,7 +3,7 @@
         <div class="flex border-b mb-3 py-2 items-center justify-between">
             <div class="flex  items-center">
                 <GoBackAdminButton/>
-                <h1 class="text-lg font-semibold ml-2">Resultat</h1>
+                <h1 class="text-lg font-semibold ml-2">Resultats</h1>
             </div>
            <div class="flex relative items-center">
                <span class="w-7 h-7 mr-2 rounded bg-gray-200 grid place-items-center">{{ data?.length}}</span>
@@ -47,7 +47,7 @@
             <span class="w-2/12 flex justify-center">Cours</span>
             <span class="w-2/12 flex justify-center">Periode</span>
             <span class="w-2/12 flex justify-center">Cote</span>
-            <span class="w-2/12 flex justify-center">Cote</span>
+            <span class="w-2/12 flex justify-center">Total</span>
             <span class="w-2/12 text-center ">Maj</span>
         </div>
 
@@ -55,31 +55,60 @@
             <span class="w-1/12">{{i+1 }}</span>
             <span class="w-2/12 flex justify-center">{{o.cours }}</span>
             <span class="w-2/12 flex justify-center">{{parseRatingType(o.cotes_types) }}</span>
-            <span class="w-2/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100 border border-green-300  text-green-600 rounded p-0.5': 'bg-red-100 border border-red-300 text-red-600 rounded p-0.5'">{{o.cotes }}</span></span>
+            <span class="w-2/12 flex justify-center"><span :class="o.cotes >= o.total_periode/2 ? 'bg-green-100 border border-green-300  text-green-600 rounded p-0.5': 'bg-red-100 border border-red-300 text-red-600 rounded p-0.5'">{{o.cotes || "-" }}</span></span>
             <span class="w-2/12 flex justify-center">{{o.total_periode }}</span>
             <span class="w-2/12 flex justify-center ">{{formatDateToAgo(o.updated_at) }}</span>
+        </div>
+        <div class="border rounded p-2 mt-3">
+            <div class="flex text-lg font-semibold w-full">
+                <div class="w-7/12 flex justify-end"><span class="mr-4">{{total}}</span></div>
+                <div class="w-2/12 flex justify-end">{{totalCourses }}</div>
+            </div>
+            <div class="flex text-lg font-semibold w-full">
+                <div class="w-7/12 flex justify-end"></div>
+                <div :class="`w-1/12 flex justify-end text-xl ${percentage >= 50 ? 'text-green-600':'text-red-600'}`">{{percentage }}%</div>
+            </div>
         </div>
     </div>
 </template>
 <script setup>
-import {ref} from "vue"
+import {ref, onMounted} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
 import parseRatingType from "../../../helpers/parse-rating-type";
 import {   ArrowRightIcon, ChevronDownIcon} from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
-import useFetch from "../../../hooks/useFetch";
-import DeleteDialog from "../../../components/v2/DeleteDialog.vue";
 
-const {data, loading} = useFetch(Rating.getStudentRating)
+const data = ref([])
+const totalCourses = ref(0)
+const total = ref(0)
+const percentage = ref(0)
 const dropDown = ref(false)
-const currentRatingType = ref("")
 const setRatingType = async type =>{
     currentRatingType.value = type
     dropDown.value = false
-    const result = await Rating.getStudentRating(type)
+    const result = await Rating.getStudentResult()
     if(result.data){
         data.value = result.data
+        const d = result.data.reduce((acc,{total_periode})=> acc+parseInt(total_periode),0)
+        total.value = d
     }
 }
+const getResult = async () =>{
+    const result = await Rating.getStudentResult()
+    if(result.success){
+        data.value = result.data
+        const d = result.data.reduce((acc,{total_periode}) => acc+parseInt(total_periode),0)
+        const c = result.data.reduce((acc,{cotes}) => {
+            const x = cotes ? parseFloat(cotes) : 0
+          return acc+ x
+        },0)
+        total.value = c
+        totalCourses.value = d
+        percentage.value = Number.parseFloat((c/d)*100).toFixed(1)
+    }
+}
+onMounted(()=>{
+    getResult()
+})
 </script>

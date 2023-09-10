@@ -15,6 +15,7 @@ export default function  useFetch(d :  () => Promise<any>, multiple = true) {
                 logout()
            }else{
             if(result.data){
+                console.log(result.data);
                 if(Array.isArray(result.data) && result.data.length == 1){
                     if(multiple){
                          data.value = result.data
