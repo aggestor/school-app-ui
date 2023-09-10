@@ -20,8 +20,8 @@ const Rating = {
     async getByType(type:string = "P1"){
         return await api.get('/cotes/'+type)
     },
-    async getStudentRating(){
-        return await api.post('/cotes/eleve')
+    async getStudentRating(type?:string){
+        return await api.post(type ?'/cotes/eleve/'+type :"/cotes/eleve")
     },
     async getAll(){
         return await api.get('/cotes')

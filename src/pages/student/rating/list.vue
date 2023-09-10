@@ -12,6 +12,10 @@
                     <ChevronDownIcon :class="`w-5 h-5 ${dropDown ? 'transform rotate-180' :''} transition-all duration-500`"/>
                 </span>
                 <div v-if="dropDown" data-aos="zoom-in" data-aos-duration="500" class="absolute w-48 overflow-hidden bg-white bg-opacity-80 border top-9 right-0 shadow backdrop-blur-sm rounded fit">
+                    <div @click="setRatingType('')" class="cursor-pointer group hover:bg-blue-600 flex  items-center hover:text-white text-black p-1">
+                        <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
+                        <p>Tout</p>
+                    </div>
                     <div @click="setRatingType('P1')" class="cursor-pointer group hover:bg-blue-600 flex  items-center hover:text-white text-black p-1">
                         <span class="w-6 h-6 rounded border grid place-items-center mr-1.5"><ArrowRightIcon class="w-5 h-5"/></span>
                         <p>1ère Période</p>
@@ -61,11 +65,8 @@
 <script setup>
 import {ref} from "vue"
 import { formatDateToAgo } from "../../../helpers/format-date";
-import prettyString from "../../../helpers/pretty-string"
 import parseRatingType from "../../../helpers/parse-rating-type";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
-import RedButtons from "../../../components/v2/RedButtons.vue";
-import {   ArrowRightIcon, ChevronDownIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
+import {   ArrowRightIcon, ChevronDownIcon} from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import Rating from "../../../api/v2/Rating";
 import useFetch from "../../../hooks/useFetch";
@@ -75,15 +76,11 @@ const {data, loading} = useFetch(Rating.getStudentRating)
 const showDeleteDialog = ref(false)
 const dropDown = ref(false)
 const currentListItem = ref({})
-const currentRatingType = ref("P1")
-const onClickDelete = i =>{
-    currentListItem.value = i
-    showDeleteDialog.value = true
-}
+const currentRatingType = ref("")
 const setRatingType = async type =>{
     currentRatingType.value = type
     dropDown.value = false
-    const result = await Rating.getByType(type)
+    const result = await Rating.getStudentRating(type)
     if(result.data){
         data.value = result.data
     }

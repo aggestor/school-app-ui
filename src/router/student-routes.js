@@ -30,7 +30,7 @@ export default [
     {
         path: '/student/courses',
         alias:"/ui/student/courses",
-        name: 'list-course-teacher',
+        name: 'list-course-student',
         meta : {layout : 'student'},
         component:async ()=> await import("../pages/student/courses/list.vue")
     },

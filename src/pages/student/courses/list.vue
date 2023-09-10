@@ -15,7 +15,6 @@
             <span class="w-3/12 flex justify-center">Cours</span>
             <span class="w-2/12 flex justify-center">Examen</span>
             <span class="w-2/12 flex justify-center">Période</span>
-            <span class="w-2/12 ">Maj</span>
         </div>
 
         <div v-for="c of courses" :class="` py-2 text-sm  flex items-center justify-between ${courses.indexOf(c) % 2 != 0 ? 'bg-gray-100' :''}`">
@@ -23,7 +22,6 @@
             <span class="w-3/12 flex justify-center">{{c.cours }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_examen }}</span>
             <span class="w-2/12 flex justify-center">{{c.total_periode }}</span>
-            <span class="w-2/12 flex ">{{formatDateToAgo(c.updated_at) }}</span>
         </div>
     </div>
 </template>
@@ -31,30 +29,18 @@
 import {onMounted, ref} from "vue"
 import Course from "../../../api/v2/Course";
 import { formatDateToAgo } from "../../../helpers/format-date";
-import BlueLinkAsButton from "../../../components/v2/BlueLinkAsButton.vue";
-import BlackLinkAsButton from "../../../components/v2/BlackLinkAsButton.vue";
-import RedButtons from "../../../components/v2/RedButtons.vue";
-import {  PencilIcon, PlusIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import GoBackAdminButton from "../../../components/GoBackAdminButton.vue";
 import DeleteDialog from "../../../components/v2/DeleteDialog.vue"
 const courses = ref([])
 const loading = ref(true)
-const currentList = ref({})
 const showDelete = ref(false)
 const getCourses = async () =>{
     loading.value = true
-    const result = await Course.getByTeacher()
+    const result = await Course.getByStudentWithAuth()
     if(result.data){
         courses.value = result.data
     }
     loading.value = false
-}
-const deleteCourse = async () =>{
-    
-}
-const onPressDeleteCourse = c =>{
-    currentList.value = c
-    showDelete.value = true
 }
 onMounted(()=>{
     getCourses()

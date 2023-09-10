@@ -20,6 +20,9 @@ const Course = {
     async getByStudent(id:string){
         return await api.get('/cours/classe/'+id)
     },
+    async getByStudentWithAuth(id:string){
+        return await api.patch('/cours/classe/eleve')
+    },
 }
 
 export default Course
